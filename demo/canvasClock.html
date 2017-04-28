@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="background:black;position:relative;">
+	<canvas width="500" height="500" style="position:absolute;left:0;right:0;"></canvas>
+	<script>
+	var clock = document.getElementsByTagName('canvas')[0];
+	var cxt = clock.getContext("2d");
+	
+	
+	function getTime(){
+		cxt.clearRect(0,0,500,500);
+		var t = new Date();
+		var ms = t.getMilliseconds();
+		var s = t.getSeconds();
+		var m = t.getMinutes();
+		var h = t.getHours();
+		function change(){
+			if(h>12){
+				return h-12;
+			}
+		}
+		var hour = change();
+		hour = hour+m/60;
+		s = s+ms/1000;
+		// console.log(s);
+		cxt.save();
+		cxt.translate(250,250);
+		cxt.rotate(hour*30*Math.PI/180);
+		cxt.beginPath();
+		cxt.lineWidth = 8;
+		cxt.moveTo(0,15);
+		cxt.lineTo(0,-150);
+		cxt.stroke();
+		cxt.closePath();
+		cxt.restore();
+
+		cxt.save();
+		cxt.lineWidth = 4;
+		cxt.translate(250,250);
+		cxt.rotate(m*6*Math.PI/180);
+		cxt.beginPath();
+		cxt.moveTo(0,15);
+		cxt.lineTo(0,-155);
+		cxt.stroke();
+		cxt.closePath();
+//中心小圆填充内容
+		cxt.beginPath();
+		cxt.arc(0,0,5,0,360);
+		cxt.fillStyle = "green";
+		cxt.fill();
+		cxt.strokeStyle = "red";
+		cxt.lineWidth = 2;
+		cxt.stroke();
+		cxt.closePath();
+
+		cxt.restore();
+//绘制秒针
+		cxt.save();
+		cxt.lineWidth = 2;
+		cxt.strokeStyle = "blue";
+		cxt.translate(250,250);
+		cxt.rotate(s*6*Math.PI/180);
+		cxt.beginPath();
+		cxt.moveTo(0,15);
+		cxt.lineTo(0,-170);
+		cxt.stroke();
+		cxt.closePath();
+		cxt.restore();
+
+//中心小圆
+		cxt.beginPath();
+		cxt.lineWidth = 4;
+		cxt.strokeStyle = "#38f";
+		cxt.arc(250,250,200,0,360,false);
+		cxt.stroke();
+		cxt.closePath();
+		
+		//绘制表盘格
+		cxt.strokeStyle = "#4f8";
+		for(var i=0;i<12;i++){
+			cxt.save();
+			cxt.lineWidth = 8;
+			cxt.translate(250,250);
+			cxt.rotate(i*30*Math.PI/180);
+			cxt.beginPath();
+			cxt.moveTo(0,-180);
+			cxt.lineTo(0,-196);
+			cxt.stroke();
+			cxt.closePath();
+			cxt.restore();
+		}
+		for(var i=0;i<60;i++){
+			cxt.save();
+			cxt.beginPath();
+			cxt.lineWidth=4;
+			// cxt.strokeStyle = "black";
+			cxt.translate(250,250);
+			cxt.rotate(i*6*Math.PI/180);
+			cxt.moveTo(0,-190);
+			cxt.lineTo(0,-195);
+			cxt.stroke();
+			cxt.closePath();
+			cxt.restore();
+		}
+	}
+	setInterval(getTime,10);
+	getTime();
+	</script>
+</body>
+</html>

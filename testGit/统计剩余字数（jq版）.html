@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入框剩余文字</title>
+   <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<textarea name="" id="" cols="100" rows="30"></textarea>
+<span>你还可以输入<strong style="color:red;">140</strong>个字</span>
+<script>
+    var maxLength = 140;
+    $('textarea').keyup(function(){
+        var L = $(this).val().length;
+        $('strong').text(maxLength-L);//总字数减去输入的字数
+
+        if(parseInt($('strong').text())<0){
+            $('strong').text('0'); //如果输入文字小于0 则文本显示为0
+            //alert($(this).val()）;
+            var val1 = $(this).val().substr(1,140);//截取输入长度
+            //substr（不推荐使用，ECMAScript没有标准化substr()方法）
+            $(this).val(val1);
+        }
+    })
+</script>
+</body>
+</html>

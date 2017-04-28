@@ -1,0 +1,129 @@
+body{
+    background: #F1F2F6;
+}
+.article_detail .inner{
+    position: relative;
+    background: #fff;
+    height: 2040px;
+}
+.article_detail .art_inner{
+    width: 780px;
+    margin: 0 auto;
+}
+.article_detail .art_inner>h1{
+    font:700 50px/60px 'Simsun';
+    color: #311759;
+    padding-top: 50px;
+    text-align: center;
+}
+.article_detail .art_inner>h5{
+    font:600 18px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    letter-spacing:4px;
+    text-align: center;
+}
+.point{
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url(../images/three_points01.png);
+}
+.article_detail .list_title{
+    width: 780px;
+    margin: 80px auto 0;
+}
+.article_detail .list_title p{
+    margin-top: 10px;
+    color: #311759;
+    font:700 28px/30px 'SimSun';
+}
+.article_detail .list_title{
+    position: relative;
+    height: 60px;
+}
+.penLine{
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50px;
+    min-width: 400px;
+    overflow: hidden;
+    background: url(../images/pen_line_long.png) no-repeat;
+}
+.list_title .pens{
+    position: absolute;
+    width: 61px;
+    height: 54px;
+    background: url(../images/pen_article.png) no-repeat;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 99;
+}
+.list_title .pens:hover{
+    background-position: -61px 0;
+}
+.article_detail .admindate{
+    position: relative;
+    top: 8px;
+    font:300 14px/16px 'Microsoft YaHei UI';
+    color: #6B6A6F;
+}
+.article_detail .bg_banner{
+    width: 780px;
+    height: 230px;
+    position: relative;
+    background: url("../images/article_image01.jpg") no-repeat;
+    background-size:cover;
+    top: 60px;
+    margin-bottom: 30px;
+}
+.article_detail .art_txt{
+    width: 100%;
+    position: relative;
+    top: 65px;
+    font-size: 14px;
+    line-height: 22px;
+    font-family: 'Simsun';
+    padding-bottom: 60px;
+}
+.article_detail .art_txt .sec_title{
+    font:400 20px/20px 'Simsun';
+}
+.article_detail .art_txt ul{
+    padding: 20px 0;
+}
+.dynamic_top5{
+    width: 73px;
+    height: 73px;
+    margin: 85px auto 0;
+    background: url("../images/article_iflike.png")no-repeat 0px 0px;
+    cursor: pointer;
+    position: relative;
+    /*transition: all .3s linear ;*/
+}
+.dynamic_top5:hover{
+    background: url("../images/article_iflike.png")no-repeat 0px -73px;
+}
+.dynamic_top5:hover .attention{
+    display: block;
+    left: 70px;
+}
+.attention{
+    position: absolute;
+    display: none;
+    width: 135px;
+    height: 35px;
+    top: 50%;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    font-family:'楷体';
+    margin-top: -18px;
+    background: url(../images/article_iflike_nomberbg.png);
+    transition: all .5s linear ;
+}
+

@@ -1,0 +1,156 @@
+.banner_wrap{
+    width: 100%;
+    height: 594px;
+    position: relative;
+}
+.banner_wrap .banner{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+.banner_wrap .banner_btn{
+    width: 216px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -108px;
+    top: 522px;
+    background:url("../images/next&prev_line.png") no-repeat center center;
+}
+.banner_wrap .banner_btn div{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    background: url("../images/prev_jiantou.png") no-repeat;
+    cursor: pointer;
+    transition: all .1s ease 0s;
+}
+.banner_wrap .banner_btn div.next{
+    left: 186px;
+    background: url("../images/next_jiantou.png") no-repeat;
+}
+.banner_wrap .banner_btn div.prev:hover{
+    background: url("../images/prev_jiantou_hover.png") no-repeat;
+}
+.banner_wrap .banner_btn div.next:hover{
+    background: url("../images/next_jiantou_hover.png") no-repeat;
+}
+.banner_wrap .banner_btn ul.btn{
+    position: absolute;
+    width: 48px;
+    height: 14px;
+    top: 50%;
+    margin-top: -7px;
+    border-radius: 6px;
+    left: 50%;
+    margin-left: -22px;
+    background: url("../images/next&prev_mbg01.png") no-repeat,url("../images/next&prev_mbg02.png") no-repeat 5px 0,url("../images/next&prev_mbg02.png") no-repeat 10px 0,url("../images/next&prev_mbg02.png") no-repeat 15px 0,url("../images/next&prev_mbg02.png") no-repeat 20px 0,url("../images/next&prev_mbg02.png") no-repeat 25px 0,url("../images/next&prev_mbg02.png") no-repeat 30px 0,url("../images/next&prev_mbg02.png") no-repeat 35px 0,url("../images/next&prev_mbg02.png") no-repeat 37px 0,url("../images/next&prev_mbg03.png") no-repeat 42px 0;
+}
+.banner_btn ul.btn li{
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 5px;
+    width: 9px;
+    height: 8px;
+    float: left;
+    background: url("../images/next&prev_others.png") no-repeat center center;
+}
+.banner_btn ul.btn li.now1{
+    cursor: pointer;
+    width: 9px;
+    height: 8px;
+    float: left;
+    background: url("../images/next&prev_now.png") no-repeat center center;
+}
+.banner .inner{
+    position: relative;
+}
+.banner_wrap .banner:nth-of-type(1){
+    background: url("../images/banner01_bg.jpg") no-repeat center center;
+    /*display: none;*/
+}
+.banner_wrap .banner:nth-of-type(2){
+    background: url("../images/banner02_bg.jpg") no-repeat center center;
+    display: none;
+}
+.banner_wrap .banner:nth-of-type(3){
+    background: url("../images/banner01_bg.jpg") no-repeat center center;
+    display: none;
+}
+
+.banner .inner li{
+    position: absolute;
+    left: 50%;
+}
+.banner:nth-of-type(1)  li:nth-child(1){
+    width: 638px;
+    height: 70px;
+    margin-left: -205px;
+    background: url("../images/banner01_01.png") no-repeat;
+    top: 205px;
+}
+.banner:nth-of-type(1)  li:nth-child(2){
+    width: 638px;
+    height: 70px;
+    margin-left: -175px;
+    background: url("../images/banner01_02.png") no-repeat;
+    top: 300px;
+    /*animation: bounceInRight 2s ease;*/
+}
+.banner:nth-of-type(1)  li:nth-child(3){
+    width: 638px;
+    height: 70px;
+    margin-left: -175px;
+    background: url("../images/banner01_03.png") no-repeat;
+    top: 355px;
+}
+.banner:nth-of-type(2)  li:nth-child(1){
+    width: 223px;
+    height: 397px;
+    left: 230px;
+    background: url("../images/banner02_02.png") no-repeat;
+    top: 60px;
+    /*animation: bounceInLeft 2s ease 0s;*/
+}
+.banner:nth-of-type(2)  li:nth-child(2){
+    width: 181px;
+    height: 52px;
+    left: 0;
+    background: url("../images/banner02_01.png") no-repeat;
+    top: 170px;
+    /*animation: bounceInUp 2s ease 0s;*/
+}
+.banner:nth-of-type(2)  li:nth-child(3){
+    width: 63px;
+    height: 19px;
+    left: 230px;
+    background: url("../images/banner02_03.png") no-repeat;
+    top: 188px;
+    /*animation: bounceInRight 2s ease 0s;*/
+}
+.banner:nth-of-type(3)  li:nth-child(1){
+    width: 638px;
+    height: 70px;
+    margin-left: -160px;
+    background: url("../images/banner03_01.png") no-repeat;
+    top: 188px;
+    /*animation: bounceInLeft 2s ease 0s;*/
+}
+.banner:nth-of-type(3)  li:nth-child(2){
+    width: 638px;
+    height: 70px;
+    margin-left: -160px;
+    background: url("../images/banner03_02.png") no-repeat;
+    top: 300px;
+    /*animation: bounceInRight 2s ease 0s;*/
+}
+.banner:nth-of-type(3)  li:nth-child(3){
+    width: 638px;
+    height: 70px;
+    margin-left: -175px;
+    background: url("../images/banner01_03.png") no-repeat;
+    top: 355px;
+}
+

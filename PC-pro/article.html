@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章</title>
+    <link rel="stylesheet" href="css/animate.css" type='text/css'>
+    <link rel="stylesheet" href="css/common.css" type='text/css'>
+    <link rel="stylesheet" href="css/reset.css" type='text/css'>
+    <link rel="stylesheet" href="css/article.css" type='text/css'>
+    <script src='js/jquery-1.8.3.min.js' type='text/javascript'></script>
+    <script src='js/move.js' type='text/javascript'></script>
+</head>
+<body>
+<div id="head" style='height: 120px;background: url("images/header_bg.jpg");'></div>
+<!--网页头部js代码-->
+<script>
+    $(function () {
+        $('#head').load('header.html');
+    });
+</script>
+<!--网页头部结束-->
+
+
+<div class="article_lists">
+    <div class="inner">
+        <div class="title">
+            <h1>小鸟动态</h1>
+            <p>About Company</p>
+            <div class="sPoint"></div>
+        </div>
+        <div class="lists">
+            <div class="list_title">
+                <p>列表</p>
+                <div class="penLine"></div>
+                <span class="pens"></span>
+            </div>
+            <div class="list_conn" id='list-article'>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img01.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img02.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img03.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img04.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img02.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="articles">
+                    <div class="art_wrap">
+                        <div class="art_img"><img src="images/list_img01.jpg" alt=""></div>
+                        <span class="sanJiao"></span>
+                        <div class="art_Introduction">
+                            <h3>胜林三境，重装出发</h3>
+                            <span class="date">2017-02-09 19:00:00.8</span>
+                            <p>小鸟掌学创建于2014年初，起源服务于四川省专业技术人员继续教育基地的在线培训平台</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="list_more">
+            <p><img src="images/list_gomore_bg.jpg" alt=""></p>
+            <div class="quan"></div>
+        </div>
+    </div>
+<div class="bott_img"></div>
+</div>
+<div id="items" style='display: none;'>
+    <div class="articles"  articleid="$artId$">
+        <div class="art_wrap">
+            <div class="art_img"><img src="$artCover$" alt=""></div>
+            <span class="sanJiao"></span>
+            <div class="art_Introduction">
+                <h3>$artTitle$</h3>
+                <span class="date">$upTime$</span>
+                <p>$describe$</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/article.js"></script>
+<!--网页主体部分开始-->
+</body>
+<script>
+    $(function () {
+        /*ajax三部曲：
+         new  实例化XMLHttpRequest()
+         open 请求方式  url  是否异步
+         send 请求主题/   /  null
+         */
+        var q=0;
+
+        $('.quan').click(function () {
+//            q++;
+
+            ajaxget();
+        });
+         ajaxget();
+        function ajaxget() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("get",'js/listsData.json');
+            xhr.send(null);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState ==4){
+                    if(xhr.status==200){
+                        var lo = xhr.responseText;
+                        var le = JSON.parse(lo);
+                        if(q==0){
+                            $('.list_conn').html("");
+                        }
+                        var len1 = le[q].data.list;
+                        for (var i = 0; i<len1.length;i++){
+                            var item = $('#items').html()
+                                    .replace("$artId$",len1[i].sysId)
+                                    .replace("$artCover$",len1[i].coverImg)
+                                    .replace("$upTime$",len1[i].creatAt)
+                                    .replace("$describe$",len1[i].describe)
+                                    .replace("$artTitle$",len1[i].title);
+                            $('.list_conn').append(item);
+                        }
+
+                        var nomore = Math.ceil(le[q].data.count/le[q].data.pageSize);
+                        q++;
+
+                        if(q>=nomore){
+                            $('.list_more>p img').attr("src","images/list_gomore_bg_nomore.jpg");
+                        }
+
+                    }
+                }
+            }
+        }
+
+        $('.list_conn').delegate(".articles","click",function () {
+            //search
+           window.open("articles.html?type=xiaoniaoNews"+$(this).attr("articleid"));
+            //hash
+           /*window.open("articles.html#xiaoniaoNews"+$(this).attr("articleid"));*/
+        });
+
+
+
+        /*ajax请求加载*/
+        
+        /*var q = 0;
+         $('.quan').click(function () {
+         q++;
+         ajaxRequest();
+         });
+         ajaxRequest();
+
+         function ajaxRequest() {
+         var xhr  = new XMLHttpRequest();
+         xhr.open("get","js/listsData.json");
+         xhr.send(null);
+         xhr.onreadystatechange = function () {
+         if (xhr.readyState==4){
+         if (xhr.status==200){
+         var datas = xhr.responseText;
+         var arrData = JSON.parse(datas);
+         if(q==0){
+         $('#list-article').html("");
+         }
+         var len = arrData[q].data.list;
+         for (var i = 0;i<len.length;i++){
+         var item =$('#items').html()
+         .replace("$artId$",len[i].sysId)
+         .replace("$artCover$",len[i].coverImg)
+         .replace("$artTitle$",len[i].title)
+         .replace("$describe$",len[i].describe)
+         .replace("$upTime$",len[i].creatAt);
+
+         $('.list_conn').append(item);
+         }
+         }
+         }
+
+
+
+
+         };
+         }*/
+        
+        
+    })
+</script>
+</html>

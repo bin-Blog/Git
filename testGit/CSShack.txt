@@ -1,0 +1,74 @@
+³£¼ûµÄCSShack
+IE6 Only
+==================
+_selector {...}
+
+IE6 & IE7
+==================
+*html or { _property: }
+
+IE7 Only
+==================
+*+html or { *property: } - Keep in mind that you have to put the IE7 property first within the same selector.
+
+IE8
+==================
+.selector/*\**/ { color:#f00; }
+**NOTE**: LESS v1.5.0 shoots out an error when compiling the CSS if you use this hack :/
+
+
+IE8 and IE9 (TOTALLY NOT NEEDED - I LEFT HERE FOR REFERENCE ONLY)
+==================
+.selector { color:#f00\9; } - http://stackoverflow.com/questions/660652/ie8-css-selector
+
+The above solution doesn't work with font-family, so instead you need to use "\0/ !important"
+Example: { font-family:Arial \0/ !important; }			
+http://dimox.net/personal-css-hacks-for-ie6-ie7-ie8/
+
+Also, using "\9" is picked up by IE10 and IE11 so you need to redeclare the CSS rules with "-ms-high-contrast:". See info below.
+
+IE9 Only
+==================
+:root .class/#id { property:value \0/IE9; }
+**NOTE**: Prepos v4.0.1 shoots out an error when compiling the CSS if you use this hack :/
+http://blog.vervestudios.co/blog/post/2011/05/13/IE9-Only-CSS-Hack.aspx
+		 
+IE10 Only
+==================
+Method 1: UA Sniffing, which isn't the most loved method to target browsers, but here it is anyway.
+http://css-tricks.com/ie-10-specific-styles/
+
+Place this script in the <head>:
+<script>
+  var doc = document.documentElement;
+  doc.setAttribute('data-useragent', navigator.userAgent);
+</script>
+
+Usage:
+html[data-useragent*='MSIE 10.0'] .selector {...}
+
+Method 2: It used 'Conditional compilation' which is not UA sniffing. Also, it excludes IE11 as well.
+http://www.impressivewebs.com/ie10-css-hacks/
+Conditional compilation: https://msdn.microsoft.com/en-us/library/8ka90k2e(v=vs.94).aspx
+
+Place this script in the <head>:
+<!--[if !IE]><!-->
+<script>
+  if (/*@cc_on!@*/false && document.documentMode === 10) {
+    document.documentElement.className+=' ie10';
+  }
+</script>
+<!--<![endif]-->
+
+Note: Seems the Conditional Comment is not necessary, but I like to include it for good measure.
+
+Usage:
+.ie10 .selector {...}
+
+== More info here: https://philipnewcomer.net/2014/04/target-internet-explorer-10-11-css/
+
+IE10 and IE11
+==================
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.selector { property:value; }
+}

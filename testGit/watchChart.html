@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <canvas id="canvas" width="292px" height="486px"></canvas>
+</div>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    var logo = new Image();
+    logo.src = "logo.png";
+    var img = new Image();
+    img.src = "watch.png";
+    img.onload = function (e) {
+        run();
+        setInterval(run, 1000);
+    }
+
+    function run() {
+        var time = new Date();//获取现在时间
+        var sec = time.getSeconds();//获取秒
+        var min = time.getMinutes();//获取分钟
+        var hour = time.getHours();//获取小时
+        hour = hour > 12 ? hour - 12 : hour;
+        ctx.clearRect(0, 0, 300, 600);
+        /*
+        * 增加背景图片
+        * */
+        ctx.beginPath();
+        var fillimage = ctx.createPattern(img, "no-repeat");
+        ctx.fillStyle = fillimage;
+        ctx.rect(0, 0, 300, 600);
+        ctx.fill();
+        ctx.closePath();
+        /*
+        * 保留当前环境，并画表盘最外边框，增加0.2的透明显示；
+        * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#fff";
+        ctx.globalAlpha = 0.2;
+        ctx.arc(0, 0, 100, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+        /*
+         * 保留当前环境，并绘制表盘的指针---秒针绘制；
+         * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#FB1254";
+        ctx.lineCap = "round";
+        ctx.arc(0, 0, 70, 0 - Math.PI / 2, sec * Math.PI / 30 - Math.PI / 2);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        /*
+         * 保留当前环境，并绘制表盘的指针---分针绘制；
+         * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#9BFF00";
+        ctx.lineCap = "round";
+        ctx.arc(0, 0, 58, 0 - Math.PI / 2, sec * Math.PI / 1800 + min * Math.PI / 30 - Math.PI / 2);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        /*
+         * 保留当前环境，并绘制表盘的指针---时针绘制；
+         * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#05F5F2";
+        ctx.lineCap = "round";
+        ctx.arc(0, 0, 46, 0 - Math.PI / 2, min * Math.PI / 360 + hour * Math.PI / 6 - Math.PI / 2);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        /*
+         * 保留当前环境，并绘制表盘的logo；
+         * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.drawImage(logo, 0, 0, 117, 116, 134, 222, 30, 30);
+        ctx.closePath();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        /*
+         * 保留当前环境，并绘制表盘的指针针盘，增加0.2的透明显示；
+         * */
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#FB1254";
+        ctx.globalAlpha = 0.2;
+        ctx.arc(0, 0, 70, 0, Math.PI * 2);// 秒针针盘
+        ctx.stroke();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.strokeStyle = "#9BFF00";
+        ctx.globalAlpha = 0.2;
+        ctx.arc(0, 0, 58, 0, Math.PI * 2);//分针针盘
+        ctx.stroke();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.strokeStyle = "#05F5F2";
+        ctx.globalAlpha = 0.2;
+        ctx.arc(0, 0, 46, 0, Math.PI * 2);//时针针盘
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+
+
+        /*
+         * 表盘绘制,使用圆形函数进行节点的绘画操作，
+         * */
+        ctx.save();
+        ctx.translate(146, 240);
+        for (var i = 0; i < 60; i++) {
+            /*
+            * 绘制四个节点
+            * */
+            if (i / 5 == 3 || i / 5 == 6 || i / 5 == 9 || i / 5 == 0) {
+                ctx.beginPath();
+                ctx.moveTo(0, 80);
+                ctx.lineTo(0, 95);
+                ctx.lineWidth = 5;
+                ctx.strokeStyle = "#9fc105";
+                ctx.stroke();
+
+            }
+            if(i%5 == 0){
+                ctx.beginPath();
+                ctx.moveTo(0, 95);
+                ctx.lineTo(0, 105);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "#9fc105";
+                ctx.stroke();
+                ctx.rotate(Math.PI/30);
+            }else{
+                ctx.beginPath();
+                ctx.moveTo(0, 100);
+                ctx.lineTo(0, 105);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "#9fc105";
+                ctx.stroke();
+                ctx.rotate(Math.PI/30);
+            }
+
+        }
+        ctx.restore();
+    }
+
+</script>
+</body>
+</html>

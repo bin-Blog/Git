@@ -1,0 +1,1508 @@
+.main_wrap{
+    width: 100%;
+    height: 886px;
+    background: #F1F2F6;
+}
+.main_wrap .inner{
+    height: 886px;
+}
+.main_wrap .main_top{
+    height: 344px;
+    position: relative;
+}
+.main_wrap .main_bottom{
+    height: 542px;
+    position: relative;
+    overflow: hidden;
+}
+.main_wrap .main_top .round{
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    background: url("../images/goOn_icon01.png")no-repeat;
+    left: 50%;
+    margin-left: -29px;
+    top: 48px;
+    cursor: pointer;
+    transition: all 1.5s ease;
+}
+.main_wrap .main_top .round:hover{
+    transform: rotate(-540deg);
+}
+.main_wrap .main_top h1{
+    position: absolute;
+    left: 50%;
+    top: 170px;
+    font:700 50px/50px 'simSun';
+    color: #311759;
+    margin-left: -100px;
+}
+.main_wrap .main_top p{
+    position: absolute;
+    left: 50%;
+    top: 227px;
+    font:600 14px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    margin-left: -58px;
+    letter-spacing: 6px;
+}
+.main_wrap .main_top .point{
+    position: absolute;
+    top: 266px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.main_wrap .main_bottom .linePoint{
+    width: 22px;
+    height: 386px;
+    position: absolute;
+    left: 0;
+    bottom: 137px;
+    background: url("../images/jiejian_now_line.png");
+}
+.main_bottom .linePoint ul{
+    width: 22px;
+    height: 386px;
+    position: relative;
+}
+.main_bottom .linePoint ul li{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    cursor: pointer;
+}
+.main_bottom .linePoint ul li:nth-of-type(1){
+    top: -4px;
+}
+.main_bottom .linePoint ul li:nth-of-type(2){
+    background:  #F1F2F6 url("../images/chanpin_nowline_bgline.png") repeat-y center center;
+    top: 71px;
+    left: -1px;
+}
+.main_bottom .linePoint ul li:nth-of-type(3){
+    top: 146px;
+}
+.main_bottom .linePoint ul li:nth-of-type(4){
+    bottom: 144px;
+}
+.main_bottom .linePoint ul li:nth-of-type(5){
+    bottom: 69px;
+}
+.main_bottom .linePoint ul li:nth-of-type(6){
+    bottom: -4px;
+}
+.main_bottom .linePoint li:nth-of-type(2) em{
+    background:url("../images/chanpin_nowline_xiaoquan.png")no-repeat center 0;
+}
+.main_bottom .linePoint li em:hover{
+    background:url("../images/chanpin_nowline_xiaoquan.png")no-repeat center -11px;
+}
+.main_bottom .linePoint  li em{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -6px;
+}
+.main_bottom .linePoint  li em.show{
+    width: 22px;
+    height: 22px;
+    margin-top: -11px;
+    margin-left: -11px;
+    background: url("../images/chanpin_nowline_daquan.png")no-repeat center center;
+}
+.main_wrap .main_bottom .content{
+    position: absolute;
+    width: 1030px;
+    height: 435px;
+    right: 0;
+    display: none;
+}
+.main_wrap .main_bottom .content1{
+    display: block;
+}
+.main_bottom .content .conn_img{
+    width: 369px;
+    height: 435px;
+    position: absolute;
+    top: 0;
+}
+.main_bottom .content1 .conn_img{
+    background: url("../images/chanpin_image01.jpg");z-index: 2;
+}
+.main_bottom .content2 .conn_img{
+    background: url("../images/chanpin_image02.jpg");
+}
+.main_bottom .content3 .conn_img{
+    background: url("../images/chanpin_image03.jpg");
+}
+.main_bottom .content4 .conn_img{
+    background: url("../images/chanpin_image04.jpg");
+}
+.main_bottom .content5 .conn_img{
+    background: url("../images/chanpin_image05.jpg");
+}
+.main_bottom .content6 .conn_img{
+    background: url("../images/chanpin_image06.jpg");
+}
+.main_bottom .conn_btn{
+    width: 612px;
+    height: 30px;
+    position: absolute;
+    background: url("../images/line_points.png") repeat-x center;
+    top: 230px;
+    right: 10px;
+    z-index: 99;
+}
+.main_bottom .conn_btn  div{
+    position: absolute;
+    width: 29px;
+    height: 30px;
+    background: url("../images/next_jiantou.png");
+    right: 0;
+    cursor: pointer;
+    transition: all .4s ease 0s;
+}
+.main_bottom .conn_btn .conn_prev{
+    background: url("../images/prev_jiantou.png");
+    left: 0;
+}
+.main_bottom .conn_btn .conn_prev:hover{
+    background: url("../images/prev_jiantou_hover.png");
+}
+.main_bottom .conn_btn .conn_next:hover{
+    background: url("../images/next_jiantou_hover.png");
+}
+.main_bottom .content .conn_txt{
+    width: 612px;
+    position: absolute;
+    right: 10px;
+}
+.content .conn_txt h1{
+    height: 57px;
+    position: relative;
+}
+.content .conn_txt .title{
+    font:400 28px/30px 'SimSun';
+    color: #311759;
+}
+.content .conn_txt .pen{
+    position: absolute;
+    width: 61px;
+    height: 54px;
+    right: 0;
+    top: 0;
+    background: url("../images/pen.png") no-repeat;
+}
+.content .conn_txt .penLine{
+    position: absolute;
+    bottom: 4px;
+    height: 2px;
+    width: 558px;
+    background: url("../images/pen_line.png")no-repeat;
+}
+.content .conn_txt .txt1{
+    height: 166px;
+    position: absolute;
+    width: 100%;
+}
+.conn_txt .txt1 .txt1_img{
+    position: absolute;
+    height: 96px;
+    width: 96px;
+    background: url("../images/xiaoniao_icon.png");
+    left: 10px;
+    top: 35px;
+}
+.conn_txt .txt1 .txt1_r{
+    position: absolute;
+    left: 140px;
+    top: 30px;
+    width: 477px;
+    height: 96px;
+}
+.conn_txt .txt1 .txt1_r h2{
+    font:700 24px/30px 'SimSum';
+    color: #565559;
+}
+.conn_txt .txt1 .txt1_r p{
+    font:400 15px/25px 'SimSun';
+    color: #565559;
+}
+.content .conn_txt .txt2{
+    width: 100%;
+    position: absolute;
+    height: 144px;
+    top: 261px;
+    padding-top: 30px;
+    color: #565559;
+}
+.content .conn_txt .txt2 p{
+    font:400 15px/25px 'SimSun';
+}
+.content .conn_txt .txt2 p.act{
+    font:100 16px/25px 'SimSun';
+    position: absolute;
+    right: 010px;
+    bottom: 10px;
+}
+.content2 .conn_txt .txt2 p.act{
+    font:100 16px/25px 'SimSun';
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+.conn_txt .txt2 span{
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    background: url("../images/yinhao_zuo.png") no-repeat;
+}
+.conn_txt .txt2 span.left{
+    left: -20px;
+    bottom: 20px;
+    animation: fadeInLeft .2s ease 0s;
+}
+.conn_txt .txt2 span.right{
+    right: -20px;
+    bottom: -10px;
+    background: url("../images/yinhao_you.png") no-repeat;
+}
+.content2 .conn_txt .txt2 span{
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    background: url("../images/yinhao_zuo.png") no-repeat;
+}
+.content2 .conn_txt .txt2 span.left{
+    left: -20px;
+    top: -10px;
+}
+.content2 .conn_txt .txt2 span.right{
+    right: -20px;
+    top: 20px;
+    background: url("../images/yinhao_you.png") no-repeat;
+}
+.content2 .conn_txt .txt1{
+    height: 136px;
+    padding-top: 30px;
+}
+.content2 .conn_txt .txt1 p{
+    font:100 15px/25px 'SimSun';
+    color: #565559;
+}
+.content3 .conn_txt .txt1,.content4 .conn_txt .txt1,.content5 .conn_txt .txt1,.content6 .conn_txt .txt1{
+    padding-top: 30px;
+    height: 136px;
+}
+.content2 .conn_txt .txt1 p:first-letter{
+    font:400 40px/35px 'SimSun';
+    color: #565559;
+}
+.content3 .conn_txt p,.content4 .conn_txt p,.content5 .conn_txt p,.content6 .conn_txt p{
+    font:100 15px/25px 'SimSun';
+    color: #565559;
+}
+.content3 .conn_txt .txt2 p{
+    font:100 16px/25px 'SimSun';
+    color: #565559;
+}
+
+.main_wrap2{
+    width: 100%;
+    background: url("../images/mokuai02_bg.jpg") no-repeat center center;
+    height: 923px;
+}
+.main_wrap2 .inner{
+    height: 923px;
+}
+.main_wrap2 .main_top2{
+    height: 318px;
+    position: relative;
+}
+.main_wrap2 .main_bottom2{
+    height: 603px;
+    position: relative;
+    overflow: hidden;
+}
+.main_wrap2 .main_top2 h1{
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    font:700 54px/54px 'simSun';
+    color: #fff;
+    margin-left: -110px;
+}
+.main_wrap2 .main_top2 p{
+    position: absolute;
+    left: 50%;
+    top: 190px;
+    font:400 16px/20px 'Microsoft YaHei UI';
+    color: #fff;
+    margin-left: -100px;
+    letter-spacing: 6px;
+}
+.main_wrap2 .main_top2 .jian_point{
+    position: absolute;
+    top: 235px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.main_wrap2 .main_bottom2 .linePoint2{
+    width: 22px;
+    height: 386px;
+    position: absolute;
+    left: 0;
+    bottom: 137px;
+    background: url("../images/jiejian_now_line.png");
+    display: none;
+}
+.main_bottom2 .linePoint2 ul li{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    cursor: pointer;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(1){
+    top: -4px;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(2){
+    top: 71px;
+    left: -1px;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(3){
+    top: 146px;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(4){
+    bottom: 144px;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(5){
+    bottom: 69px;
+}
+.main_bottom2 .linePoint2 ul li:nth-of-type(6){
+    bottom: -4px;
+}
+.main_bottom2 .linePoint2 li em:hover{
+    background:url("../images/jianjie_nowline_xiaoquan.png")no-repeat center -11px;
+}
+.main_bottom2 .linePoint2  li em{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -6px;
+}
+.main_bottom2 .linePoint2  li em.show{
+    width: 22px;
+    height: 22px;
+    margin-top: -11px;
+    margin-left: -11px;
+    background: url("../images/jianjie_nowline_daquan.png")no-repeat center center;
+}
+.main_bottom2 .conn_btn2{
+    width: 612px;
+    height: 30px;
+    position: absolute;
+    background: url("../images/line_points.png") repeat-x center;
+    top: 230px;
+    right: 10px;
+    z-index: 99;
+}
+.main_bottom2 .conn_btn2  div{
+    position: absolute;
+    width: 29px;
+    height: 30px;
+    background: url("../images/next_jiantou.png");
+    right: 0;
+    cursor: pointer;
+    transition: all .4s ease 0s;
+    display: none;
+}
+.main_bottom2 .conn_btn2 .conn_prev2{
+    background: url("../images/prev_jiantou.png");
+    left: 0;
+}
+.main_bottom2 .conn_btn2 .conn_prev2:hover{
+    background: url("../images/prev_jiantou_hover.png");
+}
+.main_bottom2 .conn_btn2 .conn_next2:hover{
+    background: url("../images/next_jiantou_hover.png");
+}
+.main_wrap2 .main_bottom2 .jianjie_content{
+    position: absolute;
+    width: 1030px;
+    height: 435px;
+    right: 0;
+}
+.main_bottom2 .jianjie_content .jianjie_conn_img{
+    width: 369px;
+    height: 435px;
+    position: absolute;
+    top: 0;
+    background: url("../images/jianjie_image01.jpg");z-index: 2;
+}
+.main_bottom2 .jianjie_content .jianjie_conn_txt{
+    width: 612px;
+    position: absolute;
+    right: 10px;
+}
+.jianjie_content .jianjie_conn_txt h1{
+    height: 57px;
+    position: relative;
+}
+.jianjie_content .jianjie_conn_txt .title{
+    font:700 28px/30px 'SimSun';
+    color: #fff;
+}
+.jianjie_content .jianjie_conn_txt .pen{
+    position: absolute;
+    width: 61px;
+    height: 54px;
+    right: 0;
+    top: 0;
+    background: url("../images/pen.png") no-repeat;
+}
+.jianjie_content .jianjie_conn_txt .penLine{
+    position: absolute;
+    bottom: 4px;
+    height: 2px;
+    width: 558px;
+    background: url("../images/pen_line.png")no-repeat;
+}
+.jianjie_content .jianjie_conn_txt .jianjie_txt1{
+    height: 166px;
+    position: absolute;
+    width: 100%;
+}
+.jianjie_conn_txt .jianjie_txt1 .txt1_img{
+    position: absolute;
+    height: 96px;
+    width: 96px;
+    background: url("../images/xiaoniao_icon.png");
+    left: 10px;
+    top: 35px;
+}
+.jianjie_conn_txt .jianjie_txt1 .txt1_r{
+    position: absolute;
+    left: 140px;
+    top: 30px;
+    width: 477px;
+    height: 96px;
+}
+.jianjie_conn_txt .jianjie_txt1 .txt1_r h2{
+    font:700 24px/30px 'SimSum';
+    color: #BCA9D7;
+}
+.jianjie_conn_txt .jianjie_txt1 .txt1_r p{
+    font:400 15px/25px 'SimSun';
+    color: #BCA9D7;
+}
+.jianjie_content .jianjie_conn_txt .jianjie_txt2{
+    width: 100%;
+    position: absolute;
+    height: 144px;
+    top: 261px;
+    padding-top: 30px;
+    color: #BCA9D7;
+}
+.jianjie_content .jianjie_conn_txt .jianjie_txt2 p{
+    font:400 15px/25px 'SimSun';
+}
+.jianjie_content .jianjie_conn_txt .jianjie_txt2 p.act{
+    font:100 16px/25px 'SimSun';
+    position: absolute;
+    right: 010px;
+    bottom: 10px;
+}
+.jianjie_conn_txt .jianjie_txt2 span{
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    background: url("../images/yinhao02_zuo.png") no-repeat;
+}
+.jianjie_conn_txt .jianjie_txt2 span.left{
+    left: -20px;
+    bottom: 20px;
+    animation: fadeInLeft .2s ease 0s;
+}
+.jianjie_conn_txt .jianjie_txt2 span.right{
+    right: -20px;
+    bottom: -10px;
+    background: url("../images/yinhao02_you.png") no-repeat;
+}
+.jianjie_conn_txt .jianjie_txt2 b.white{
+    font:400 15px/25px 'SimSun';
+    color: #fff;
+}
+
+
+
+.main_scope{
+    width: 100%;
+    /*height: 1217px;*/
+    min-height: 1050px;
+}
+.main_scope .inner{
+    /*height: 1217px;*/
+    min-height: 1050px;
+    position: relative;
+}
+.main_scope .scope_top{
+    height: 317px;
+    position: relative;
+}
+.main_scope .scope_top .img1{
+    position: absolute;
+    width: 108px;
+    height: 171px;
+    left: 50%;
+    margin-left: -54px;
+    background: url("../images/yewu_zhiyinimg.jpg");
+}
+.main_scope .scope_top h1{
+    position: absolute;
+    left: 50%;
+    margin-left: -106px;
+    top: 180px;
+    font:700 52px/60px 'SimSun';
+    color: #311759;
+}
+.main_scope .scope_top p{
+    position: absolute;
+    left: 50%;
+    margin-left: -106px;
+    top: 240px;
+    font:400 18px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    letter-spacing: 6px;
+}
+.main_scope .scope_top .scope_point{
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.main_scope .scope{
+    min-height: 238px;
+    position: relative;
+}
+.main_scope .scope span.scope_line{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 2px;
+    background: url("../images/line_points.png") repeat-x;
+}
+.main_scope .scope .scope_list{
+    height: 238px;
+}
+.main_scope .scope_list .list_r{
+    width: 960px;
+    height: 120px;
+    left: 140px;
+    top: 85px;
+    position: relative;
+}
+ .scope_list .list_r div.title{
+    width: 250px;
+    position: absolute;
+     left: 60px;
+    text-align: right;
+}
+.scope_list .list_r div.scope_ico{
+    width: 116px;
+    height: 116px;
+    position: absolute;
+    left: 50%;
+    margin-left: -128px;
+    top: -35px;
+    cursor: pointer;
+    background: url("../images/business_cimg01.png");
+}
+.scope_list .list_r div.scope_ico:hover{
+    animation: tada .4s ease;
+}
+.scope2 .list_r div.scope_ico{
+    background: url("../images/business_cimg02.png");
+}
+.scope3 .list_r div.scope_ico{
+    background: url("../images/business_cimg03.png");
+}
+.list_r .title h1{
+    font:400 24px/30px 'SimSun';
+    color: #311859;
+}
+.list_r .title p{
+    color:  #565559;
+}
+.scope_list .list_r .prompt{
+    width: 340px;
+    position: absolute;
+    right: 110px;
+    top: -15px;
+}
+.scope_list .list_r .prompt p{
+    font:400 14px/24px 'SimSun';
+    color:  #565559;
+}
+.main_scope .scope ul{
+    width: 800px;
+    /*height: 189px;*/
+    min-height: 189px;
+    margin: 0 auto;
+    display: none;
+}
+.main_scope .scope ul.text_show{
+    display: block;
+}
+.main_scope ul p{
+    font:400 16px/24px 'SimSun';
+    color: #565559;
+    text-indent:16px;
+}
+.main_scope ul li+li{
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+.main_scope .scope span.num{
+    position: absolute;
+    left: 0;
+    top: 70px;
+    font:400 80px/80px 'SimSun';
+    color: #B5B6BA;
+}
+.main_scope .scope i{
+    position: absolute;
+    width: 67px;
+    height: 67px;
+    right: 0;
+    top: 75px;
+    cursor: pointer;
+    background: url("../images/business_zhankaishouqi.png") repeat-y;
+    -webkit-transition:  all .2s ease 10ms;
+    -moz-transition:  all .2s ease 10ms;
+    -ms-transition:  all .2s ease 10ms;
+    -o-transition:  all .2s ease 10ms;
+    transition: all .2s ease 10ms;
+}
+.main_scope .scope i:hover{
+    animation: swing ease .3s;
+}
+.main_scope .scope i.scope_now{
+    background: url("../images/business_zhankaishouqi.png") repeat-y 0 67px;
+}
+
+
+.main_team{
+    width: 100%;
+    height: 736px;
+    overflow: hidden;
+}
+.main_team .inner{
+    height: 736px;
+    position: relative;
+}
+.main_team .team_top {
+    height: 307px;
+    width: 100%;
+
+}
+.main_team .team_top .img{
+    position: absolute;
+    width: 31px;
+    height: 94px;
+    left: 50%;
+    top: 50px;
+    margin-left: -15px;
+    background: url("../images/tuandui_zhiyinimg.jpg");
+}
+.main_team .team_top h1{
+    position: absolute;
+    left: 50%;
+    margin-left: -106px;
+    top: 150px;
+    font:700 52px/60px 'SimSun';
+    color: #311759;
+}
+.main_team .team_top p{
+    position: absolute;
+    left: 50%;
+    margin-left: -65px;
+    top: 215px;
+    font:400 18px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    letter-spacing: 6px;
+}
+.main_team .team_top .team_point{
+    position: absolute;
+    top: 260px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.box ul li{
+    width: 1100px;
+    height: 362px;
+    float: left;
+}
+.box{
+    margin:0 auto;
+    position:relative;
+    overflow: hidden;
+    width: 1100px;
+    height: 362px;
+}
+.box ul {
+    width: 7000px;
+    position: absolute;
+    left:0;
+    overflow: hidden;
+}
+.box>.team_btns{
+    position: absolute;
+    width: 78px;
+    height: 14px;
+    bottom: 8px;
+    margin-top: -7px;
+    border-radius: 6px;
+    z-index: 2;
+    left: 50%;
+    margin-left: -38px;
+    background: url("../images/next&prev_mbg01.png") no-repeat,url("../images/next&prev_mbg02.png") no-repeat 5px 0,url("../images/next&prev_mbg02.png") no-repeat 10px 0,url("../images/next&prev_mbg02.png") no-repeat 15px 0,url("../images/next&prev_mbg02.png") no-repeat 20px 0,url("../images/next&prev_mbg02.png") no-repeat 25px 0,url("../images/next&prev_mbg02.png") no-repeat 30px 0,url("../images/next&prev_mbg02.png") no-repeat 35px 0,url("../images/next&prev_mbg02.png") no-repeat 40px 0,url("../images/next&prev_mbg02.png") no-repeat 45px 0,url("../images/next&prev_mbg02.png") no-repeat 50px 0,url("../images/next&prev_mbg02.png") no-repeat 55px 0,url("../images/next&prev_mbg02.png") no-repeat 60px 0,url("../images/next&prev_mbg02.png") no-repeat 65px 0,url("../images/next&prev_mbg03.png") no-repeat 69px 0;
+}
+.dian div{
+    width: 30px;
+    height: 60px;
+    background: pink;
+    position: absolute;
+    top:50%;
+    margin-top:-30px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+    cursor:pointer;
+}
+.dian .next{
+    right:0;
+}
+.team_bottom{
+    position: relative;
+    top: 0px;
+    height: 362px;
+    width: 100%;
+}
+.team_bottom>div{
+    width: 540px;
+    height: 250px;
+    position: absolute;
+}
+.team_bottom>div.team_one{
+    left: 0;
+    border-bottom:1px solid #D9D9E1;
+}
+.team_bottom>div.team_two{
+    right: 0;
+    border-bottom:1px solid #D9D9E1;
+}
+.team_bottom .team_img{
+    position: absolute;
+    width: 156px;
+    height: 156px;
+    left: 25px;
+    cursor: pointer;
+    background: url("../images/team_img01.png");
+}
+.team_bottom .team_img1{
+    position: absolute;
+    width: 156px;
+    height: 156px;
+    left: 25px;
+    cursor: pointer;
+    background: url("../images/team_amore.png");
+    opacity:0;
+    transition: all .3s ease;
+}
+.team_bottom .team_img1:hover{
+    opacity:0.95;
+}
+.team_bottom .share{
+    width: 50px;
+    height: 190px;
+    position: absolute;
+    background: #2999D6;
+    bottom: 0;
+    left: 490px;
+    margin: 0;
+}
+.team_bottom .share li{
+    width: 50px;
+    height: 25%;
+    position: relative;
+    cursor: pointer;
+    border-radius: 0px;
+    margin: 0;
+}
+.team_bottom .share li:hover{
+    background: #3949D6;
+}
+.share li em{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+.share li:nth-child(1) em{
+    background: url("../images/team_contact.png") no-repeat 0 -44px;
+}
+.share li:nth-child(2) em{
+    background: url("../images/team_contact.png") no-repeat 0 -90px;
+}
+.share li:nth-child(3) em{
+    background: url("../images/team_contact.png") no-repeat 0 -139px;
+}
+.share li:nth-child(4) em{
+    background: url("../images/team_contact.png") no-repeat 0 -180px;
+}
+.team_bottom .mail{
+    width: 245px;
+    height: 45px;
+    background: #E7E8EC;
+    position: absolute;
+    right: 65px;
+    bottom: 20px;
+    transition:all .1s ease;
+    cursor: pointer;
+}
+.team_bottom .mail:hover{
+    border: 2px solid #565559;
+}
+.team_bottom .mail span{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: #D9D9E1 url("../images/lianxi_icons.png") no-repeat -30px center;
+    cursor: pointer;
+}
+.team_bottom .mail span:hover{
+    background: #D9D9E1 url("../images/lianxi_icons.png") no-repeat -178px center;
+}
+.team_bottom .mail p{
+    position: absolute;
+    right: 0;
+    width: 200px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    color: #311759;
+    font:400 20px/40px 'SimSun';
+}
+.team_bottom p.zwgx{
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    right: 105px;
+    top: 95px;
+    color: #565559;
+    font:400 20px/40px 'SimSun';
+}
+.team_bottom p.hhr{
+    position: absolute;
+    width: 160px;
+    height: 50px;
+    color: #311759;
+    letter-spacing: 2px;
+    left: 30px;
+    bottom: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+.team_bottom p.hhr span{
+    font:400 26px/30px 'SimSun';
+}
+.team_btns li{
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 5px;
+    width: 9px;
+    height: 8px;
+    float: left;
+    background: url("../images/next&prev_others.png") no-repeat center center;
+}
+.team_btns li.team_now{
+    cursor: pointer;
+    width: 9px;
+    height: 8px;
+    float: left;
+    background: url("../images/next&prev_now.png") no-repeat center center;
+}
+.main_team .team_btn{
+    width: 216px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -108px;
+    bottom: 0px;
+    background:url("../images/next&prev_line.png") no-repeat center center;
+}
+.main_team .team_btn div{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    background: url("../images/prev_jiantou.png") no-repeat;
+    cursor: pointer;
+    transition: all .1s ease 0s;
+}
+.main_team .team_btn div.team_next{
+    left: 186px;
+    background: url("../images/next_jiantou.png") no-repeat;
+}
+.main_team .team_btn div.team_prev:hover{
+    background: url("../images/prev_jiantou_hover.png") no-repeat;
+}
+.main_team .team_btn div.team_next:hover{
+    background: url("../images/next_jiantou_hover.png") no-repeat;
+}
+
+
+.main_partner{
+    width: 100%;
+    height: 863px;
+    background: #fff;
+
+}
+.main_partner .inner{
+    position: relative;
+}
+.main_partner .top_bg{
+    width: 100%;
+    height: 35px;
+    position: relative;
+    top: 0;
+    background: url("../images/hezuo_topbg.png") center center;
+}
+.main_partner .bottom_bg{
+    width: 100%;
+    height: 35px;
+    position: relative;
+    top: 793px;
+    background: url("../images/hezuo_bottombg.png")center center;
+}
+.main_partner .partner_top{
+    height: 126px;
+    position: relative;
+}
+.main_partner .partner_top h1{
+    position: absolute;
+    left: 50%;
+    margin-left: -106px;
+    top: 40px;
+    font:700 52px/60px 'SimSun';
+    color: #311759;
+}
+.main_partner .partner_top p{
+    position: absolute;
+    left: 50%;
+    margin-left: -85px;
+    top: 105px;
+    font:400 18px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    letter-spacing: 6px;
+}
+.main_partner .partner_top .partner_point{
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.main_partner .our_partner,.main_partner .our_user{
+    height: 374px;
+    width: 50%;
+    position: absolute;
+    top: 260px;
+    color: #5F4C82;
+}
+.main_partner .our_user{
+    right: 0;
+    border-left:1px solid #BCA9D7;
+}
+.main_partner .our_partner h1,.main_partner .our_user h1{
+    font:600 34px/46px 'SimSun';
+}
+.main_partner .our_partner>p,.main_partner .our_user>p{
+    font:400 18px/18px 'Microsoft YaHei UI';
+    letter-spacing: 5px;
+    text-indent:5px;
+}
+.main_partner .our_partner .partner_ico{
+    margin-top: 60px;
+}
+.main_partner .our_partner .partner_ico p,.main_partner .our_partner .partner_ico span{
+    height: 89px;
+    width: 140px;
+    float: left;
+    cursor: pointer;
+    padding-top: 35px;
+}
+.main_partner .our_partner .partner_ico p{
+    position: relative;
+    text-align: center;
+    font-family:'Microsoft YaHei UI';
+}
+.main_partner .our_partner .partner_ico span{
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    transition: all .2s linear;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    line-height: 80px;
+}
+
+.our_partner .partner_ico p+p{
+    margin-left: 40px;
+}
+
+.main_partner .our_user{
+    width: 480px;
+    padding-left: 70px;
+}
+.main_partner .our_user .more{
+    position: absolute;
+    width: 69px;
+    height: 26px;
+    background: url("../images/yonghu_morebg.png")no-repeat -69px 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+.main_partner .our_user .more:hover{
+    background-position: 0 0;
+}
+.main_partner .our_user .user_ico{
+    margin-top: 60px;
+}
+.our_user .user_ico p{
+    width: 105px;
+    height: 92px;
+    float: left;
+    text-align: center;
+    line-height: 92px;
+    margin-left: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+
+.main_contact{
+    width: 100%;
+    height: 811px;
+    background: #F1F2F6;
+    position: relative;
+}
+.main_contact .inner{
+    position: relative;
+}
+.main_contact .contact_bg{
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    bottom: 0;
+    background: url("../images/hezuo_topbg.png") center center;
+}
+.main_contact .contact_top{
+    height: 126px;
+    position: relative;
+}
+.main_contact .contact_top h1{
+    position: absolute;
+    left: 50%;
+    margin-left: -106px;
+    top: 40px;
+    font:700 52px/60px 'SimSun';
+    color: #311759;
+}
+.main_contact .contact_top p{
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+    top: 105px;
+    font:400 18px/20px 'Microsoft YaHei UI';
+    color: #311759;
+    letter-spacing: 6px;
+}
+.main_contact .contact_top .contact_point{
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    width: 38px;
+    height: 8px;
+    margin-left: -19px;
+    background: url("../images/three_points01.png");
+}
+.main_contact .contact_us{
+    width: 100%;
+    height: 288px;
+    position: absolute;
+    top: 185px;
+}
+.main_contact .contact_info{
+    height: 46px;
+    width: 100%;
+    position: relative;
+}
+.main_contact .contact_info p{
+    position: absolute;
+    width: 344px;
+    height: 44px;
+    border: 1px solid #DEDFE3;
+}
+.main_contact .contact_info p.email{
+    left: 50%;
+    margin-left: -172px;
+}
+.main_contact .contact_info p.phone{
+    right: 0;
+}
+.main_contact .contact_info p span{
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+}
+.main_contact .contact_info span em{
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    background: url("../images/lianxi_icons.png") no-repeat;
+}
+.main_contact .contact_info p.email em{
+    background-position: -44px 0;
+}
+.main_contact .contact_info p.phone em{
+    background-position: -92px 0;
+}
+.main_contact .contact_info p input{
+    position: absolute;
+    right: 0;
+    width: 300px;
+    height: 44px;
+    text-indent:1em;
+    color: #A99EBC;
+    font-size: 20px;
+    font-weight: lighter;
+}
+.main_contact .contact_msg{
+    height: 214px;
+    width: 100%;
+    position: relative;
+    top: 25px;
+}
+.main_contact .contact_msg .send{
+    position: absolute;
+    width: 300px;
+    height: 44px;
+    background: #168BCB;
+    right: 0;
+    bottom: 4px;
+    text-align: center;
+    color: #fff;
+    line-height: 44px;
+    cursor: pointer;
+}
+.main_contact .contact_msg span{
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background: #2999D6;
+    right: 300px;
+    bottom: 4px;
+    cursor: pointer;
+}
+.contact_msg span em{
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    background: url("../images/lianxi_icons.png") no-repeat -191px 0;
+}
+.contact_msg .msg_box{
+    position: absolute;
+    width: 720px;
+    height: 210px;
+    left: 0;
+    top: 0px;
+    border: 1px solid #DEDFE3;
+    background: #fff;
+}
+.contact_msg .msg_box>p{
+    position: absolute;
+    width: 44px;
+    height: 210px;
+    background: #E7E8EC;
+}
+.contact_msg .msg_box>p em{
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 10px;
+    left: 50%;
+    margin-left: -10px;
+    background: url("../images/lianxi_icons.png") no-repeat -142px 0;
+}
+.contact_msg .msg_box>textarea{
+    position: absolute;
+    width: 676px;
+    height: 190px;
+    background: #fff;
+    right: 0;
+    text-indent:1em;
+    font-size: 16px;
+    resize: none;
+    border: 0;
+    padding-top: 20px;
+}
+.main_contact .contact_msg>p{
+    width: 344px;
+    position: absolute;
+    height: 44px;
+    right: 0;
+    color: #7F7D83;
+}
+.main_contact .contact_msg>p b{
+    color: #f00;
+}
+.main_contact .contact_msg>p.thank{
+    position: absolute;
+    top: 50%;
+    margin-top: -22px;
+    font-size: 19px;
+    color: #605F64;
+    font-weight: lighter;
+}
+.main_contact .contact_address{
+    position: absolute;
+    height: 220px;
+    width: 100%;
+    top: 510px;
+}
+.main_contact .contact_address li{
+    width: 340px;
+    height: 220px;
+    position: absolute;
+    left: 0;
+}
+.main_contact .contact_address li:nth-child(2){
+    left: 50%;
+    margin-left: -170px;
+}
+.main_contact .contact_address li:nth-child(3){
+    left:760px;
+}
+.main_contact .contact_address li em{
+    position: absolute;
+    width: 101px;
+    height: 101px;
+    top: 50%;
+    margin-top: -50px;
+    cursor: pointer;
+    background: url("../images/lianxi_icon01.png");
+}
+.main_contact .contact_address li em:hover{
+    animation: tada .4s ease;
+}
+.main_contact .contact_address li:nth-child(2) em{
+    background: url("../images/lianxi_icon02.png");
+}
+.main_contact .contact_address li:nth-child(3) em{
+    background: url("../images/lianxi_icon03.png");
+}
+.main_contact .contact_address li p{
+    height: 90px;
+    right: 0;
+    width: 212px;
+    position: absolute;
+    background: url("../images/lianxi_kuaier_bg.png") no-repeat center ;
+    top: 45px;
+}
+.main_contact .contact_address li span{
+    position: absolute;
+    right: 0;
+    width: 212px;
+    height: 48px;
+    color: #5F4C82;
+    font:400 28px/48px 'SimSun';
+}
+.main_contact .contact_address li>span{
+    position: absolute;
+    right: 0;
+    width: 212px;
+    font:400 15px/30px 'SimSun';
+    top: 110px;
+    color: #524D5C;
+}
+.main_contact .contact_address li>span:nth-of-type(2){
+    top: 140px;
+}
+.main_contact .contact_address li>span:nth-of-type(3){
+    top: 170px;
+}
+
+
+.map{
+    width: 100%;
+    height: 685px;
+    position: relative;
+    top: -34px;
+    background: #fff;
+    z-index: 10;
+}
+.map_bg{
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    background: url("../images/map_topimg.png") no-repeat center;
+}
+.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+
+
+
+
+.footer{
+    width: 100%;
+    height: 348px;
+    background: url("../images/yinyue_bg.jpg") no-repeat center;
+    position: relative;
+}
+.foot_bg{
+    width: 100%;
+    height: 33px;
+    background: url("../images/map_bottomimg.png") no-repeat center;
+    position: absolute;
+    top: -33px;
+    z-index: 10;
+}
+.footer .inner{
+    height: 348px;
+    position: relative;
+}
+.footer .yinyue{
+    width: 560px;
+    height: 57px;
+    position: absolute;
+    left: 50%;
+    margin-left: -280px;
+    top: 114px;
+    text-align: center;
+}
+.footer .yinyue p{
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    cursor: pointer;
+    -webkit-transition:  all .4s ease 10ms;
+    -moz-transition:  all .4s ease 10ms;
+    -ms-transition:  all .4s ease 10ms;
+    -o-transition:  all .4s ease 10ms;
+    transition: all .4s ease 10ms;
+
+}
+.footer .yinyue p:nth-of-type(1){
+    background: url("../images/yinyue_duo.png") repeat-y;
+    left: 0;
+}
+.footer .yinyue p:nth-of-type(2){
+    background: url("../images/yinyue_lai.png") no-repeat;
+    left: 83px;
+}
+.footer .yinyue p:nth-of-type(3){
+    background: url("../images/yinyue_mi.png") no-repeat;
+    left: 166px;
+}
+.footer .yinyue p:nth-of-type(4){
+    background: url("../images/yinyue_fa.png") no-repeat;
+    left: 249px;
+}
+.footer .yinyue p:nth-of-type(5){
+    background: url("../images/yinyue_suo.png") no-repeat;
+    left: 332px;
+}
+.footer .yinyue p:nth-of-type(6){
+    background: url("../images/yinyue_la.png") no-repeat;
+    left: 422px;
+}
+.footer .yinyue p:nth-of-type(7){
+    background: url("../images/yinyue_xi.png") no-repeat;
+    left: 505px;
+}
+.footer .yinyue p:hover{
+    background-repeat: repeat-y;
+    background-position: 0 57px;
+}
+.footer em.foot_line{
+    width: 100%;
+    position: absolute;
+    bottom: 85px;
+    height: 2px;
+    background: url("../images/line_points.png") repeat-x;
+}
+.footer p.copyright{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    margin-left: -68px;
+    bottom: 44px;
+}
+
+
+.scroll_top{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 100px;
+    bottom: 50px;
+    background: url("../images/scroll_top_bg.png") repeat-y;
+    transition: all .3s ease;
+    z-index: 100;
+    display: none;
+}
+.scroll_top:hover{
+    background-position: 0 -50px;
+}
