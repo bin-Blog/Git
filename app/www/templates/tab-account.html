@@ -1,0 +1,33 @@
+<ion-view view-title="个人中心" hide-nav-bar="true" style="background:#fff url(img/ben.png) no-repeat top;background-size:100%;">
+  <style>
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+  </style>
+  <ion-content>
+    <div class="col col-25" style="margin: 3.5rem auto 1.5rem">
+      <img src="img/ionic.png" alt="" class="col col-100" >
+    </div>
+    <div class="list" style="padding: 0;margin: 15px">
+      <div class="item item-input-inset">
+        <label class="">
+          <input type="text" placeholder="用户名：" ng-model="userName" required>
+        </label >
+      </div>
+      <div class="item item-input-inset" >
+        <label class="">
+          <input type="password"  placeholder="密码：" ng-model="userPwd" required>
+        </label >
+      </div>
+      <div class="item">
+        <button ng-click="Success(userName,userPwd)" class="button button-block button-positive">登录</button>
+        <!--<button ng-click="Success(userName,userPwd)" class="button button-block button-positive">登录</button>-->
+      </div>
+    </div>
+
+    <div class="item">
+      <h2><span><a href="#/tab/login">注册</a></span> <span class="item-note" ng-click="">忘记密码</span></h2>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,106 @@
+<ion-view view-title="首页" hide-nav-bar="true">
+  <style>
+    .avatar{
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: .5rem;
+    }
+    .avatar img{
+      width: 100%;
+      border-radius: 50%;
+    }
+    .gImg img{
+      width: 100%;
+      height: 120px;
+    }
+    .gImg h3{
+      margin-top: 0;
+    }
+    .rotate{
+    	height: 8rem;
+    }
+  </style>
+
+  <ion-content>
+
+    <!--搜索框-->
+      <div class="item item-input-inset">
+        <div class="avatar">
+          <button menu-toggle="left" class="button button-small"><img src="img/ben.png" alt=""></button>
+        </div>
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="search">
+        </label>
+        <button class="button button-small icon ion-search"></button>
+      </div>
+    <!--轮播图-->
+    <!--
+auto-play 自动播放
+slide-interval  间隔时间    默认时间为4000ms
+does-continue  是否无缝滚动
+on-slide-changed  当侧滑时
+active-slide     触礁时
+delegate-handle  手势滑动
+pager-click  点击焦点时   放置的是一个函数
+-->
+    <ion-slide-box auto-play="true" slide-interval="2000" does-continue="true" on-slide-changed="" active-slide="" delegate-handle="slide" pager-click="">
+      <ion-slide class="rotate " ng-repeat="item in list.bannerList">
+        <div class="box">
+          <img src="{{item.Cpic}}">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <!--<ul class="list"></ul>-->
+    <!--好评榜-->
+    <div class="list">
+      <div class="item">
+        <h2>好评榜</h2>
+      </div>
+      <!--<div class="item">-->
+        <div class="row gImg" ng-repeat="row in goodList">
+          <div class="col col-50" ng-repeat="col in row" ng-click="listDetail(col.ID)">
+              <img src="{{col.Cpic}}" alt="">
+              <h3>{{col.Cname}}</h3>
+              <h4>{{col.Cdescribe}}</h4>
+              <h5>{{col.createAt}}</h5>
+              <p>{{col.Cprice | currency:"￥"}}</p>
+          </div>
+        </div>
+    </div>
+
+
+    <!--最新课程-->
+    <div class="list">
+      <div class="item">
+        <h2><span>最新课程</span> <span class="item-note">更多<i class="icon ion-ios-arrow-right"></i></span></h2>
+      </div>
+      <!--<div class="item">-->
+      <div class="row gImg" ng-repeat="row in newList">
+          <div class="col col-50" ng-repeat="col in row" ng-click="listDetail(col.ID)">
+            <img src="{{col.Cpic}}" alt="">
+            <h3>{{col.Cname}}</h3>
+            <h4><a>{{item.Cdescribe}}</a></h4>
+            <h5>{{col.createAt}}</h5>
+            <p>{{col.Cprice | currency:"￥"}}</p>
+          </div>
+        </div>
+    </div>
+
+    <!--猜你喜欢-->
+    <div class="item">
+      <h2>猜你喜欢</h2>
+    </div>
+    <div class="list">
+      <ul>
+        <li class="item item-thumbnail-left" ng-repeat="item in checkList" ng-click="listDetail(item.ID)">
+          <img src="{{item.Cpic}}" alt="">
+          <h2>{{item.Cname}}</h2>
+          <h4><a>{{item.Cdescribe}}</a></h4>
+          <h5>{{item.createAt}}</h5>
+          <p>{{item.Cprice | currency:"￥"}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </ion-content>
+</ion-view>

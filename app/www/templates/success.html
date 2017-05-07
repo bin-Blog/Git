@@ -1,0 +1,38 @@
+<ion-view view-title="登录成功" hide-nav-bar="true" >
+  <style>
+    .sz{
+      width: 10px;
+      height: 10px;
+    }
+    button{
+      margin-top: 20px;
+    }
+    /*style="background: #fff url(img/ben.png) no-repeat top;background-size: 100%;"*/
+  </style>
+  <ion-content >
+    <div class="row" style="background: #fff url(img/ben.png) no-repeat top;background-size: 100%;">
+      <div class="col col-33" style="margin: 3.5rem auto 1.5rem;" >
+        <img src="{{info.userPic}}" alt="" class="col col-100" >
+        <p style="color: #fff;margin-top: 6px;">{{info.userName}}</p>
+      </div>
+    </div>
+
+    <div class="list">
+      <ul>
+        <li class="item">
+          <h2><i class="sz icon ion-ios-person-outline"></i><span class="item-note">{{info.nickname}}</span></h2>
+        </li>
+        <li class="item">
+          <h2><i class="sz icon ion-ios-email-outline"></i><span class="item-note">{{info.email}}</span></h2>
+        </li>
+        <li class="item">
+          <h2><i class="sz icon ion-ios-telephone-outline"></i><span class="item-note">{{info.phone}}</span></h2>
+        </li>
+      </ul>
+
+    </div>
+    <div style="text-align: center;">
+      <button style="padding: 0 20px;" class="button button-positive" ng-click="loginOut()">退出登录</button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,93 @@
+<ion-view view-title="我的课程" hide-nav-bar="true">
+  <style>
+    .leesonTitle h5{
+      text-align: center;
+    }
+    .myCourse{
+      padding: 8px;
+    }
+    .leesonTitle>div:first-child{
+      border-right:1px solid #ccc;
+    }
+    .profession{
+      padding: 10px 10px;
+      background: #ccc;
+      overflow: hidden;
+    }
+    .profession li{
+      width: 20%;
+      text-align: center;
+      background: #fff;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      float: left;
+      margin:1.5% 2.5%;
+    }
+    .course{
+      padding: 5px 0;
+      text-align: center;
+    }
+    .course h2{
+      line-height: 50px;
+    }
+  </style>
+  <div class="bar bar-header">
+    <h2 class="title">我的课程</h2>
+    <!--<button class="button  item-note" ng-click="">编辑</button>-->
+    <!--
+    -->
+    <button class="button button-icon" ng-click="data.showDelete = !data.showDelete; data.showReorder = false">编辑</button>
+  </div>
+  <!--分类-->
+  <div class="list">
+    <div class="item myCourse bar-subheader">
+      <div class="row leesonTitle">
+        <div class="col col-50" ng-click="myCourShow()">
+          <h5 ng-style="myCourColor">我的课程 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+        <div class="col col-50" ng-click="collectShow()">
+          <h5 ng-style="collectColor">收藏课程 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-content class="has-subheader">
+    <ion-refresher on-refresh="doRefresh()"   spinner="android" pulling-text="下拉刷新"></ion-refresher>
+
+
+    <div class="list" ng-show="myCourses">
+      <ul>
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+          <li class="item item-thumbnail-left" ng-repeat="item in myCour" ng-click="listDetail(item.ID)">
+            <!--show-delete="data.showDelete" show-reorder="data.showReorder"-->
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="onItemDelete(item)">
+            </ion-delete-button>
+            <img src="{{item.Cpic}}" alt="">
+            <h3>{{item.Cname}}</h3>
+            <h4>{{item.Cdescribe}}</h4>
+            <h5>{{item.createAt}}</h5>
+            <p>{{item.Cprice | currency:"￥"}}</p>
+          </li>
+        </ion-list>
+
+      </ul>
+    </div>
+    <div class="list" ng-show="collects">
+      <ul>
+        <li class="item item-thumbnail-left"  ng-repeat="item in collect" ng-click="del(item.ID);listDetail(item.ID)">
+          <img src="{{item.Cpic}}" alt="">
+          <h3>{{item.Cname}}</h3>
+          <h4>{{item.Cdescribe}}</h4>
+          <h5>{{item.createAt}}</h5>
+          <p>{{item.Cprice}}</p>
+        </li>
+      </ul>
+    </div>
+
+
+    <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0.1%"  immediate-check='true' pulling-text="上拉加载"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,77 @@
+<style>
+  .col-50{text-align:center;}
+  li{list-style-type: none}
+  .content li img{float:left;width:35%;border-radius: 15px;}
+  .content li article{float: left;width:58%;margin-left:20px;}
+</style>
+
+<ion-view view-title="我的课程">
+  <ion-content>
+    <div class="bar bar-header">
+      <h1 class="title">我的课程</h1>
+      <button class="button" ng-click="data.showDelete = !data.showDelete;">删除</button>
+    </div>
+
+    <div style="height:44px"></div>
+
+    <div class="row nav" style="background:#393a3e; color:#fff;">
+      <div class="col col-50"  id="lesson" ng-click="mylesson()" ng-style="color" style="border-right:1px solid #ccc">
+        我的课程<i class="icon ion-chevron-down" style="margin-left:10px;"></i>
+      </div>
+      <div class="col col-50" id="price" ng-click="course()" ng-style="colorc">
+        收藏课程<i class="icon ion-chevron-down" style="margin-left:10px;"></i>
+      </div>
+    </div>
+
+    <!--我的课程-->
+    <div class="content ionic-pseudo"  ng-show="mycou" >
+      <ion-list  show-delete="data.showDelete">
+        <ion-item ng-repeat="item in itemFir"   >
+          <li>
+            <img src="{{item.imgsrc}}">
+            <article>
+              <h2>{{item.title}}</h2>
+              <p><span>{{item.num}}</span>
+                <span>{{item.nums}}</span>
+              </p>
+            </article>
+          </li>
+          <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
+          <ion-option-button class="button-calm" ng-click="share(item)">分享</ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+
+
+    <!--收藏课程-->
+    <div class="content ionic-pseudo" ng-hide="mycou">
+      <ion-list  show-delete="data.showDelete">
+        <ion-item ng-repeat="item in itemSec"   >
+          <li>
+            <img src="{{item.imgsrc}}">
+            <article>
+              <h2>{{item.title}}</h2>
+              <p><span>{{item.num}}</span>
+                <span>{{item.nums}}</span>
+              </p>
+            </article>
+          </li>
+          <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
+          <ion-option-button class="button-calm" ng-click="share(item)"><i class="ion-chatbubbles" style="width:40px; height: 40px;"></i></ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+
+
+
+
+
+
+  </ion-content>
+</ion-view>
+
+

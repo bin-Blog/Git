@@ -1,0 +1,131 @@
+<style>
+  .box{
+    width: 100%;
+    height: 160px;
+  }
+  .box > img{
+    width: 100%;
+    height:auto;
+  }
+
+  .titleItm{
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+  .titleItm h2{
+    float: left;
+  }
+  .loadMore{float: right;}
+
+  a{
+    text-decoration: none;
+    color: #666;
+  }
+ a.shouye_tx{}
+
+</style>
+
+
+<ion-view view-title="首页"  hide-nav-bar="true" >
+  <ion-side-menus>
+    <ion-side-menu-content style="overflow-y:scroll;">
+
+
+    <div class="item item-input-inset" style="border-radius:5px;" >
+      <a  class="shouye_tx"  ng-show="myVal" ng-click="toggleLeftSideMenu()" style="width:1rem; height: 1rem; margin-right: 0.3rem;">
+        <img src="img/person_touxiang.png"  width="100%" height="auto">
+      </a>
+      <label class="item-input-wrapper"><input type="text" placeholder="Search"></label>
+      <button class="button button-small icon ion-search"></button>
+    </div>
+
+    <!--轮播图开始-->
+    <ion-slide-box  auto-play="true" does-continue="true" slide-interval=2000 show-pager="true">
+      <ion-slide ng-repeat="lunbopic in lunbopics">
+        <div class="box">
+          <img src="img/{{lunbopic.imgsrc}}">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <!--轮播图结束-->
+
+
+    <!--好评榜开始-->
+    <div class="list card ">
+      <div class="item titleItm">
+        <h2>好评榜</h2>
+        <p class="loadMore"><a href="#/tab/haopingbang">更多</a> <span class="icon ion-chevron-right"></span></p>
+      </div>
+
+      <div class="item item-body">
+        <div class="row" ng-repeat="a in arr">
+          <div class="col" ng-repeat="r in a" ng-click="tz_study({{r.id}})">
+            <img src="img/{{r.imgsrc}}"  width="100%">
+            <h2>{{r.title}}</h2>
+            <p><a>{{r.main}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--好评榜结束-->
+
+
+
+
+
+    <!--最新课程开始-->
+    <div class="list card">
+      <div class="item titleItm">
+        <h2>最新课程</h2>
+        <p class="loadMore"><a href="#/tab/lessonlist">更多 </a><span class="icon ion-chevron-right"></span></p>
+      </div>
+
+      <div class="item item-body">
+        <div class="row" ng-repeat="an in arraya">
+          <div class="col" ng-repeat="bn in an">
+            <a href="#">
+              <img src="img/{{bn.imgsrc}}"  width="100%">
+              <h2>{{bn.title}}</h2>
+              <p><a>{{bn.main}}</a></p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--最新课程结束-->
+
+
+    <!--猜你喜欢开始-->
+    <div class="card">
+      <div class="item titleItm">
+        <h2>猜你喜欢</h2>
+      </div>
+
+      <a class="item item-thumbnail-left" href="#" ng-repeat="d in data">
+        <img src="img/{{d.imgsrc}}"  width="100%">
+        <h2>{{d.title}}</h2>
+        <p>{{d.main}}</p>
+      </a>
+    </div>
+
+    <!--猜你喜欢结束-->
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" >
+      <div style="height:0.5rem"></div>
+      <div class="row" ng-controller="PersonalCtrl">
+        <div class="col col-10"></div>
+        <div class="col col-25" style="width:2rem; height: 2rem;"><img src="img/person_touxiang.png" width="100%" height="auto"></div>
+        <div class="col col-10"></div>
+        <div class="col col-50" style="line-height:1.8rem;">爱生活 爱设计</div>
+
+      </div>
+
+    </ion-side-menu>
+
+
+  </ion-side-menus>
+
+
+</ion-view>

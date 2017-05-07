@@ -1,0 +1,36 @@
+
+{"records":
+[
+{
+"name" : "爱生活 爱设计1",
+"email" : "a01@qq.com",
+"phone" : "12345678910",
+"password":"01",
+"passwordt":"01"
+},
+{
+"name" : "爱生活 爱设计",
+"email" : "a02@qq.com",
+"phone" : "12345678910",
+"password":"02",
+"passwordt":"02"
+},
+{
+"name" : "a03",
+"email" : "a03@qq.com",
+"phone" : "12345678910",
+"password":"03",
+"passwordt":"03"
+},
+{
+"name" : "a04",
+"email" : "a04@qq.com",
+"phone" : "12345678910",
+"password":"04",
+"passwordt":"04"
+}
+]
+}
+
+
+

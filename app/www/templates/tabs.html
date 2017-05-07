@@ -1,0 +1,19 @@
+<!--ion-tabs底部导航栏   控制导航栏背景   图标位置   选中时背景颜色-->
+<!--tabs-color-active-   切换触礁时的颜色-->
+<ion-tabs class="stable-bg tabs-color-active-positive tabs-icon-top">
+  <!--ion-tab相当于一个列表标签   只负责局部应用-->
+  <!--icon-off失去焦点时显示的图标-->
+  <!--icon-on 获取焦点时显示的图标-->
+  <ion-tab icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/dash" title='首页'>
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+  <ion-tab icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/chats" title='课程列表'>
+    <ion-nav-view name="tab-chats"></ion-nav-view>
+  </ion-tab>
+  <ion-tab icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/course" title='我的课程'>
+    <ion-nav-view name="tab-course"></ion-nav-view>
+  </ion-tab>
+  <ion-tab icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account" title='个人中心'>
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

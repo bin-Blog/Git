@@ -1,0 +1,27 @@
+<ion-view view-title="注册" style="background:#fff url(img/ben.png) no-repeat top;background-size: 100%;">
+  <ion-content>
+    <div class="list">
+      <h2 class="text-center" style="color: #fff;margin-top: 6px;">注册</h2>
+      <ul class="padding" style="opacity: .5;">
+        <li class="item item-input">
+          <input type="text" placeholder="用户名：" ng-model="userName" required>
+        </li>
+        <li class="item item-input">
+          <input type="text" placeholder="邮箱：" ng-model="email">
+        </li>
+        <li class="item item-input">
+          <input type="text" placeholder="手机号：" ng-model="phone">
+        </li>
+        <li class="item item-input">
+          <input type="password" placeholder="密码：" ng-model="userPwd" required>
+        </li>
+        <li class="item item-input">
+          <input type="password" placeholder="再次输入密码：" ng-model="secPwd">
+        </li>
+      </ul>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="complete(userName,userPwd,secPwd,email,phone,userPic,nickname)">完成</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

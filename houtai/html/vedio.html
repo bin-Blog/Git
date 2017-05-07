@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/basic.css">
+  <link rel="stylesheet" href="css/ext-all.css">
+  <link rel="stylesheet" href="css/fc-all.css">
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/basicParameter.js"></script>
+  <script src="js/ext-all.js"></script>
+  <script src="js/basicExtModule.js"></script>
+  <script src="js/PagingToolBar.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/ClearButton.js"></script>
+</head>
+<body class="xn-body">
+<div class="xn_section_wrap">
+  <div class="xn_search_form" id="vedioSeaBox">
+    <button class="xn_btn xn_btn_primary" style="float: right;margin-right: 20px;" id="add"><i class="icon icon-plus"></i>添加</button>
+  </div>
+</div>
+
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon icon-th"></i></span>
+    <span class="xn_title_name">视频管理</span>
+  </div>
+  <div id="vedioGird"></div>
+</div>
+
+</body>
+<script>
+var GLOBAL = GLOBAL||{};
+Ext.onReady(function(){
+  //搜索表格
+  GLOBAL.vedioSea = new Ext.create('Ext.form.Panel',{
+      layout:"hbox",
+    margin:"10",
+    items:[
+        new Ext.custom.textfield({
+          height:34,
+          emptyText:"模糊查找 视频名称",
+          itemId:"vedio"
+        }),{
+          xtype:"button",
+        style:"background:green",
+        text:"查询",
+        width:100,
+        height:34
+      }
+    ],
+    renderTo:"vedioSeaBox"
+  });
+  //视频
+  GLOBAL.vedioBar = Ext.create("PagingToolBar",{
+    onChange:function (num,pageFirst,pageSize) {
+      //num作为一个过度参，取到分页栏里的所有数据
+      //pageFirst每一页第一条数据的下标
+      //pageSize每页几条数据
+      var pageStart = pageFirst/pageSize+1;
+      vedioList(pageStart,pageFirst);
+    }
+  });
+  //视频仓库
+  GLOBAL.vedioStore = new Ext.create('Ext.data.Store',{
+    fields:["Vname","Vstate","ID","Vtime","createAt","Vurl",]
+  });
+
+  //视频表格
+  GLOBAL.vedGrid = new Ext.create('Ext.grid.Panel',{
+    minHeight:BPR.gridMinHeight,
+    bbar:GLOBAL.vedioBar,
+    /*仓库*/
+    store:GLOBAL.vedioStore,
+    columns:[
+      {"header":"视频名称",width:150,"dataIndex":"Vname"},
+      {"header":"绑定课程",width:150,"dataIndex":"Vstate",flex:1},
+      {"header":"视频时长",width:150,"dataIndex":"Vtime"},
+      {"header":"上传日期",width:150,"dataIndex":"createAt"},
+      {"header":"操作",width:150,"dataIndex":"ID",
+        renderer:function (value,cellMeta,record) {
+          return "<a class='xn_tablea'  id='editor' onclick='fileWin("+value+");'>编辑</a>"
+        }
+      },
+    ],
+    renderTo:"vedioGird"
+  });
+  vedioList();
+
+
+
+
+
+
+});
+//视频列表请求函数
+function vedioList(pageStart,pageFirst) {
+  $.ajax({
+    url:"/Handler/VideoHandler.ashx?action=showlist",
+    type:"post",
+    dataType:"json",
+    async:false,
+    data:{
+      searchText:GLOBAL.vedioSea.down('#vedio').getValue(),
+      pageStart:pageStart?pageStart:1
+    }
+  }).done(function (result) {
+    GLOBAL.vedioBar.setPageSize(result.data.pageSize);
+    GLOBAL.vedioBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+    GLOBAL.vedioStore.loadData(result.data.list);
+    /*GLOBAL.pageBar.setPageSize(result.data.pageSize);
+     GLOBAL.pageBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+     GLOBAL.store.loadData(result.data.list)*/
+  })
+};
+function upWin() {
+  GLOBAL.upWindow = new Ext.custom.uploadFileWin({
+    title:"视频上传",
+    customUrl:"/Handler/UpLoadVideoHandler.ashx",
+    customMaxSize:1024*1024*1024,
+    customType:"",
+    customFilefieldLabel:"上传",
+    cbFn:function (result) {
+       GLOBAL.fileWindow.down('#url').setValue(result.cacheName);
+      GLOBAL.upWindow.close();
+    }
+  }).show();
+}
+//编辑窗口
+function fileWin(ID) {
+
+    GLOBAL.fileWindow = new Ext.custom.basicWindow({
+      title:"视频添加",
+      width:500,
+      height:340,
+      items:[
+        {
+            layout:"hbox",
+            margin:"10 0 10 20",
+            items:[
+              new Ext.custom.middletextfield({
+                fieldLabel:"上传",
+                height:30,
+                itemId:"url",
+                beforeLabelTextTpl:required,
+              }),{
+                xtype:"button",
+                text:"上传",
+                height:30,
+                width:50,
+                handler:function () {
+                  upWin();
+                }
+              }
+            ]
+        },{
+          layout:"hbox",
+          margin:"10 0 10 20",
+          items:[
+            new Ext.custom.middletextfield({
+              fieldLabel:"视频名称",
+              itemId:"Vname",
+              beforeLabelTextTpl:required,
+            }),{
+              xtype:"text",
+              text:"60字以内",
+              height:30,
+              width:50
+            }
+          ]
+        },{
+          layout:"hbox",
+          margin:"10 0 10 20",
+          items:[
+            new Ext.custom.middletextfield({
+              fieldLabel:"视频时长",
+              itemId:"Vtime",
+              beforeLabelTextTpl:required,
+            }),{
+              xtype:"text",
+              text:"输入分钟数",
+              height:30,
+            }
+          ]
+        },
+        {
+          layout:"hbox",
+          items:[{
+            xtype:"button",
+            margin:"10 0 0 120",
+            width:100,
+            height:34,
+            style:"background:green",
+            text:"确定",
+            handler:function (ID) {
+              $.ajax({
+                url:ID?"/Handler/VideoHandler.ashx?action=update":"/Handler/VideoHandler.ashx?action=add",
+                type:"post",
+                dataType:"json",
+                async:false,
+                data:{
+//                  action:"",
+                  ID:ID,
+                  Vname:GLOBAL.fileWindow.down('#Vname').getValue(),
+                  Vtime:GLOBAL.fileWindow.down('#Vtime').getValue(),
+                  Vurl:GLOBAL.fileWindow.down('#url').getValue(),
+                }
+              }).done(function (result) {
+                Ext.Msg.alert({
+                  title:"提示",
+                  msg:result.success
+                });
+                vedioList();
+                GLOBAL.fileWindow.hide();
+              })
+
+
+            }
+          },{
+            xtype:"button",
+            margin:"10 0 0 10",
+            width:100,
+            height:34,
+            text:"取消",
+            handler:function () {
+              GLOBAL.fileWindow.hide();
+            }
+          }],
+        },
+      ]
+    }).show();
+}
+$('#add').click(function () {
+  fileWin();
+})
+</script>
+</html>

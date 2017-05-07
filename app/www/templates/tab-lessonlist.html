@@ -1,0 +1,63 @@
+<style>
+  .item img{border-radius:8px;}
+  .col-50{text-align:center;}
+  .row_spe{background:#e8e8e8;padding:10.67px;border-bottom:1px solid #ccc;}
+  .lessondetail{background:#e8e8e8; padding-bottom:8px;  overflow: hidden;}
+  .lessondetail li{float:left;margin-left:15px;margin-top:5px;width:20%;border:1px solid #ccc;background:#fff;line-height:40px;text-align:center;}
+  .lessondetail li button{background:#fff;color:#333;}
+  .pricelist{width:100%;background:#e8e8e8;}
+  .pricelist li{line-height:40px;border-bottom:1px solid #ccc;}
+  .pricelist span{margin-left:59px;}
+
+
+</style>
+
+<ion-view view-title="课程列表">
+  <ion-content>
+    <div class="bar bar-header item-input-inset bar-dark" style="background:#393a3e">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="请输入搜索词">
+      </label>
+    </div>
+
+    <div class="row row_spe">
+      <div class="col col-50 " id="lesson" style="border-right:1px solid #ccc;" ng-click="courselist()" ng-style="lcolor">
+        课程列表
+        <i class="icon ion-chevron-down"></i>
+      </div>
+      <div class="col col-50" id="price" style="marign-right:0.2rem;" ng-click="price()" ng-style="pcolor">
+        价格
+        <i class="icon ion-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="lessondetail" ng-show="lilist">
+      <ul>
+        <li ng-repeat="courseListBtn in courseListBtns" ng-click="courseSerch({{courseListBtn.id}})">{{courseListBtn.btnName}}</li>
+      </ul>
+    </div>
+
+    <div class="pricelist" ng-show="prlist">
+      <ul>
+        <li ng-repeat="priceBtn in priceBtns" ng-click="priceSearch({{priceBtn.id}})"><span>{{priceBtn.btnName}}</span></li>
+      </ul>
+    </div>
+
+
+    <div class="content  ionic-pseudo">
+      <div class="list">
+        <ul>
+          <li class="item item-thumbnail-left" href="#" ng-repeat="list in lists" ng-click="tz_study(1)">
+            <img src="{{list.imgsrc}}">
+            <h2>{{list.titleEn}}</h2>
+            <p>{{list.price}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <ion-infinite-scroll  on-infinite="loadMore()" distance="1%" ng-if="moredata" ></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

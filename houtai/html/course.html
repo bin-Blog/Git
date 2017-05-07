@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="css/ext-all.css">
+  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/fc-all.css">
+  <link rel="stylesheet" href="css/ClearButton.css">
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/basicParameter.js"></script>
+  <script src="js/ext-all.js"></script>
+  <script src="js/basicExtModule.js"></script>
+  <script src="js/PagingToolBar.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/ClearButton.js"></script>
+</head>
+<body class="xn-body">
+<div class="xn_section_wrap">
+  <div class="xn_search_form" id="searchBox">
+    <button class="xn_btn xn_btn_primary" style="float: right;margin: 10px;" id="add">添加</button>
+  </div>
+</div>
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th icon"></i></span>
+    <span class="xn_title_name">课程列表</span>
+  </div>
+  <div id="grid"></div>
+
+</div>
+</body>
+<script type="text/javascript">
+  var GLOBAL = GLOBAL || {};
+  Ext.onReady(function () {
+    GLOBAL.courseStore01 = Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    });
+    GLOBAL.courseStore02 = Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    });
+    GLOBAL.courseStore03 = Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    });
+      //权限选择
+      $.ajax({
+        url:"/Handler/CourseHandler.ashx?action=getcategory",
+        type:"get",
+        dataType:"json",
+        data:"",
+        async:false,
+      }).done(function (result) {
+        GLOBAL.courseData = result.data;
+        var arr = [];
+        for (var i =0;i<GLOBAL.courseData.length;i++){
+            if(GLOBAL.courseData[i].fatherId===0){
+                arr.push(GLOBAL.courseData[i]);
+            }
+        }
+        GLOBAL.courseStore01.loadData(arr);
+//        GLOBAL.searchBox.down('#CategoryTwo').setValue('');
+//        GLOBAL.searchBox.down('#CategoryThree').setValue('');
+
+      });
+
+      //查询
+    GLOBAL.searchBox = Ext.create("Ext.form.Panel",{
+        layout:"hbox",
+      margin:"10",
+      items:[
+
+        new Ext.custom.textfield({
+
+          emptyText:"课程名称",
+          itemId:"course",
+
+        }),
+        new Ext.custom.basicCombo({
+          width:240,
+          fieldLabel:"专业选择",
+          itemId:"CategoryOne",
+//              emptyText:"手机号",
+          store:GLOBAL.courseStore01,
+          valueField:"sysId",
+          displayField:"title",
+          //监听
+          listeners:{
+//              改变时触发的函数
+              change:function (pt,newValue,oldValue) {
+                if(newValue){
+                  var arr = [];
+                  for (var i =0;i<GLOBAL.courseData.length;i++){
+                    if(GLOBAL.courseData[i].fatherId===newValue){
+                      arr.push(GLOBAL.courseData[i]);
+                    }
+                  }
+                  GLOBAL.courseStore02.loadData(arr);
+                  GLOBAL.searchBox.down('#CategoryThree').setValue('');
+                }
+              }
+          }
+        }),
+        new Ext.custom.basicCombo({
+          width:150,
+          fieldLabel:"",
+          itemId:"CategoryTwo",
+//              emptyText:"手机号",
+          store:GLOBAL.courseStore02,
+          valueField:"sysId",
+          displayField:"title",
+          //监听
+          listeners:{
+//              改变时触发的函数
+            change:function (pt,newValue,oldValue) {
+              if(newValue){
+                var arr = [];
+                for (var i =0;i<GLOBAL.courseData.length;i++){
+                  if(GLOBAL.courseData[i].fatherId===newValue){
+                    arr.push(GLOBAL.courseData[i]);
+                  }
+                }
+                GLOBAL.courseStore03.loadData(arr);
+              }
+            }
+          },
+        }),
+        new Ext.custom.basicCombo({
+          width:150,
+          fieldLabel:"",
+          itemId:"CategoryThree",
+//              emptyText:"手机号",
+          store:GLOBAL.courseStore03,
+          valueField:"sysId",
+          displayField:"title",
+        }),{
+          xtype:"button",
+          width:100,
+          height:34,
+          text:"查询",
+          handler:function () {
+            getCourList();
+          }
+        }
+      ],
+        renderTo:"searchBox"
+    });
+
+    /*分页*/
+    GLOBAL.pageBar = Ext.create("PagingToolBar",{
+      onChange:function (num,pageFirst,pageSize) {
+          //num作为一个过度参，取到分页栏里的所有数据
+        //pageFirst每一页第一条数据的下标
+        //pageSize每页几条数据
+
+//        console.log(arguments);
+        var pageStart = pageFirst/pageSize+1;
+        getCourList(pageStart,pageFirst);
+      }
+    });
+    GLOBAL.store= Ext.create("Ext.data.Store",{
+        fields:["Cname","Cnumber","onlineUser","CategoryOne","createAt","isState","isTop","ID"]
+    });
+    GLOBAL.gridBox=Ext.create("Ext.grid.Panel",{
+      minHeight:BPR.gridMinHeight,
+        bbar:GLOBAL.pageBar,
+        /*仓库*/
+        store:GLOBAL.store,
+        /*表格列*/
+        columns:[
+        {"header":"课程名","width":150,"dataIndex":"Cname"},
+        {"header":"课程代号","width":150,"dataIndex":"Cnumber",flex:1},
+        {"header":"在学人数","width":150,"dataIndex":"onlineUser"},
+        {"header":"所属分类","width":150,"dataIndex":"CategoryOne"},
+        {"header":"编辑日期","width":150,"dataIndex":"createAt"},
+        {"header":"状态","width":150,"dataIndex":"isState",
+          renderer:function (value,cellMeta,record) {
+            if(record.data.isState==2){
+                return "上架";
+            }else{
+                return "下架";
+            }
+          }
+        },
+        {"header":"操作","width":200,"dataIndex":"",
+          renderer:function (value,cellMeta,record) {
+//            console.log(value);
+//            console.log(cellMeta);
+            var go = '';
+            if(record.data.isState==2){
+              go ="下架";
+            }else{
+              go ="上架";
+            };
+            var state = record.data.isTop?"取消置顶":"置顶";
+            return "<a class='xn_tablea'  id='editor' onclick='adminWin("+record.data.ID+");'>编辑</a><a class='xn_tablea' id='' onclick='go("+record.data.ID+")'>"+go+"</a><a class='xn_tablea' id='del' onclick='delCour("+record.data.ID+")'>删除</a><a class='xn_tablea' onclick='tops("+record.data.ID+")' >"+state+"</a>"
+          }
+        },
+      ],
+        renderTo:"grid",
+    });
+
+    getCourList();
+
+
+
+  });
+
+
+  function getCourList(pageStart,pageFirst) {
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=show",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        searchText:GLOBAL.searchBox.down('#course').getValue(),
+        pageStart:pageStart?pageStart:1
+      }
+    }).done(function (result) {
+      GLOBAL.pageBar.setPageSize(result.data.pageSize);
+      GLOBAL.pageBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+      GLOBAL.store.loadData(result.data.list)
+    })
+  };
+
+
+  //置顶或取消
+  function tops(id) {
+//    alert(id);
+    $.ajax({
+      url:'/Handler/CourseHandler.ashx?action=top',
+      type:'post',
+      dataType:'json',
+      async:false,
+      data:{
+        ID:id
+      }
+    }).done(function (result) {
+      getCourList();
+      Ext.Msg.alert('info',result.success)
+    })
+
+  };
+  //删除
+  function delCour(id) {
+    $.ajax({
+      url:'/Handler/CourseHandler.ashx?action=delete',
+      type:'post',
+      dataType:'json',
+      async:false,
+      data:{
+        ID:id
+      }
+    }).done(function (result) {
+      getCourList();
+      Ext.Msg.alert('info',result.success);
+    })
+  };
+  //上架
+  function go(id) {
+
+    $.ajax({
+      url:'/Handler/CourseHandler.ashx?action=state',
+      type:'post',
+      dataType:'json',
+      async:false,
+      data:{
+        ID:id
+      }
+    }).done(function (result) {
+      getCourList()
+      Ext.Msg.alert('info',result.success)
+    })
+  };
+
+  //编辑
+  function adminWin(userId) {
+    GLOBAL.addWin = new Ext.custom.basicWindow({
+      title:"管理员添加",
+      width:500,
+      height:340,
+      items:[
+        new Ext.custom.middletextfield({
+          margin:"30 10 10 30",
+          fieldLabel:"用户名",
+          itemId:"userName",
+          emptyText:"用户名",
+          beforeLabelTextTpl:required,
+        }),new Ext.custom.middletextfield({
+          margin:"10 10 10 30",
+          fieldLabel:"姓名",
+          itemId:"name",
+//              emptyText:"密码",
+          beforeLabelTextTpl:required,
+        }),new Ext.custom.middletextfield({
+          margin:"10 10 10 30",
+          fieldLabel:"手机号",
+          itemId:"phone",
+//              emptyText:"手机号",
+          beforeLabelTextTpl:required,
+        }),new Ext.custom.basicCombo({
+          width:370,
+          margin:"10 10 10 30",
+          fieldLabel:"权限选择",
+          itemId:"auth",
+//              emptyText:"手机号",
+          store:GLOBAL.powerStore,
+          valueField:"powerCode",
+          displayField:"power",
+          beforeLabelTextTpl:required,
+        }),
+        {
+          layout:"hbox",
+          items:[{
+            xtype:"button",
+            margin:"10 0 0 120",
+            width:100,
+            height:34,
+            style:"background:green",
+            text:"确定",
+            handler:function () {
+
+              var userName = GLOBAL.addWin.down('#userName').getValue(),
+                name = GLOBAL.addWin.down('#name').getValue(),
+                phone= GLOBAL.addWin.down('#phone').getValue(),
+                tokenId = GLOBAL.userId,
+                auth = GLOBAL.addWin.down('#auth').getValue();
+
+              $.ajax({
+                url:userId?"/Handler/AdminHandler.ashx?action=update":"/Handler/AdminLoginAndRegHandler.ashx?action=add",
+                type:"post",
+                dataType:"json",
+                async:false,
+                data:{
+                  userName:userName,
+                  tokenId:GLOBAL.userId,
+                  password:'123456',
+                  turename:name,
+                  phone:phone,
+                  power:auth
+                }
+              }).done(function (result) {
+                Ext.Msg.alert({
+                  title:"提示",
+                  msg:result.success
+                });
+                getAdminList();
+                GLOBAL.addWin.hide();
+              });
+
+            }
+          },{
+            xtype:"button",
+            margin:"10 0 0 10",
+            width:100,
+            height:34,
+            text:"取消",
+            handler:function () {
+              GLOBAL.addWin.hide();
+            }
+          }],
+        },
+      ],
+    }).show();
+    if(userId){
+      //对应的表格模型
+      var data = GLOBAL.gridBox.getSelectionModel().getSelection()[0].data;
+      GLOBAL.userId = GLOBAL.tokenId;
+      GLOBAL.addWin.down('#name').setValue(data.turename);
+      GLOBAL.addWin.down('#userName').setValue(data.userName);
+      GLOBAL.addWin.down('#userName').setDisabled(true);
+      GLOBAL.addWin.down('#phone').setValue(data.phone);
+      GLOBAL.addWin.down('#auth').setValue(parseInt(data.power));
+    }else{
+      GLOBAL.userId = '';
+      GLOBAL.addWin.down('#name').setValue('');
+      GLOBAL.addWin.down('#userName').setValue('');
+      GLOBAL.addWin.down('#userName').setDisabled(false);
+      GLOBAL.addWin.down('#phone').setValue('');
+      GLOBAL.addWin.down('#auth').setValue('');
+    }
+  };
+</script>
+</html>

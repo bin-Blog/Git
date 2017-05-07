@@ -1,0 +1,74 @@
+<style>
+ .psa{
+   padding: 0;
+   background: #ccc;
+ }
+ .psa>div+div{
+   border-left: 1px solid #fff;
+ }
+</style>
+
+
+
+<ion-view view-title="学习页面" hide-tabs="true">
+  <ion-content>
+    <div style="width:100%; height:12.9rem; background:#ccc;position: relative;">
+      <!--<div style="width:100%; height:12.9rem;position: absolute;background: rgba(127,127,127,.5);z-index: 999;text-align: center;line-height: 13rem;">
+        <p>请 <a href="#/tab/account">登录</a></p>
+      </div>-->
+      <video  controls loop src="video/mov_bbb.mp4" width="100%" height="auto"></video>
+    </div>
+    <div class="row nav psa">
+      <div class="col col-50 text-center" ng-click="">目录<i class="icon ion-chevron-down" ></i></div>
+      <div class="col col-50 text-center" ng-click="">详情<i class="icon ion-chevron-down" ></i></div>
+    </div>
+<div class="list">
+  <div class="item">
+    <h2 style="font-weight: 700;">弹窗天融城</h2>
+  </div>
+  <div class="item">
+     <i class="icon ion-android-radio-button-off"></i><span class="span_02">{{lessInfo.CDlist.Vlist.Vname}}</span>    <span class="span_02">{{lessInfo.CDlist.Vlist.Vtime}}</span>
+    <br>
+    <br>
+     <i class="icon ion-android-radio-button-off"></i><span class="span_02">{{lessInfo.CDlist.Vlist.Vname}}</span>    <span class="span_02">{{lessInfo.CDlist.Vlist.Vtime}}</span>
+  </div>
+
+  <div class="item">
+    <h2 style="font-weight: 700;">456</h2>
+  </div>
+  <div class="item">
+     <i class="icon ion-android-radio-button-off"></i><span class="span_02">{{lessInfo.CDlist.Vlist.Vname}}</span>    <span class="span_02">{{lessInfo.CDlist.Vlist.Vtime}}</span>
+  </div>
+
+  <div class="item">
+    <h2 style="font-weight: 700;">456</h2>
+  </div>
+  <div class="item">
+     <span class="span_02">{{lessInfo.CDlist.Vlist.Vname}}</span>    <span class="span_02">{{lessInfo.CDlist.Vlist.Vtime}}</span>
+  </div>
+</div>
+  </ion-content>
+</ion-view>
+
+<!--底部footer-->
+<div class="tabs tabs-icon-top">
+  <a class="tab-item" ng-click="modal.show()">
+    <i class="icon ion-edit"></i>
+    评价
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-ios-star-outline"></i>
+    收藏
+  </a>
+  <a class="tab-item" href="#/tab/pay">
+    <i class="icon ion-ios-download-outline"></i>
+    购买
+  </a>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+<ion-view view-title="好评榜">
+  <ion-content>
+
+    <ion-item class="item-remove-animate item-thumbnail-left" ng-repeat="chat in chats" type="item-text-wrap" href="">
+      <img ng-src="{{chat.face}}">
+      <h2>{{chat.name}}</h2>
+      <p>{{chat.lastText}}</p>
+    </ion-item>
+
+  </ion-content>
+</ion-view>

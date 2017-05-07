@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/basic.css">
+  <link rel="stylesheet" href="css/ext-all.css">
+  <link rel="stylesheet" href="css/fc-all.css">
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/basicParameter.js"></script>
+  <script src="js/ext-all.js"></script>
+  <script src="js/basicExtModule.js"></script>
+  <script src="js/PagingToolBar.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/ClearButton.js"></script>
+</head>
+<body class="xn-body">
+
+<div class="xn_section_wrap">
+  <div class="xn_search_form" id="searchBox">
+
+  </div>
+  <div id="stuSeaBox"></div>
+</div>
+
+
+<div class="xn_section_wrap" style="margin-top: 30px;">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th icon"></i></span>
+    <span class="xn_title_name">学员列表</span>
+  </div>
+  <div id="grid"></div>
+
+</div>
+</body>
+<script>
+  var GLOBAL = GLOBAL || {};
+  Ext.onReady(function () {
+    GLOBAL.stuSeaBox = Ext.create("Ext.form.Panel",{
+      layout:"hbox",
+      margin:"10",
+      items:[
+          new Ext.custom.textfield({
+            emptyText:"用户名",
+            height:34,
+            itemId:"userName",
+
+          }),new Ext.custom.textfield({
+            emptyText:"邮箱",
+            itemId:"email",
+          height:34,
+
+          }),new Ext.custom.textfield({
+            emptyText:"手机号",
+            itemId:"phone",
+          height:34,
+
+          }),{
+          xtype:"button",
+          width:100,
+          height:34,
+          text:"查询",
+          handler:function () {
+            getStuList();
+          }
+        }
+      ],
+      renderTo:"stuSeaBox"
+    });
+
+    /*分页*/
+
+    GLOBAL.pageBar = Ext.create("PagingToolBar",{
+        onChange:function (num,pageFirst,pageSize) {
+          var pageStart = pageFirst/pageSize+1;
+          getStuList(pageStart,pageFirst);
+        }
+    });
+    GLOBAL.store= Ext.create("Ext.data.Store",{
+      fields:["userName","tokenId","email","phone","createAt","isstate",""]
+    });
+    GLOBAL.gridBoxS=Ext.create("Ext.grid.Panel",{
+      minHeight:BPR.gridMinHeight,
+      bbar:GLOBAL.pageBar,
+      /*仓库*/
+      store:GLOBAL.store,
+      /*表格列*/
+      columns:[
+        {"header":"用户名","width":150,"dataIndex":"userName"},
+        {"header":"邮箱","width":150,"dataIndex":"email",flex:1},
+        {"header":"手机号","width":150,"dataIndex":"phone"},
+        {"header":"注册日期","width":150,"dataIndex":"createAt"},
+        {"header":"状态","width":150,"dataIndex":"isstate",
+          renderer:function (value) {
+            if(value){
+                return "已冻结";
+            }else{
+              return "正常";
+            }
+          }
+        },
+        {"header":"操作","width":200,"dataIndex":"tokenId",
+          renderer:function (value,cellMeta,record) {
+          //value  id数据，单元格的值
+            //record   获取整行的记录
+            //
+            /*重置表格数据*/
+//                        console.log(record);
+            var state = record.data.isstate?"解冻":"冻结";
+            return "<a class='xn_tablea'  id='state' onclick='adminState("+value+");'>"+state +"</a>"
+          }
+        },
+      ],
+      renderTo:"grid",
+    });
+    getStuList();
+  });
+
+  function getStuList(pageStart,pageFirst) {
+    $.ajax({
+      url:"/Handler/AdminHandler.ashx?action=usershow",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        userName:'',
+        email:"",
+        phone:"",
+        pageStart:pageStart?pageStart:1
+      }
+    }).done(function (result) {
+      GLOBAL.pageBar.setPageSize(result.data.pageSize);
+      GLOBAL.pageBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+      GLOBAL.store.loadData(result.data.list)
+    })
+  };
+  function adminState(ID) {
+    $.ajax({
+      url:"/Handler/AdminHandler.ashx?action=lockuser",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        tokenId:ID
+      }
+    }).done(function (result) {
+        Ext.Msg.alert({
+          title:"提示",
+          msg:"成功"
+        });
+      getStuList();
+    })
+  };
+</script>
+</html>

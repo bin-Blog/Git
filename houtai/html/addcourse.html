@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="css/ext-all.css">
+  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/fc-all.css">
+  <link rel="stylesheet" href="css/ClearButton.css">
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/basicParameter.js"></script>
+  <script src="js/ext-all.js"></script>
+  <script src="js/basicExtModule.js"></script>
+  <script src="js/PagingToolBar.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/ClearButton.js"></script>
+</head>
+<body class='xn-body'>
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon"></i></span>
+    <span class="xn_title_name">课程信息</span>
+  </div>
+  <div id="addcourgird"></div>
+</div>
+
+<script>
+  var GLOBAL = GLOBAL||{};
+  Ext.onReady(function () {
+    GLOBAL.addCour = new Ext.create('Ext.form.Panel',{
+        margin:"20",
+        items:[
+          {
+            layout:"hbox",
+            margin:"10 0 10 20",
+            items:[
+              new Ext.custom.bigtextfield({
+                fieldLabel:"课程名称",
+                height:34,
+                itemId:"url",
+                beforeLabelTextTpl:required,
+              }),{
+                xtype:"text",
+                text:"60字以内",
+                height:34,
+                handler:function () {
+
+                }
+              }
+            ]
+          },{
+            layout:"hbox",
+            margin:"10 0 10 20",
+            items:[
+              new Ext.custom.bigtextfield({
+                fieldLabel:"课程描述",
+                height:34,
+                itemId:"url",
+                beforeLabelTextTpl:required,
+              }),{
+                xtype:"text",
+                text:"100字以内",
+                height:34,
+                handler:function () {
+
+                }
+              }
+            ]
+          },{
+            layout:"hbox",
+            margin:"10 0 10 20",
+            items:[
+              new Ext.custom.middletextfield({
+                fieldLabel:"课程价格",
+                height:34,
+                itemId:"url",
+                beforeLabelTextTpl:required,
+              }),{
+                xtype:"text",
+                text:"课程价格，以元为单位，免费课程设为0",
+                height:34,
+                handler:function () {
+
+                }
+              }
+            ]
+          },{
+            layout:"hbox",
+            margin:"10 0 10 20",
+            items:[
+              new Ext.custom.basicCombo({
+                width:240,
+//                height:34,
+                fieldLabel:"专业选择",
+                itemId:"CategoryOne",
+//              emptyText:"手机号",
+                store:GLOBAL.courseStore01,
+                valueField:"sysId",
+                displayField:"title",
+                //监听
+                listeners:{
+//              改变时触发的函数
+                  change:function (pt,newValue,oldValue) {
+                    if(newValue){
+                      var arr = [];
+                      for (var i =0;i<GLOBAL.courseData.length;i++){
+                        if(GLOBAL.courseData[i].fatherId===newValue){
+                          arr.push(GLOBAL.courseData[i]);
+                        }
+                      }
+                      GLOBAL.courseStore02.loadData(arr);
+                      GLOBAL.searchBox.down('#CategoryThree').setValue('');
+                    }
+                  }
+                }
+              }),
+              new Ext.custom.basicCombo({
+                width:150,
+//                height:34,
+                fieldLabel:"",
+                itemId:"CategoryTwo",
+//              emptyText:"手机号",
+                store:GLOBAL.courseStore02,
+                valueField:"sysId",
+                displayField:"title",
+                //监听
+                listeners:{
+//              改变时触发的函数
+                  change:function (pt,newValue,oldValue) {
+                    if(newValue){
+                      var arr = [];
+                      for (var i =0;i<GLOBAL.courseData.length;i++){
+                        if(GLOBAL.courseData[i].fatherId===newValue){
+                          arr.push(GLOBAL.courseData[i]);
+                        }
+                      }
+                      GLOBAL.courseStore03.loadData(arr);
+                    }
+                  }
+                },
+              }),
+              new Ext.custom.basicCombo({
+                width:150,
+//                height:34,
+                fieldLabel:"",
+                itemId:"CategoryThree",
+//              emptyText:"手机号",
+                store:GLOBAL.courseStore03,
+                valueField:"sysId",
+                displayField:"title",
+              }),
+            ]
+          },{
+            xtype:"button",
+            text:"保存",
+            style:"background:green",
+            height:34,
+            width:100,
+          }
+        ],
+      renderTo:"addcourgird"
+    })
+
+
+  });
+
+
+
+
+</script>
+
+</body>
+</html>

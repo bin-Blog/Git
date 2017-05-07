@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>翡翠学院-后台登录</title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/signin.css">
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/canvas_dote.js"></script>
+</head>
+<body style="overflow: hidden;">
+<canvas width="1920"></canvas>
+<div class="sign" style="position: absolute;top: 0;left: 0;right: 0;">
+  <div class="sign_logo"><img src="Images/back_logo.png" alt=""></div>
+  <div class="inp1">
+    <i class="icon icon-user"></i>
+    <input id="loginId" type="text" placeholder="用户名"/>
+  </div>
+  <div class="inp1">
+    <i class="icon icon-lock"></i>
+    <input id="userPwd" type="password" placeholder="密码"/>
+  </div>
+  <div class="inp1 inp_nobor">
+    <div class="inp">
+      <i class="icon icon-lock"></i>
+      <input id="validCode" type="text" placeholder="验证码"/>
+
+    </div>
+    <img src="Images/validatecode.png" alt=""/>
+  </div>
+  <div class="btn">
+    <button class="btn1">
+      忘记密码？
+    </button>
+    <button class="btn1 btn_r" id="loginBtn">
+      登录
+    </button>
+  </div>
+</div>
+
+</body>
+<script src="js/index.js" type="text/javascript"></script>
+</html>

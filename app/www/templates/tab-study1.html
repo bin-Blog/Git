@@ -1,0 +1,120 @@
+<style>
+  .col-50{text-align:center;width:5.4rem;background:#ccc;}
+  .list_mulu{padding-left:1.8rem;height:7.7rem;overflow-y:scroll;}
+  .circle{padding-left:0.6rem;border-left:1px dashed #ccc;position:relative;line-height:1.5rem;height:1.5rem;}
+  .span_01{width:4.6rem;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+  .span_02{width:3rem;float:right;}
+  .span_cir{width:0.3rem;height:0.3rem;background:url(img/study_circle.png) no-repeat;position:absolute;top:0.6rem;left:-0.17rem;background-size:100% 100%;}
+  .list_xiangqing{height:6.5rem; overflow-y:scroll; overflow-x:hidden;}
+</style>
+
+<script type="text/javascript" src="js/ap.js"></script>
+<script>
+  var btn = document.querySelector(".J-btn-submit");
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    //ele.href 是GET到支付宝收银台的URL
+    _AP.pay(e.target.href);
+    return false;
+  }, false);
+</script>
+
+
+
+<ion-view view-title="学习页面" hide-tabs="true">
+  <ion-content>
+    <div style="width:100%; height:5.9rem; background:#fFF">
+      <video  controls loop src="video/mov_bbb.mp4" width="100%" height="auto"></video>
+    </div>
+
+    <div class="row nav" style="background:#ccc">
+      <div class="col col-50"  id="mulu" ng-click="ml_left()" ng-style="color" style="border-right:2px solid #fff">目录<i class="icon ion-chevron-down" ></i></div>
+      <div class="col col-50" id="xiangqing" ng-click="xq_right()" ng-style="colorc">详情<i class="icon ion-chevron-down"></i></div>
+    </div>
+
+
+
+    <!--目录列表-->
+    <div class="content  ionic-pseudo" ng-show="mymulu">
+      <div class="list" style="margin-bottom:0;"><a class="item">一、安卓开发基础入门</a></div>
+      <div class="list_mulu">
+        <div class="circle" ng-repeat="study in studymulu">
+          <span class="span_02">{{study.time}}</span>
+          <div class="span_01">{{study.title}}</div>
+          <span class="span_cir"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--详情列表-->
+    <div class="content  ionic-pseudo" ng-show="myxiangqing">
+      <div class="list" style="margin-bottom:0;"><a class="item" style="color:#0a9ec7;">1-1 photoshop修图效果效果制作</a></div>
+      <div class="row">
+        <div class="col col-offset-30">课程评价</div>
+        <div class="col col-offset-10" style="text-align:right;">30<i class="icon ion-chevron-right" style="padding-left:0.2rem;"></i></div>
+      </div>
+      <div class="list_xiangqing">
+        <div class="list">
+          <div class="item item-avatar" ng-repeat="assess in assesslist">
+            <img src="{{assess.pic}}">
+            <span style="text-align:left;">{{assess.name}}</span>
+            <span style="float:right; padding-right:2.5rem;">{{assess.title}}</span>
+            <p>{{assess.cont}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </ion-content>
+</ion-view>
+
+
+<!--底部footer-->
+<div class="tabs tabs-icon-top">
+  <a class="tab-item" ng-click="modal.show()">
+    <i class="icon ion-edit"></i>
+    评价
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-ios-star-outline"></i>
+    收藏
+  </a>
+  <a class="tab-item" href="#/tab/pay">
+    <i class="icon ion-ios-download-outline"></i>
+    购买
+  </a>
+</div>
+
+
+
+
+
+<script id="templates/modal.html" type="text/ng-template">
+  <div id="task-view" class="modal slide-in-up" ng-controller="TaskCtrl">
+    <header class="bar-positive bar bar-header">
+      <h1 class="title">写评论</h1>
+      <button class="button button-clear button-primary" ng-click="close()">关闭</button>
+    </header>
+    <ion-content class="padding has-header" style="width:92%; height: 6rem; overflow: hidden; border:1px solid #ccc; margin:5% 4%;">
+      <textarea  placeholder="吐槽、表扬、鼓励……想说啥就说啥！" style="width:92%;" cols="20" maxlength="300"></textarea>
+    </ion-content>
+    <p style="text-align:right; margin-top:8rem; margin-right: 20px; color:#ccc">300</p>
+    <div class="row">
+      <div class="col col-33"></div>
+      <div class="col col-33">
+        <button class="button button-block button-positive" ng-click="createContact(newUser)" style="margin:0 auto;">提交</button>
+      </div>
+      <div class="col col-33"></div>
+
+    </div>
+  </div>
+
+</script>

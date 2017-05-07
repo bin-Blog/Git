@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>翡翠学院-后台登录</title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/basic.css">
+  <link rel="stylesheet" href="css/ext-all.css">
+  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/fc-all.css">
+  <link rel="stylesheet" href="css/ClearButton.css">
+
+</head>
+<body style="overflow: hidden;">
+<header class="h50">
+<div class="logo"><a href="#"><img src="Images/back_logo.png" alt=""></a></div>
+  <div class="header_nav">
+    <ul>
+      <li><a href="#"><i class="icon icon-globe"></i>卓新思创</a></li>
+      <li><a href="#"><i class="icon icon-comment"></i>在线客服</a></li>
+      <li><a href="#"><i class="icon icon-book"></i>常见问题</a></li>
+      <li id="lock" ><a href="#"><i class="icon icon-lock"></i>安全中心</a></li>
+      <li id="quit" onclick="quit()"><a><i class="icon icon-signout"></i>退出</a></li>
+      <li id="userName"><span></span><img src="Images/touxiang.jpg" alt=""></li>
+    </ul>
+  </div>
+</header>
+<!--头部结束-->
+<!--导航栏开始-->
+<nav class="h50">
+  <div class="inner">
+    <div class="nav_wrap">
+      <div class="fl">
+        <a href="#"><i class="icon icon-user"></i>用户管理</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+      <div class="fl">
+        <a href="#"><i class="icon icon-book"></i>课程管理</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+      <div class="fl">
+        <a href="#"><i class="icon icon-tasks"></i>统计报表</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+      <div class="fl">
+        <a href="#"><i class="icon icon-folder-close"></i>其他管理</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+      <div class="fl">
+        <a href="#"><i class="icon icon-bookmark"></i>数据字典</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+      <div class="fl">
+        <a href="#"><i class="icon icon-cog"></i>系统维护</a>
+        <em class="left"></em><em class="right"></em>
+      </div>
+    </div>
+  </div>
+  <div class="nav_conn">
+    <div class="inner">
+      <ul id="user">
+        <li class="fl" iLink="admin.html" id="admin">
+          <a href="#"><i class="icon icon-user"></i>系统人员</a>
+        </li>
+        <li class="fl" iLink="student.html" id="student">
+          <a href="#"><i class="icon icon-group"></i>学员管理</a>
+        </li>
+        <li class="fl" iLink="auth.html" id="auth">
+          <a href="#"><i class="icon icon-"></i>权限管理</a>
+        </li>
+      </ul>
+      <ul id="courses">
+        <li class="fl" iLink="course.html" id="course">
+          <a href="#"><i class="icon icon-th"></i>课程列表</a>
+        </li>
+        <li class="fl" iLink="addCour.html" id="addCour">
+          <a href="#"><i class="icon icon-plus"></i>添加课程</a>
+        </li>
+        <li class="fl" iLink="vedio.html" id="vedio">
+          <a href="#"><i class="icon icon-facetime-video"></i>视频管理</a>
+        </li>
+        <li class="fl" iLink="assess.html" id="assess">
+          <a href="#"><i class="icon icon-pencil"></i>课程评价</a>
+        </li>
+      </ul>
+      <ul id="task">
+        <li class="fl" iLink="stat.html" id="stat">
+          <a href="#"><i class="icon icon-book"></i>课程统计</a>
+        </li>
+        <li class="fl">
+          <a href="#"><i class="icon icon-group"></i>学员统计</a>
+        </li>
+        <li class="fl">
+          <a href="#"><i class="icon icon-globe"></i>访问统计</a>
+        </li>
+      </ul>
+      <ul id="other">
+        <li><a href="#"><i class="icon icon-envelope-alt"></i>反馈意见</a></li>
+      </ul>
+      <ul id="datas">
+        <li><a><i class="icon icon-leaf"></i>常用选项</a></li>
+        <li><a><i class="icon icon-map-marker"></i>地区</a></li>
+        <li><a><i class="icon icon-flag"></i>专业</a></li>
+      </ul>
+      <ul id="cog">
+        <li class="fl"><a href="#"><i class="icon icon-cog"></i>系统设置</a></li>
+        <li class="fl"><a href="#"><i class="icon icon-calendar"></i>操作日志</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+<div id="ifrmaeId"></div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/basicParameter.js"></script>
+<script src="js/ext-all.js"></script>
+<script src="js/basicExtModule.js"></script>
+<script src="js/PagingToolBar.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/ClearButton.js"></script>
+<script src="../lib/dist/echarts.js"></script>
+<script src="js/backHomeIndex.js"></script>
+<script src="js/main.js"></script>
+<script src="js/header.js"></script>
+
+</html>

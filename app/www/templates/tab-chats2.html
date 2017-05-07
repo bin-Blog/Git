@@ -1,0 +1,128 @@
+<ion-view view-title="课程列表" hide-nav-bar="true">
+  <style>
+    .leesonTitle h5{
+      text-align: center;
+    }
+    .myCourse{
+      padding: 8px;
+    }
+    .leesonTitle>div:first-child{
+      border-right:1px solid #ccc;
+    }
+    .profession{
+      padding: 10px 10px;
+      background: #ccc;
+      overflow: hidden;
+    }
+    .profession li{
+      width: 20%;
+      text-align: center;
+      background: #fff;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      float: left;
+      margin:1.5% 2.5%;
+    }
+    .course{
+      padding: 5px 0;
+      text-align: center;
+    }
+    .course h2{
+      line-height: 50px;
+    }
+  </style>
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search"></i>
+      <input type="text" placeholder="请输入搜索词">
+    </label>
+  </div>
+  <!--分类-->
+  <div class="list">
+    <div class="item myCourse bar-subheader">
+      <div class="row leesonTitle">
+        <div class="col col-50" ng-click="listShow()">
+          <h5 ng-style="listColor">我的课程 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+        <div class="col col-50" ng-click="priceShow()">
+          <h5 ng-style="priceColor">收藏课程 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-content class="has-subheader">
+
+    <!--分类列表-->
+    <div class="list profession" ng-show="profession">
+      <ul>
+        <li>应用开发</li>
+        <li>移动框框架</li>
+        <li>前端基础</li>
+        <li>前端进阶</li>
+        <li>前端框架</li>
+        <li>Python</li>
+        <li>PHP</li>
+        <li>asp.net</li>
+        <li>全部</li>
+      </ul>
+    </div>
+    <div class="list" ng-show="price">
+      <ul>
+        <li class="item stable-bg">全部</li>
+        <li class="item stable-bg">免费</li>
+        <li class="item stable-bg">收费</li>
+      </ul>
+    </div>
+
+
+
+    <div class="list" ng-show="myCourses">
+      <ul>
+        <li class="item">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+      </ul>
+    </div>
+    <div class="list" ng-show="collects">
+      <ul>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+        <li class="item item-thumbnail-left">
+          <img src="img/1.jpg" alt="">
+          <h2>略缩图</h2>
+          <p>略缩图的详细介绍</p>
+        </li>
+      </ul>
+
+    </div>
+  </ion-content>
+</ion-view>

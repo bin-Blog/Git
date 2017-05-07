@@ -1,0 +1,51 @@
+<script type="text/javascript" src="js/ap.js"></script>
+<script>
+  var btn = document.querySelector(".J-btn-submit");
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    //ele.href 是GET到支付宝收银台的URL
+    _AP.pay(e.target.href);
+    return false;
+  }, false);
+</script>
+
+
+<ion-view view-title="确认支付">
+  <ion-content>
+
+    <div class="list">
+      <div class="item" style="color:#00f;">JavaScript课程</div>
+
+      <div class="item item-left item-right" href="#">
+        购买数量：
+        <i style="float:right;">1</i>
+      </div>
+
+      <div class="item item-left item-right" href="#">
+        项目单价：
+        <i style="float:right;">0元</i>
+      </div>
+
+      <div class="item item-left item-right" href="#">
+        总额：
+        <i style="float:right;">0元</i>
+      </div>
+      <div style="height:1rem"></div>
+      <div class="row">
+        <div class="col col-33"></div>
+        <div class="col col-33">
+          <a style="color:#fff; text-decoration:none"
+             href="https://mapi.alipay.com/gateway.do?sign=IvjVp0%2FXaRmVmE8Csio%2BTpbjuTzAzd4PrQLMUR8V82OcGhrjy%2BWLtaDD7KFn0tnMXfpLIJyKRjmxNulXNTMVWknKB4S77TRiBVHVOzeECKfh4BUY%2BUyesw6vXjtbIq2cL6GUI1A8OHu2HCjlNJK1Ks3VQqMTY7cowe8DX8PETq0%3D&_input_charset=utf-8&subject=test&total_fee=0.01&sign_type=RSA&service=alipay.wap.create.direct.pay.by.user&notify_url=http%3A%2F%2Fwww.testalipay.com%2Falipay.wap.create.direct.pay.by.user-JAVA-UTF-8%2Fnotify_url.jsp&partner=2088501624560335&seller_id=2088501624560335&out_trade_no=2016330134443814&payment_type=1&return_url=http%3A%2F%2Fwww.testalipay.com%2Falipay.wap.create.direct.pay.by.user-JAVA-UTF-8%2Freturn_url.jsp" class="J-btn-submit btn mj-submit btn-strong btn-larger btn-block"><button class="button button-block button-positive">确认支付</button></a>
+        </div>
+        <div class="col col-33"></div>
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
+

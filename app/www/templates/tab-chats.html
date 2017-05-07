@@ -1,0 +1,95 @@
+<ion-view view-title="课程列表" hide-nav-bar="true">
+  <style>
+    .mb{
+      height: 55px;
+    }
+    .pd{
+      padding-top: 10px;
+    }
+    .leesonTitle h5{
+      text-align: center;
+    }
+    .leesonTitle>div:first-child h5{
+      border-right:1px solid #ccc;
+    }
+    .profession{
+      padding: 10px 10px;
+      background: #ccc;
+      overflow: hidden;
+    }
+    .profession li{
+      width: 20%;
+      text-align: center;
+      background: #fff;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      float: left;
+      margin:1.5% 2.5%;
+    }
+  </style>
+  <!--搜索框-->
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search"></i>
+      <!--<input type="search" placeholder="请输入搜索词" ng-change="doSearch('','',searchName)" ng-model="searchName">-->
+      <input type="search" placeholder="请输入搜索词" ng-blur="doSearch('','',searchName)" ng-model="searchName">
+    </label>
+  </div>
+
+  <div class="bar-subheader">
+    <div class="item mb">
+      <div class="row leesonTitle">
+        <div class="col col-50" ng-click="listShow()">
+          <h5 ng-style="listColor">课程列表 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+        <div class="col col-50" ng-click="priceShow()">
+          <h5 ng-style="priceColor">价格 <i class="icon ion-ios-arrow-down"></i></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-content class="has-subheader pd">
+    <ion-refresher on-refresh="doRefresh()"   spinner="android" pulling-text="下拉刷新"></ion-refresher>
+
+      <!--分类列表-->
+      <div class="list profession" ng-show="profession">
+        <ul>
+          <li class="col-20"  ng-repeat="item in pro" ng-click="doSearch(item.sysId,'','')">{{item.title}}</li>
+          <li class="col-20"   ng-click="doSearch('全部','','')">全部</li>
+        </ul>
+      </div>
+      <!--价格-->
+    <div class="list" ng-show="price">
+      <ul>
+        <li class="item stable-bg" ng-repeat="item in priceList" ng-click="doSearch('',item.id,'')">{{item.title}}</li>
+      </ul>
+    </div>
+
+<!--课程列表-->
+    <div class="list" ng-show="professions">
+      <ul>
+        <li class="item item-thumbnail-left" ng-repeat="item in course" ng-click="listDetail(item.ID)">
+          <img src="{{item.Cpic}}" alt="">
+          <h2>{{item.Cname}}</h2>
+          <h4>{{item.Cdescribe}}</h4>
+          <h5>{{item.createAt}}</h5>
+          <p>{{item.Cprice | currency:"￥"}}</p>
+        </li>
+      </ul>
+    </div >
+    <div class="list" ng-show="prices">
+      <ul>
+        <li class="item"  ng-repeat="item in course" ng-click="listDetail(item.ID)">
+          <img src="{{item.Cpic}}" alt="">
+          <h2>{{item.Cname}}</h2>
+          <h4>{{item.Cdescribe}}</h4>
+          <h5>{{item.createAt}}</h5>
+          <p>{{item.Cprice}}</p>
+        </li>
+      </ul>
+    </div>
+
+
+    <ion-infinite-scroll ng-if="moreData" on-infinite="loadMore()" distance="0.1%"  immediate-check='true' pulling-text="上拉加载"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>
