@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <meta name="Author" content="潭州学院-海牙">
+    <style type='text/css'>
+
+        * { margin: 0; padding: 0; }
+
+        #header {
+            width: 1200px;
+            height: 160px;
+            background: url(images/1.png);
+            margin: 0 auto;
+        }
+
+        #content {
+            width: 1200px;
+            height: 1820px;
+            background: url(images/3.png) ;
+            margin: 0 auto;
+        }
+        #container{
+            width: 1200px;
+            height: 737px;
+            background: url(images/2.png);
+            margin: 0 auto;
+        }
+        #nav {
+            width: 100%;
+            min-width: 1200px;
+            border-bottom: 1px solid #ff6699;
+            height: 50px;
+            line-height: 50px;
+            background: #ffffff;
+        }
+
+        #nav.fixed {
+            position: fixed;
+            top: 0;
+        }
+
+        #nav ul {
+            width: 1200px;
+            margin: 0 auto;
+            height: 50px;
+        }
+
+        #nav ul li {
+            list-style: none;
+            float: left;
+            font-family: 'Microsoft yahei';
+            font-size: 16px;
+        }
+
+        #nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            padding: 0 20px;
+        }
+
+        #nav ul li a:hover {
+            color: #ff6699;
+        }
+
+        #nav ul li.l2 a {
+            color: #ff6699;
+            font-weight: bold;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body style="height:3000px;">
+<div id='header'></div>
+<div id="nav">
+    <ul>
+        <li><a href="javascript:;">首页</a></li>
+        <li><a href="javascript:;">最新</a></li>
+        <li><a href="javascript:;">上衣</a></li>
+        <li><a href="javascript:;">裙子</a></li>
+        <li><a href="javascript:;">裤子</a></li>
+        <li><a href="javascript:;">鞋子</a></li>
+        <li><a href="javascript:;">包包</a></li>
+        <li><a href="javascript:;">配饰</a></li>
+        <li><a href="javascript:;">更多</a></li>
+        <li class='l2'><a href="javascript:;">Hi范儿</a></li>
+        <li class='l2'><a href="javascript:;">明星同款</a></li>
+        <li class='l2'><a href="javascript:;">韩国馆</a></li>
+        <li class='l2'><a href="javascript:;">团购</a></li>
+        <li class='l2'><a href="javascript:;">福利社</a></li>
+    </ul>
+</div>
+<div id="container"></div>
+<div id="content"></div>
+
+<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        var $window = $(window);
+        var $nav = $('#nav');
+        var navTop = $nav.offset().top + $nav.height();
+        $window.scroll(function () {
+            var scrollTop = $(document).scrollTop();
+            if (scrollTop >= navTop) {
+                if (!$nav.hasClass('fixed')) {
+                    $nav.addClass('fixed').css('display', 'none').slideDown(300);
+                }
+            } else {
+                $nav.removeClass('fixed');
+            }
+            ;
+        });
+    })();
+
+
+</script>
+</html>

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML5贪食蛇网页游戏代码源码</title>
+</head>
+<script type="text/javascript" src="js/index.js">
+		
+	</script>
+<style type="text/css">
+*{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+		.wrap{
+	position: relative;
+	width: 900px;
+	height: 600px;
+	margin: 100px auto 0;
+	border: 10px red solid;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1;
+}
+.sbody{
+	position: relative;
+	z-index: 3;
+	
+}
+.sbody li{
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background-color: aqua;
+	border-radius: 45%;
+
+	
+}
+.sbody li:last-child{
+	background-color: pink;
+}
+.wrap .sbody .hand{
+	
+	background-color: lawngreen;
+	border-radius: 5px;
+}
+
+.food{
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background-color: yellow;
+	border-radius: 50%;
+	
+	transition-duration: .6s;
+	
+}
+.fen{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.fen #fens{
+	z-index: 2;
+	position: absolute;
+	top:50%;
+	transform: translateY(-50%);
+	display: block;
+	line-height: 70px;
+	transition-duration: .4s;
+	
+	width: 100%;
+	/*height: 100%;*/
+	font-size: 50px;
+	text-align: center;
+	/*color: lightpink;*/
+}
+/*#bg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	
+}*/
+	</style>
+<body>
+<!--游戏区域-->
+<div class="wrap">
+	
+	<div class="fen">
+		<span id="fens" style="font-size: 50px;">点击任意键开始游戏<br />
+		按Shift加速<br />方向键控制移动<br />Alt键重新开始</span>
+	</div>
+	<!--<div id="bg">
+		
+	</div>-->
+	<!--食物-->
+	<div class="food" style="opacity: 1;"></div>
+	<!--本体-->
+	<ul class="sbody">
+				<!--头部-->
+		<li class="hand"></li>
+			</ul>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://www.aaa-cg.com.cn?lcc/" target="_blank">素材</a></p>
+</div>
+</body>
+</html>
+

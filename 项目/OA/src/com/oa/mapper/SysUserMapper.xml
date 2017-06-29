@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.oa.domain.SysUser">
+    <id column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="ORG_ID" jdbcType="BIGINT" property="orgId" />
+    <result column="USER_NAME" jdbcType="CHAR" property="userName" />
+    <result column="USER_PASSWORD" jdbcType="CHAR" property="userPassword" />
+    <result column="MOBILE_PHONE" jdbcType="CHAR" property="mobilePhone" />
+    <result column="EMAIL" jdbcType="CHAR" property="email" />
+    <result column="USER_CH_NAME" jdbcType="CHAR" property="userChName" />
+    <result column="USER_BIRTHDAY" jdbcType="DATE" property="userBirthday" />
+    <result column="USER_SEX" jdbcType="SMALLINT" property="userSex" />
+    <result column="USER_PHOTO_URL" jdbcType="CHAR" property="userPhotoUrl" />
+    <result column="PROVINCE_ID" jdbcType="INTEGER" property="provinceId" />
+    <result column="PROVINCE_NAME" jdbcType="CHAR" property="provinceName" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY_NAME" jdbcType="CHAR" property="cityName" />
+    <result column="COUNTRY_ID" jdbcType="INTEGER" property="countryId" />
+    <result column="CONTRY_NAME" jdbcType="CHAR" property="contryName" />
+    <result column="HOBBY" jdbcType="CHAR" property="hobby" />
+    <result column="INTRODUCE" jdbcType="VARCHAR" property="introduce" />
+    <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    USER_ID, ORG_ID, USER_NAME, USER_PASSWORD, MOBILE_PHONE, EMAIL, USER_CH_NAME, USER_BIRTHDAY, 
+    USER_SEX, USER_PHOTO_URL, PROVINCE_ID, PROVINCE_NAME, CITY_ID, CITY_NAME, COUNTRY_ID, 
+    CONTRY_NAME, HOBBY, INTRODUCE, CREATED_DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.oa.domain.SysUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oa.domain.SysUserExample">
+    delete from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oa.domain.SysUser">
+    insert into sys_user (USER_ID, ORG_ID, USER_NAME, 
+      USER_PASSWORD, MOBILE_PHONE, EMAIL, 
+      USER_CH_NAME, USER_BIRTHDAY, USER_SEX, 
+      USER_PHOTO_URL, PROVINCE_ID, PROVINCE_NAME, 
+      CITY_ID, CITY_NAME, COUNTRY_ID, 
+      CONTRY_NAME, HOBBY, INTRODUCE, 
+      CREATED_DATE)
+    values (#{userId,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}, #{userName,jdbcType=CHAR}, 
+      #{userPassword,jdbcType=CHAR}, #{mobilePhone,jdbcType=CHAR}, #{email,jdbcType=CHAR}, 
+      #{userChName,jdbcType=CHAR}, #{userBirthday,jdbcType=DATE}, #{userSex,jdbcType=SMALLINT}, 
+      #{userPhotoUrl,jdbcType=CHAR}, #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=CHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=CHAR}, #{countryId,jdbcType=INTEGER}, 
+      #{contryName,jdbcType=CHAR}, #{hobby,jdbcType=CHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oa.domain.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD,
+      </if>
+      <if test="mobilePhone != null">
+        MOBILE_PHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="userChName != null">
+        USER_CH_NAME,
+      </if>
+      <if test="userBirthday != null">
+        USER_BIRTHDAY,
+      </if>
+      <if test="userSex != null">
+        USER_SEX,
+      </if>
+      <if test="userPhotoUrl != null">
+        USER_PHOTO_URL,
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID,
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME,
+      </if>
+      <if test="cityId != null">
+        CITY_ID,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID,
+      </if>
+      <if test="contryName != null">
+        CONTRY_NAME,
+      </if>
+      <if test="hobby != null">
+        HOBBY,
+      </if>
+      <if test="introduce != null">
+        INTRODUCE,
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="userChName != null">
+        #{userChName,jdbcType=CHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="userPhotoUrl != null">
+        #{userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=CHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=CHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="contryName != null">
+        #{contryName,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oa.domain.SysUserExample" resultType="java.lang.Integer">
+    select count(*) from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_user
+    <set>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orgId != null">
+        ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=CHAR},
+      </if>
+      <if test="record.userPassword != null">
+        USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.mobilePhone != null">
+        MOBILE_PHONE = #{record.mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=CHAR},
+      </if>
+      <if test="record.userChName != null">
+        USER_CH_NAME = #{record.userChName,jdbcType=CHAR},
+      </if>
+      <if test="record.userBirthday != null">
+        USER_BIRTHDAY = #{record.userBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.userSex != null">
+        USER_SEX = #{record.userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="record.userPhotoUrl != null">
+        USER_PHOTO_URL = #{record.userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.provinceId != null">
+        PROVINCE_ID = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceName != null">
+        PROVINCE_NAME = #{record.provinceName,jdbcType=CHAR},
+      </if>
+      <if test="record.cityId != null">
+        CITY_ID = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityName != null">
+        CITY_NAME = #{record.cityName,jdbcType=CHAR},
+      </if>
+      <if test="record.countryId != null">
+        COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.contryName != null">
+        CONTRY_NAME = #{record.contryName,jdbcType=CHAR},
+      </if>
+      <if test="record.hobby != null">
+        HOBBY = #{record.hobby,jdbcType=CHAR},
+      </if>
+      <if test="record.introduce != null">
+        INTRODUCE = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdDate != null">
+        CREATED_DATE = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_user
+    set USER_ID = #{record.userId,jdbcType=BIGINT},
+      ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      USER_NAME = #{record.userName,jdbcType=CHAR},
+      USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      MOBILE_PHONE = #{record.mobilePhone,jdbcType=CHAR},
+      EMAIL = #{record.email,jdbcType=CHAR},
+      USER_CH_NAME = #{record.userChName,jdbcType=CHAR},
+      USER_BIRTHDAY = #{record.userBirthday,jdbcType=DATE},
+      USER_SEX = #{record.userSex,jdbcType=SMALLINT},
+      USER_PHOTO_URL = #{record.userPhotoUrl,jdbcType=CHAR},
+      PROVINCE_ID = #{record.provinceId,jdbcType=INTEGER},
+      PROVINCE_NAME = #{record.provinceName,jdbcType=CHAR},
+      CITY_ID = #{record.cityId,jdbcType=INTEGER},
+      CITY_NAME = #{record.cityName,jdbcType=CHAR},
+      COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      CONTRY_NAME = #{record.contryName,jdbcType=CHAR},
+      HOBBY = #{record.hobby,jdbcType=CHAR},
+      INTRODUCE = #{record.introduce,jdbcType=VARCHAR},
+      CREATED_DATE = #{record.createdDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oa.domain.SysUser">
+    update sys_user
+    <set>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        MOBILE_PHONE = #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=CHAR},
+      </if>
+      <if test="userChName != null">
+        USER_CH_NAME = #{userChName,jdbcType=CHAR},
+      </if>
+      <if test="userBirthday != null">
+        USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        USER_SEX = #{userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="userPhotoUrl != null">
+        USER_PHOTO_URL = #{userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME = #{provinceName,jdbcType=CHAR},
+      </if>
+      <if test="cityId != null">
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=CHAR},
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="contryName != null">
+        CONTRY_NAME = #{contryName,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null">
+        HOBBY = #{hobby,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null">
+        INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oa.domain.SysUser">
+    update sys_user
+    set ORG_ID = #{orgId,jdbcType=BIGINT},
+      USER_NAME = #{userName,jdbcType=CHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=CHAR},
+      USER_CH_NAME = #{userChName,jdbcType=CHAR},
+      USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      USER_SEX = #{userSex,jdbcType=SMALLINT},
+      USER_PHOTO_URL = #{userPhotoUrl,jdbcType=CHAR},
+      PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      PROVINCE_NAME = #{provinceName,jdbcType=CHAR},
+      CITY_ID = #{cityId,jdbcType=INTEGER},
+      CITY_NAME = #{cityName,jdbcType=CHAR},
+      COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      CONTRY_NAME = #{contryName,jdbcType=CHAR},
+      HOBBY = #{hobby,jdbcType=CHAR},
+      INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP}
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.oa.domain.SysUser">
+    <id column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="ORG_ID" jdbcType="BIGINT" property="orgId" />
+    <result column="USER_NAME" jdbcType="CHAR" property="userName" />
+    <result column="USER_PASSWORD" jdbcType="CHAR" property="userPassword" />
+    <result column="MOBILE_PHONE" jdbcType="CHAR" property="mobilePhone" />
+    <result column="EMAIL" jdbcType="CHAR" property="email" />
+    <result column="USER_CH_NAME" jdbcType="CHAR" property="userChName" />
+    <result column="USER_BIRTHDAY" jdbcType="DATE" property="userBirthday" />
+    <result column="USER_SEX" jdbcType="SMALLINT" property="userSex" />
+    <result column="USER_PHOTO_URL" jdbcType="CHAR" property="userPhotoUrl" />
+    <result column="PROVINCE_ID" jdbcType="INTEGER" property="provinceId" />
+    <result column="PROVINCE_NAME" jdbcType="CHAR" property="provinceName" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY_NAME" jdbcType="CHAR" property="cityName" />
+    <result column="COUNTRY_ID" jdbcType="INTEGER" property="countryId" />
+    <result column="CONTRY_NAME" jdbcType="CHAR" property="contryName" />
+    <result column="HOBBY" jdbcType="CHAR" property="hobby" />
+    <result column="INTRODUCE" jdbcType="VARCHAR" property="introduce" />
+    <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    USER_ID, ORG_ID, USER_NAME, USER_PASSWORD, MOBILE_PHONE, EMAIL, USER_CH_NAME, USER_BIRTHDAY, 
+    USER_SEX, USER_PHOTO_URL, PROVINCE_ID, PROVINCE_NAME, CITY_ID, CITY_NAME, COUNTRY_ID, 
+    CONTRY_NAME, HOBBY, INTRODUCE, CREATED_DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.oa.domain.SysUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oa.domain.SysUserExample">
+    delete from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oa.domain.SysUser">
+    insert into sys_user (USER_ID, ORG_ID, USER_NAME, 
+      USER_PASSWORD, MOBILE_PHONE, EMAIL, 
+      USER_CH_NAME, USER_BIRTHDAY, USER_SEX, 
+      USER_PHOTO_URL, PROVINCE_ID, PROVINCE_NAME, 
+      CITY_ID, CITY_NAME, COUNTRY_ID, 
+      CONTRY_NAME, HOBBY, INTRODUCE, 
+      CREATED_DATE)
+    values (#{userId,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}, #{userName,jdbcType=CHAR}, 
+      #{userPassword,jdbcType=CHAR}, #{mobilePhone,jdbcType=CHAR}, #{email,jdbcType=CHAR}, 
+      #{userChName,jdbcType=CHAR}, #{userBirthday,jdbcType=DATE}, #{userSex,jdbcType=SMALLINT}, 
+      #{userPhotoUrl,jdbcType=CHAR}, #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=CHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=CHAR}, #{countryId,jdbcType=INTEGER}, 
+      #{contryName,jdbcType=CHAR}, #{hobby,jdbcType=CHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oa.domain.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD,
+      </if>
+      <if test="mobilePhone != null">
+        MOBILE_PHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="userChName != null">
+        USER_CH_NAME,
+      </if>
+      <if test="userBirthday != null">
+        USER_BIRTHDAY,
+      </if>
+      <if test="userSex != null">
+        USER_SEX,
+      </if>
+      <if test="userPhotoUrl != null">
+        USER_PHOTO_URL,
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID,
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME,
+      </if>
+      <if test="cityId != null">
+        CITY_ID,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID,
+      </if>
+      <if test="contryName != null">
+        CONTRY_NAME,
+      </if>
+      <if test="hobby != null">
+        HOBBY,
+      </if>
+      <if test="introduce != null">
+        INTRODUCE,
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="userChName != null">
+        #{userChName,jdbcType=CHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="userPhotoUrl != null">
+        #{userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=CHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=CHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="contryName != null">
+        #{contryName,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oa.domain.SysUserExample" resultType="java.lang.Integer">
+    select count(*) from sys_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_user
+    <set>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orgId != null">
+        ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=CHAR},
+      </if>
+      <if test="record.userPassword != null">
+        USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.mobilePhone != null">
+        MOBILE_PHONE = #{record.mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=CHAR},
+      </if>
+      <if test="record.userChName != null">
+        USER_CH_NAME = #{record.userChName,jdbcType=CHAR},
+      </if>
+      <if test="record.userBirthday != null">
+        USER_BIRTHDAY = #{record.userBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.userSex != null">
+        USER_SEX = #{record.userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="record.userPhotoUrl != null">
+        USER_PHOTO_URL = #{record.userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.provinceId != null">
+        PROVINCE_ID = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceName != null">
+        PROVINCE_NAME = #{record.provinceName,jdbcType=CHAR},
+      </if>
+      <if test="record.cityId != null">
+        CITY_ID = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityName != null">
+        CITY_NAME = #{record.cityName,jdbcType=CHAR},
+      </if>
+      <if test="record.countryId != null">
+        COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.contryName != null">
+        CONTRY_NAME = #{record.contryName,jdbcType=CHAR},
+      </if>
+      <if test="record.hobby != null">
+        HOBBY = #{record.hobby,jdbcType=CHAR},
+      </if>
+      <if test="record.introduce != null">
+        INTRODUCE = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdDate != null">
+        CREATED_DATE = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_user
+    set USER_ID = #{record.userId,jdbcType=BIGINT},
+      ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      USER_NAME = #{record.userName,jdbcType=CHAR},
+      USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      MOBILE_PHONE = #{record.mobilePhone,jdbcType=CHAR},
+      EMAIL = #{record.email,jdbcType=CHAR},
+      USER_CH_NAME = #{record.userChName,jdbcType=CHAR},
+      USER_BIRTHDAY = #{record.userBirthday,jdbcType=DATE},
+      USER_SEX = #{record.userSex,jdbcType=SMALLINT},
+      USER_PHOTO_URL = #{record.userPhotoUrl,jdbcType=CHAR},
+      PROVINCE_ID = #{record.provinceId,jdbcType=INTEGER},
+      PROVINCE_NAME = #{record.provinceName,jdbcType=CHAR},
+      CITY_ID = #{record.cityId,jdbcType=INTEGER},
+      CITY_NAME = #{record.cityName,jdbcType=CHAR},
+      COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      CONTRY_NAME = #{record.contryName,jdbcType=CHAR},
+      HOBBY = #{record.hobby,jdbcType=CHAR},
+      INTRODUCE = #{record.introduce,jdbcType=VARCHAR},
+      CREATED_DATE = #{record.createdDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oa.domain.SysUser">
+    update sys_user
+    <set>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        MOBILE_PHONE = #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=CHAR},
+      </if>
+      <if test="userChName != null">
+        USER_CH_NAME = #{userChName,jdbcType=CHAR},
+      </if>
+      <if test="userBirthday != null">
+        USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        USER_SEX = #{userSex,jdbcType=SMALLINT},
+      </if>
+      <if test="userPhotoUrl != null">
+        USER_PHOTO_URL = #{userPhotoUrl,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME = #{provinceName,jdbcType=CHAR},
+      </if>
+      <if test="cityId != null">
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=CHAR},
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="contryName != null">
+        CONTRY_NAME = #{contryName,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null">
+        HOBBY = #{hobby,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null">
+        INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oa.domain.SysUser">
+    update sys_user
+    set ORG_ID = #{orgId,jdbcType=BIGINT},
+      USER_NAME = #{userName,jdbcType=CHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=CHAR},
+      USER_CH_NAME = #{userChName,jdbcType=CHAR},
+      USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      USER_SEX = #{userSex,jdbcType=SMALLINT},
+      USER_PHOTO_URL = #{userPhotoUrl,jdbcType=CHAR},
+      PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      PROVINCE_NAME = #{provinceName,jdbcType=CHAR},
+      CITY_ID = #{cityId,jdbcType=INTEGER},
+      CITY_NAME = #{cityName,jdbcType=CHAR},
+      COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      CONTRY_NAME = #{contryName,jdbcType=CHAR},
+      HOBBY = #{hobby,jdbcType=CHAR},
+      INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP}
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

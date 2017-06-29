@@ -1,0 +1,119 @@
+<!--网页文档的声明-->
+<!doctype html>
+<html>
+<!--网页的头部-->
+ <head>
+  <meta charset="UTF-8">
+  <!--网页三要素-->
+  <meta name="Keywords" content="关键词">
+  <meta name="Description" content="关键词描述">
+  <title>5-29-闪动粒子碰撞 --future老师</title>
+  <!--CSS层叠样式表  修饰-->
+  <style type="text/css">
+	*{margin:0;padding:0;}
+	body{background:#000;}
+	#canvas{
+		display:block;
+		margin:auto;
+	}
+  </style>
+ </head>
+ <!--网页的主体-->
+ <body>
+	<!--
+		画布    
+		画画  --  javascript渲染
+		默认画板    300*150
+	-->
+	<canvas id="canvas">
+		ie9以上才能正常浏览，请你更新你的浏览器方可正常查看
+	</canvas>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');//绘图轨迹
+		
+		//显示源图像 + 目标图像  cxt.globalCompositeOperation = "lingter"		
+		/*cxt.globalCompositeOperation = "source-over"; //属性设置如何返回一个源
+			cxt.globalCompositeOperation = "lingter";
+			cxt.beginPath();//开始
+			var gradient = cxt.createRadialGradient(400,400,0,400,400,600);
+			gradient.addColorStop(0,"black");
+			gradient.addColorStop(0.4,"red");
+			gradient.addColorStop(0,"white")
+			cxt.fillStyle = gradient;
+			cxt.arc(400,400,200,0,360,false);		
+			//cxt.fill();填充颜色
+			cxt.fill();
+			cxt.closePath();//结束
+		*/
+		var w = window.innerWidth,h = window.innerHeight;
+		canvas.width = w;
+		canvas.height = h;
+		var partical = [];
+		for (var i = 0;i<30 ;i++ )
+		{
+			partical.push(new xypartical());
+			
+		}
+			
+		//坐标 ？？？
+		function xypartical(){
+			this.x = Math.random()*w;
+			this.y = Math.random()*h;
+			
+			this.vx = Math.random()*20-10;
+			this.vy = Math.random()*20-10;
+			//this.color = "rgba("+r+",  "+g+",  "+b+",0.5)";
+
+			this.radius = Math.random()*20+20;
+			
+			var r = Math.random()*255>>0;
+			var g = Math.random()*255>>0;
+			var b = Math.random()*255>>0;
+			this.colors = "rgba("+r+","+g+","+b+",0.5)";
+			
+		}
+		
+		function draw(){
+			cxt.globalCompositeOperation = "source-over";
+			cxt.fillStyle = "rgba(0, 0, 0, 0.3)";
+			cxt.fillRect(0,0,w,h)
+			cxt.globalCompositeOperation="lighter"
+			for (var t=0;t<partical.length ;t++ )
+			{
+				var p = partical[t];
+				
+				cxt.beginPath();
+
+				var gradient = cxt.createRadialGradient(p.x,p.y,0,p.x,p.y,p.radius);
+				gradient.addColorStop(0,"white");
+				gradient.addColorStop(0.4,"red");
+				gradient.addColorStop(0.4,Color());
+				gradient.addColorStop(1,"black");
+
+				cxt.fillStyle = gradient;
+				cxt.arc(p.x, p.y, p.radius, Math.PI*2, false);
+				cxt.fill();
+
+				p.x +=p.vx;
+				p.y +=p.vy;
+				if (p.x < -50)p.x = w+50;
+				if (p.y < -50)p.y = h+50;
+				if (p.x > w+50)p.x = -50;
+				if (p.y > w+50)p.y = -50;
+				
+			}
+		}
+		
+		function Color(){
+			var _color  = Math.ceil(Math.random()*16777215).toString(16); //颜色  16进制 -  10进制  随机组合
+			while(_color.length<6){
+				_color ="0"+_color
+			}
+			return "#"+_color
+		}
+		setInterval(draw,33)
+	</script>
+ </body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--声明当前页面的编码格式 国际编码 UTF-8 中文编码 GBK-->
+    <meta charset="UTF-8">
+    <!--声明当前页面的三要素-->
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>please enter your title</title>
+    <!--样式css 修饰 衣服 化妆品-->
+	<style type="text/css">
+		*{/*通配符 网页所有元素标签*/
+			margin:0;
+		}
+		.box{
+			width:900px;/*宽度 px像素 cm m ml...  em rem vh  ....*/
+			height:575px;/*高度*/
+			margin:50px auto 0;/*上右下左 上 左右 下 上下 左右 全部 auto自动*/
+		}
+		.c-box{
+			width:280px;
+			height:575px;
+		}
+		.left{
+			float:left;
+		}
+		.center{
+			float:left;
+			margin-left:30px;
+		}
+		.right{
+			float:right;
+		}
+		.cen-box{
+			width:280px;
+			height:280px;
+		}
+		.center .pic,.right .txt{
+			margin-top:15px;
+		}
+		.txt-style{
+			background:#804000;
+			font-size:12px;
+			font-family:"微软雅黑";/*字体类型*/
+		}
+		.txt-style h2{
+			font-size:40px;
+			color:#EB614A;
+			text-align:center;/*对齐方式  center right left*/
+			padding-top:80px;
+		}
+		.txt-style h3{
+			color:#EB614A;
+			padding:0 20px;
+		}
+		.txt-style p{
+			color:#fff;
+			padding:0 20px;
+			line-height:25px;
+		}
+		img{
+			animation:mov 5s infinite; /*自定义动画 动画名称 时间 次数*/
+		}
+		h2{
+			animation:txtShadow 5s infinite;
+		}
+		@keyframes mov{
+			from{
+				transform:rotateY(0deg);
+			}
+			to{
+				transform:rotateY(360deg);
+			}
+		}
+		@keyframes txtShadow{
+			0%{
+				text-shadow:0 0 0 #ff0;
+			}
+			25%{
+				text-shadow:0 0 10px #f00;
+			}
+			50%{
+				text-shadow:0 0 10px #ff0;
+			}
+			75%{
+				text-shadow:0 0 10px #f0f;
+			}
+			100%{
+				text-shadow:0 0 0 #ff0;  /*x  y  模糊度 颜色*/
+			}
+		}
+	</style>
+</head>
+<body>
+	<!--
+	1.div盒子  有高度 宽度 存放内容的一个区域  一块空间
+	2.取名的方式  class(姓名 重复 .)   id(唯一  身份证号码 #)
+	-->
+	<div class="box">
+		<div class="left c-box">
+			<img src="images/1.jpg" alt="" width="280" height="575" />
+		</div>
+		<div class="center c-box">
+			<div class="txt cen-box txt-style">
+				<h2>Jeremy Scott</h2>
+				<h3>潮人徐峰立独家解读</h3>
+				<p>对顽童而言果然什么都能穿。万花筒似的秀上能找到毛茸茸的史迪奇，晕眩状圈圈，暴怒的 海绵宝宝，杀死比尔套装，甚至一个篮球（是的，一个穿在身上的篮球！）。</p>
+			</div>
+			<div class="pic cen-box">
+				<img src="images/2.jpg" alt="" width="280" height="280" />
+			</div>
+		</div>
+		<div class="right c-box">
+			<div class="pic cen-box">
+				<img src="images/3.jpg" alt="" width="280" height="280" />
+			</div>
+			<div class="txt cen-box txt-style">
+				<h2>Jeremy Scott</h2>
+				<h3>潮人徐峰立独家解读</h3>
+				<p>对顽童而言果然什么都能穿。万花筒似的秀上能找到毛茸茸的史迪奇，晕眩状圈圈，暴怒的 海绵宝宝，杀死比尔套装，甚至一个篮球（是的，一个穿在身上的篮球！）。</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 种植物</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}
+#dTop{position: absolute; left: 105px; top: 0px; height: 35px; width: 123px; visibility: visible; z-index: 1;}
+ 
+#dCardList{visibility: visible; position: absolute; left: 3px; width: 100px; overflow: visible; z-index: 254;}
+#dCardList div {position: relative;cursor: pointer;padding: 0;height: 60px;}
+#dCardList img {position: absolute;width: 100px;height: 60px;}
+#dCardoPeashooter{}
+#dCardList span {cursor: pointer;position: absolute;left: 66px;top: 40px;width: 34px;height: 20px;font-size: 11pt;}
+</style> 
+<script type="text/javascript">
+ 	//点击选项卡，创建一个植物，选项卡变灰，
+	//植物跟谁我们鼠标进行一个拖动
+	//不在草地上的时候，我们点击左键或者右键的时候都会移除掉道具
+	//在草地上的时候，我们就会看到一个透明的植物，
+	//点击种植在草地
+	
+	window.onload = function(){
+		var dcars = document.getElementById("dCardoPeashooter");
+		var dall = document.getElementById("dAll");
+		var sod =  document.getElementById("sod");
+		dcars.onclick = function(){
+			//创建一个豌豆射手
+			var car = document.createElement("img");
+			car.src = "./images/Peashooter.gif";
+			car.style.position = "absolute";
+			car.style.zIndex = 999;
+			car.style.left = 0 +"px";
+			car.style.top = 0 + "px";
+			dall.appendChild(car);
+			 
+			//创建一个透明的豌豆射手
+			
+			var car_opa = document.createElement("img");
+			car_opa.src = "./images/Peashooter.gif";
+			car_opa.style.position = "absolute";
+			car_opa.style.zIndex = 998;
+			car_opa.style.left = 0 +"px";
+			car_opa.style.top = 0 + "px";
+			car_opa.style.opacity = 0.8;
+			car_opa.style.filter = "alpha(opacity=80)";
+			car_opa.style.display = "none";
+			dall.appendChild(car_opa);
+			
+			//选项卡变灰
+			var imgs = dcars.getElementsByTagName("img");			 
+			imgs[1].style.visibility = 'hidden'; 
+			document.onmousemove = function(ev){
+				var e = ev || window.event;
+				car.style.left = e.clientX - car.offsetWidth/2 + "px";
+				car.style.top =  e.clientY - car.offsetHeight/2 + "px";
+				//不在草地上的时候，我们点击左键或者右键的时候都会移除掉道具
+				//在草地上的时候，我们就会看到一个透明的植物
+				if( e.clientY < sod.offsetTop || e.clientY >  sod.offsetTop+sod.offsetHeight ){//不在草地时
+					car.onclick = function (){
+						dall.removeChild(car);	
+						dall.removeChild(car_opa);
+						imgs[1].style.visibility = 'visible'; 
+					}; 
+					car.oncontextmenu = function (){
+						dall.removeChild(car);	
+						dall.removeChild(car_opa);
+						imgs[1].style.visibility = 'visible'; 
+					};
+					
+				}else{
+					
+					car_opa.style.display = "block";
+					car_opa.style.top = sod.offsetTop + sod.offsetHeight/2 - car_opa.offsetHeight/2 - 20+ "px";
+					
+					//3中情况
+					var onewidth = sod.offsetWidth/9; 
+					if(e.clientX < sod.offsetLeft + onewidth){
+						car_opa.style.left = sod.offsetLeft + onewidth/2 - car_opa.offsetWidth/2 + "px";
+					}else if( e.clientX > sod.offsetLeft + 8.5*onewidth){
+						car_opa.style.left = sod.offsetLeft + 8.5*onewidth - car_opa.offsetWidth/2  + "px";
+					}else{
+						
+						for(var i=1;i<8;i++){
+							if( e.clientX > sod.offsetLeft+i*onewidth  &&   e.clientX <sod.offsetLeft+(i+1)*onewidth ){							
+							car_opa.style.left  = sod.offsetLeft + onewidth*(i+1) - onewidth/2 - car_opa.offsetWidth/2 + "px";
+							}
+						} 
+					}
+					//种植植物
+					car.onclick = function(){
+						car.style.left = car_opa.offsetLeft + "px";
+						car.style.top =  car_opa.offsetTop + "px";
+						document.onmousemove = null;
+						dall.removeChild(car_opa);
+						imgs[1].style.visibility = 'visible'; 
+						car.onclick = null;
+						car.oncontentmenu = null;
+						
+					};
+					 
+					
+				}
+				
+			};
+			
+			
+			
+		};	
+	
+	};
+</script> 
+</head>  
+<body id="dBody" oncontextmenu="return false;"  bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll">
+	<!--背景图片-->
+	<div id="tGround"></div> 
+    <!--道具选项卡-->
+    <div id="dCardList">
+    	<div id="dCardoPeashooter"  >
+        	<img src="images/PeashooterG.png" >
+            <img src="images/Peashooter.png" style="visibility:visible;">
+        	<span id="sSunNum0">100</span> 
+        </div>
+    </div>
+    <!--草地背景-->
+    <div id="sod"></div>  
+</div>  
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+	*{margin:0px;padding:0px;}
+	.web{width:100%;height:490px;position:relative;}
+	.pic{width:100%;height:490px;background:#dfdfdf;overflow:hidden;}
+	.pic ul li{
+		list-style-type:none;width:100%;height:490px;background-position:center;display:none;
+		}
+	.nav{
+		width:960px;height:8px;position:absolute;bottom:0px;left:50%;margin-left:-480px;
+		}
+	.nav ul li{
+		list-style-type:none;width:239px;height:8px;float:left;background:#fff;margin-right:1px;
+		opacity:0.56;cursor:pointer;font-size:10px;
+		}
+	.nav ul li p{width:0px;height:8px;background:#ff0000;}
+  </style>
+ </head>
+ <body>
+	<div class="web">
+		<div class="pic">
+			<ul>
+				<li style="background-image:url(images/1.jpg);display:block;"></li>
+				<li style="background-image:url(images/2.jpg)"></li>
+				<li style="background-image:url(images/3.jpg)"></li>
+				<li style="background-image:url(images/4.jpg)"></li>
+			</ul>
+		</div>
+		<div class="nav">
+			<ul>
+				<li><p></p></li>
+				<li><p></p></li>
+				<li><p></p></li>
+				<li><p></p></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		var i=0;
+		auto();
+		function auto(){
+			$(".nav ul li").eq(i).find("p").stop().animate({width:"239px"},1500,function(){
+				$(".nav ul li").eq(i).find("p").stop().animate({width:"0px"},0);
+				i++;
+				if(i>3)
+				i=0;
+				$(".pic ul li").eq(i).fadeIn(100).siblings().fadeOut(100);
+			});	
+		}
+		setInterval("auto()",1600);
+		$(".nav ul li").click(function(){
+			$(".nav ul li").eq(i).find("p").stop().animate({width:"0px"},0);
+			i=$(this).index();
+			$(".pic ul li").eq(i).fadeIn(100).siblings().fadeOut(100);
+			auto();
+		})
+		$(".text ul li").click(function(){
+			$(".nav ul li").eq(i).find("p").stop().animate({width:"0px"},0);
+			i=$(this).index();
+			$(".pic ul li").eq(i).fadeIn(100).siblings().fadeOut(100);
+			auto();
+		})
+	</script>
+ </body>
+</html>

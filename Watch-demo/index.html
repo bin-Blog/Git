@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 300px;
+            margin: auto;
+            margin-top: 30px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas width="292px" height="486px" id="watchTimes"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("watchTimes");
+    var ctx = canvas.getContext("2d");
+    var W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    var logo = new Image();
+    logo.src = "logo.png";
+    var background = new Image();
+    background.src = "watch.png";
+    /*
+    * 设置背景
+    * */
+    function drawWatchBackground() {
+        ctx.beginPath();
+        var back = ctx.createPattern(background, "no-repeat");
+        ctx.fillStyle = back;
+        ctx.fillRect(0, 0, W, H);
+        ctx.closePath();
+    }
+    /*
+    * 设置刻度显示
+    * */
+    function drawWatchPointer(start, length, width, color) {
+        ctx.beginPath();
+        ctx.moveTo(0, start);
+        ctx.lineTo(0, start + length);
+        ctx.lineWidth = width;
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = color || "#9fc105";
+        ctx.stroke();
+        ctx.closePath();
+    }
+    /*
+    * 设置表盘显示
+    * */
+    function drawWatchFace() {
+        /*第一步： 实现浅色虚线*/
+        ctx.beginPath();
+        ctx.arc(W / 2, H / 2, 100, 0, Math.PI * 2);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#fff";
+        ctx.globalAlpha = .2;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.save();
+        ctx.translate(W / 2, H / 2);
+        for (var i = 0; i < 60; i++) {
+            if (i / 5 == 0 || i / 5 == 3 || i / 5 == 9) {
+                /*第四步：  内圈 实现刻度*/
+                drawWatchPointer(80, 15, 5, "#9fc105");
+            } else if (i % 5 == 0) {
+                /*第三步： 外圈 实现长刻度*/
+                drawWatchPointer(95, 10, 3, "#9fc105");
+            }
+            /*第二步： 外圈 实现短刻度*/
+            drawWatchPointer(100, 5, 2, "#9fc105");
+            ctx.rotate(Math.PI / 30);
+        }
+    }
+    /*
+    * 设置LOGO显示
+    * */
+    function drawWatchLogo() {
+        /*第五步：  实现logo显示*/
+        ctx.restore();
+        ctx.beginPath();
+        ctx.globalAlpha = 1;
+        ctx.drawImage(logo, 0, 0, 107, 116, W / 2 - 13, H / 3 - 10, 26, 30);
+        ctx.closePath();
+    }
+    /*
+    * 设置指针显示
+    * */
+    function drawWatch(e) {
+        drawWatchBackground();
+        drawWatchFace();
+        drawWatchLogo();
+    }
+    background.onload = drawWatch;
+
+
+</script>
+</body>
+</html>

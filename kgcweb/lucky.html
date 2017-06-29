@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>幸运抽奖页面</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #luckyBg{
+            background: url(img/tx1.png);
+            width: 500px;
+            height: 450px;
+            margin:50px auto;
+            box-shadow: 0 0 2px rgba(0,0,0,.5);
+        }
+        .luckbtn{
+            width:200px;
+            height: 50px;
+            background-color:#0a88e1;
+            color: white;
+            border:none;
+            margin:200px 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="luckyBg">
+    <input type="button" value="欢迎你，点击开始抽奖" class="luckbtn" onclick="luck()" id="btn"/>
+</div>
+</body>
+<script>
+    var num = prompt("请输入一个4位的会员卡号：");
+    document.getElementById("btn").value = num+"-"+document.getElementById("btn").value;
+
+    //抽奖:用户输入4位会员卡号。会员卡号百位数==系统随机生成一个0-10之间的数字  中奖
+    function luck(){
+        //系统随机生成一个0-10之间的整数 Math.random():0-1之间的浮点数
+        //0-10之间的浮点数-->整数  parseInt(浮点数)
+        var no = parseInt(Math.random()*10);
+        //获取会员卡号的百位数=  parseInt(四位数/100%10)
+        var baiwei = parseInt(num/100%10);
+        if(baiwei==no){
+            alert("恭喜"+num+",您中奖了，奖品为iphone7!");
+        }else{
+            alert("对不起"+num+",您未中奖!");
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+            /*border: 1px solid black;*/
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <canvas id="canvas" width="292px" height="486px"></canvas>
+</div>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    var logo = new Image();
+    logo.src = "logo.png";
+    var img = new Image();
+    img.src = "watch.png";
+    img.onload = function (e) {
+        run();
+        setInterval(run, 1000);
+    };
+
+    function run() {
+        var time = new Date();//获取现在时间
+        var sec = time.getSeconds();//获取秒
+        var min = time.getMinutes();//获取分钟
+        var hour = time.getHours();//获取小时
+        hour = hour > 12 ? hour - 12 : hour;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        var fillimage = ctx.createPattern(img, "no-repeat");
+        ctx.fillStyle = fillimage;
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fill();
+        ctx.closePath();
+
+//        增加Logo显示
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(135, 143);
+        ctx.drawImage(logo, 0, 0, 117, 116, 0, 0, 30, 30);
+        ctx.closePath();
+        ctx.restore();
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(146, 240);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#fff";
+        ctx.globalAlpha = 0.2;
+        ctx.arc(0, 0, 100, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+
+        /*
+         * 表盘设定,使用圆形函数进行节点的绘画操作，
+         * */
+        ctx.save();
+        ctx.translate(146, 240);
+        for (var i = 0; i < 60; i++) {
+            if (i / 5 == 3 || i / 5 == 9 || i / 5 == 0) {
+                ctx.beginPath();
+                ctx.moveTo(0, 80);
+                ctx.lineTo(0, 95);
+                ctx.lineWidth = 5;
+                ctx.strokeStyle = "#9fc105";
+                ctx.stroke();
+
+            }
+            ctx.beginPath();
+            ctx.moveTo(0, 100);
+            ctx.lineTo(0, 105);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#9fc105";
+            ctx.stroke();
+            ctx.rotate(Math.PI / 30);
+
+        }
+        ctx.restore();
+
+
+        //分针
+        ctx.save();
+        ctx.translate(146, 240);
+        ctx.rotate(sec * Math.PI / 1800 + min * Math.PI / 30);//每一秒再分60分，秒针走一刻度，分针要走1/60刻度,sec*(6*Math.PI/180)/60
+        ctx.beginPath();
+        ctx.lineCap = "round";
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -90);
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = "#fcfbfb";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        //时针
+        ctx.save();
+        ctx.translate(146, 240);
+        ctx.rotate(min * Math.PI / 360 + hour * Math.PI / 6);//每一小时走过5个刻度线,60分钟,30deg，分成60份,30deg/60
+        ctx.beginPath();
+        ctx.lineCap = "round";
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -70);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#fcfbfb";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        //秒针
+
+        ctx.save();
+        ctx.translate(146, 240);
+        ctx.beginPath();
+        ctx.rotate(sec * Math.PI / 30);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -105);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#b9b6b8";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        // 秒针中间位置数据
+        ctx.save();
+        ctx.translate(146, 240);
+        ctx.beginPath();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#b9b6b8";
+        var fillColor = ctx.createRadialGradient(0, 0, 5, 0, 0, 10);
+        fillColor.addColorStop(.0, "#fcfbfb");
+        fillColor.addColorStop(.4, "#f0ecea");
+        fillColor.addColorStop(.6, "#ece8e5");
+        fillColor.addColorStop(.8, "#f7f6f5");
+        fillColor.addColorStop(1, "#eae6e3");
+        ctx.fillStyle = fillColor;
+        ctx.arc(0, 0, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/slide.js"></script>
+    <style>
+        /*<!--美化页面元素，形成最终页面效果-->*/
+        *{
+            margin:0;
+            padding:0;
+        }
+        /*轮播图水平居中显示*/
+        #focus{
+            width:730px;
+            height:450px;
+            margin:50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #page-con li{
+            display: inline-block;
+            font-size: 12px;
+            /*border:1px solid red;*/
+            width:18px;
+            height: 18px;
+            line-height: 18px;
+            /*以百分比定义圆角形状*/
+            border-radius: 50%;
+            color: white;
+            background-color: #3e3e3e;
+            /*鼠标形状由箭头变成小手形状*/
+            cursor: pointer;
+        }
+        #page-con{
+            /*border:1px solid red;*/
+            position: absolute;
+            bottom:10px;
+            text-align: center;
+            width: 100%;
+        }
+        img{display: none;}
+    </style>
+</head>
+<body>
+    <div id="focus">
+        <img src="image/focus.jpg"/>
+        <img src="image/focus1.jpg"/>
+        <img src="image/focus2.jpg"/>
+        <img src="image/focus3.jpg"/>
+        <img src="image/focus4.jpg"/>
+        <ul id="page-con">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>

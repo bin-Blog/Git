@@ -1,0 +1,122 @@
+<!doctype html> <!--声明文档类型为 html 告诉别人我是网页,我是正经人-->
+<html> <!--网页文档正式开始的地方-->
+	<head> <!--网页文件 负责与外界通信的窗口, 告诉浏览器本网页基本信息-->
+		<meta charset='utf-8'> <!--设置编码格式 兼容中文的国际通用编码格式-->
+		<title>css3图文切换特效</title> <!--设置网页标题-->
+		<!--设置网页关键词 方便搜索引擎搜索和seo优化-->
+		<meta name='keywords' content='web前端,css3效果'>
+		<!-- 设置网页描述信息 免费的广告栏,seo优化-->
+		<meta name='description' content='欢迎各位帅小伙||漂亮妹子'>
+		<style> /*存放css样式 */
+			*{ margin:0;/* *通配符选择页面所有的元素 清除默认8px的外边距*/
+			   padding:0; /*清除默认外边距*/
+			   box-sizing:border-box; /*根据设置的宽高实际显示*/
+			}
+			img{
+				width:100%;
+				height:266px;
+				transition:0.5s;
+			}
+			h3 {
+				margin:5px 0px;
+				font-size:20px; /*字体大小*/
+				text-align:center; /*文本对齐方式:居中*/
+			}
+			p{
+				font-size:14px;
+				line-height:22px; /*行高设置*/
+				text-indent:2em; /*首行缩进*/
+			}
+			span{
+				display:block; /*以块级显示*/
+				width:110px;
+				height:30px;
+				padding:5px 5px;
+				margin:20px auto;
+				background:#368;
+				color:#fff;
+				text-align:center;
+				border-radius:10px; /*设置圆角*/
+				cursor:pointer; /*设置鼠标指针 手指*/
+			}
+
+			.wrap{		/* class选择器 .+类名 {} */
+				position:relative; /*相对定位 定位参考系*/
+				width:400px; /*设置宽度为400px*/
+				height:274px; /*设置高度为274px*/
+				border:4px solid #ddd; /*边框 粗细 样式 颜色*/
+				margin:40px auto; /*利用外边距 上下 40px 左右 居中*/
+				overflow:hidden;
+			}
+			.txt{
+				position:absolute; /*绝对定位 定位子元素*/
+				left:0;            /*距离参考系左边的距离*/
+				top:0;			   /*距离参考系顶边的距离*/
+				width:100%;
+				height:100%;
+				padding:20px; /*设置内边距 20px*/
+				background:#eee; /*背景颜色*/
+				transform:translateX(-100%); /*css3形变 基于x轴横向向右位移*/
+				transition:0.5s;
+				opacity:0; /*透明度 */
+			}
+			.wrap:hover{
+				overflow:visible; /*超出范围不隐藏*/
+			}
+			.wrap:hover .txt{
+				padding:40px 120px 20px 20px;
+				transform:translateX(0); /*回归原位*/
+				opacity:1;
+			}
+			
+			.wrap:hover .pic img{
+				position:relative;
+				transform:scale(0.5) translateX(100%); /*css3缩放*/
+				z-index:1;  /*改变元素层级*/
+				border:4px solid #000;
+			}
+		</style>
+	</head>
+	<body> <!--网页主体内容展示区域-->
+	<!-- div 盒子模型 在网页上划分区域的元素
+		 class名称  一类元素 
+		 命名规范:
+			禁止 拼音
+			禁止无意义命名
+			禁止数字开头
+			禁止符号开头
+			英文+见名之意+尽量简化
+			- _ 驼峰命名
+		css样式
+			/*
+				margin:40px; /*上下左右*/
+				margin:20px 40px; /*上下  左右*/
+				margin:20px 30px 40px;/*上 左右 下*/
+				margin:20px 10px 39px 40px;/*上 右 下 左*/
+				*/
+		ui  =>  前端
+
+	    psd
+
+	-->
+		<div class='wrap'>
+			<div class='pic'>
+				<img src='img/1.jpg' width='1800' height='1440' alt='示例图片' >
+			</div>
+			<div class='txt'>
+				<h3>学习交流</h3> 
+				<p>需要更多的web前端企业级特效，学习方法可以加一下我的前端群611256580,每天都会精选一个特效分享！包括答疑解惑！</p>
+				<span>查看更多</span>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- 1.你要对食材非常的了解
+			标签+样式
+			标签的拼写和作用
+	 2.css3
+		选择器
+		css3效果 圆角 阴影
+		css3形变 位移 拉伸 3d场景
+		css3布局 弹性盒模型 flex  怪异盒模型
+	-->

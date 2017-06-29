@@ -1,0 +1,282 @@
+		*{
+			padding: 0px;
+			margin: 0px;
+			text-decoration: none;
+			list-style: none;
+		}
+		#top{
+			width:100%;
+			height: 40px;
+			background-color: #333333;
+			
+		}
+		#top ul {
+			width: 1000px;
+			height: 40px;
+			margin-left: 60px;
+			float: left;
+		}
+		#top ul li{
+			padding: 10px 2px;
+			float:left;
+			color: #424242;
+		}
+		#top ul li a{
+			font-size: 13px;
+			color: #b0b0b0;
+			
+		}
+		#top ul li a:hover{
+			font-weight: bolder;
+			color: white;
+		}
+		#top1{
+			
+			margin-left: -28px;
+			width:300px;
+			height: 40px;
+			float: left;
+			
+		}
+		#top1 a{
+			font-size: 13px;
+			color: #b0b0b0;
+			
+		}
+		#top1 a:hover{
+			font-weight: bolder;
+			color: white;
+		}
+		#top1 span{
+			font-size: 13px;
+			color: #424242;
+			line-height: 40px;
+		}
+		#top1 a.gwc{
+			display: block;
+			width: 125px;
+			height: 40px;	
+			background: #424242;	
+			color: #b0b0b0;
+			float: right;
+			text-align: center;
+			line-height: 40px;
+		}
+		#top1 a.gwc:hover{
+			background-color: white;
+			color: orange;
+			font-weight: bold;
+		}
+		#sec{
+			width: 100%;
+			height: 100px;
+		
+			
+		}
+		#sec .flj a{
+			display: block;
+			padding-top:20px;
+			padding-left: 15px;
+			font-size: 18px;
+			color: black;
+			font-family:"楷体";
+			float: left;
+		
+		
+		}
+		#sec .flj a:hover{
+			color: #ff6700;
+		}
+		
+		#sec .flj{
+			
+			width: 1265px;
+			height: 100px;
+			margin-left: 40px;
+			padding-top:20px;
+			
+		}
+		#sec .flj .go{
+			margin-left: 4px;
+			margin-top:-18px ;
+			display: inline;
+
+		}
+		#sec .flj input{
+			width: 245px;
+			height: 50px;
+			margin-left:50px;
+		}
+		#sec a.dingwei1{
+			width: 71px;
+			height: 18px;
+			background-color: #f5f5f5;
+			position: absolute;
+			font-size: 8px;
+			top: 80px;
+			right: 230px;
+			color: black;
+		}
+		#sec a.dingwei2{
+			width: 82px;
+			height: 18px;
+			background-color: #f5f5f5;
+			position: absolute;
+			font-size: 8px;
+			top: 80px;
+			right: 140px;
+			color: black;
+		}
+		#sec a.dingwei1:hover{
+			background-color: #ff6700;
+		}
+		#sec a.dingwei2:hover{
+			background-color: #ff6700;
+		}
+		
+		
+		#sec .seacher{
+			width:53px;
+			height: 52px;
+			border: 1px solid #a9a9a9;
+			position: absolute;
+			top: 60px;
+			right: 35px;
+			border-left:none ;
+			background: url(../img/fdj.png) no-repeat center;
+		}
+		#third{
+			height: 458px;
+			width: 1272px;
+			margin-left:60px;
+			
+		}
+		#third .t1{
+			width: 234px;
+			height: 100%;
+			background-color:  #5b5c5e;
+			float: left;
+			
+		}
+		#third ul{
+			width: 234px;
+			height: 400px;
+			margin-top: 30px;
+		background-color: #5b5c5e;
+		
+		}
+
+
+		#third ul li a{
+			display: block;
+			color: white;
+			height: 40px;
+			line-height: 40px;
+			padding-left: 30px;
+			font-size: 15px;
+			font-family: "微软雅黑";
+			background: url(../img/right.png) no-repeat 95% center;
+		}
+		#third ul li a:hover{
+			background-color: #ff6700;
+		}
+		
+		#four{
+			height: 170px;
+			width: 1272px;
+			margin-left:60px;
+			margin-top: 15px;
+			
+		}
+		#four .one{
+			width: 234px;
+			height: 170px;
+			background-color:#5f5750;
+			float: left;
+			
+		}
+		#four .one a{
+			display: block;
+			float: left;
+			width: 76px;
+			height: 82px;
+			font-size: 13px;
+			color: #b0b0b0;
+			font-family: "微软雅黑";
+			text-align: center;
+			line-height: 82px;
+			background: url(../img/sj.png) no-repeat  center 8%;
+			padding-top: 6px;
+			margin-top: 10px;
+		}
+		#four .one a:hover{
+			color: white;
+			
+		}
+		#four .diyi{
+			width:316px;
+			height: 170px;
+			background: url(../img/one.png) round;
+			float: left;
+			margin-left: 29px;
+		}
+		#four .dier{
+			width:316px;
+			height: 170px;
+			background: url(../img/two.png) round;
+			float: left;
+			margin-left: 29px;
+		}
+		#four .disan{
+			width:316px;
+			height: 170px;
+			background: url(../img/three.png) round;
+			float: left;
+			margin-left: 29px;
+		}
+		#fiv{
+			height: 420px;
+			width: 1272px;
+			margin-left:60px;
+			margin-top: 50px;
+		}
+		#fiv h2{
+			font-family: "楷体";
+		}
+		#fiv hr{
+			margin-left: 15px;
+			float:  left;
+			margin-top: 7px;
+			width: 234px;
+			border-top: none;
+		}
+		#fiv .tu1{
+			width: 234px;
+			height: 340px;
+			margin-left: 15px;
+			margin-top: 18px;
+			float: left;
+		}
+		#fiv .tu1 img{
+			width: 160px;
+			height: 160px;
+			margin: 35px;
+		}
+		#fiv .tu1 a{
+			margin-top: -18px;
+			color: black;
+			display: block;
+			text-align: center;
+		}
+		#fiv .tu1 div{
+			text-align: center;
+			color: #b0b0b0;
+			margin-top: 8px;
+		}
+		#fiv .tu1 b{
+			display: block;
+			margin-top: 18px;
+			text-align: center;
+			color: #ff6709;
+		}
+		

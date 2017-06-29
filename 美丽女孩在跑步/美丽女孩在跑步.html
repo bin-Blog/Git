@@ -1,0 +1,850 @@
+<!--文档声明为 html（最新html5）-->
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面编码格式为国际编码（utf-8）还有一种中文编码（gbk/gb2312）-->
+		<meta charset="UTF-8">
+		<!--网页三要素-->
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="Description" content="描述">
+		<title>网页的标题</title>
+		<!--css 层叠样式表 衣服，化妆品 修饰body 页面-->
+		<style>
+@keyframes blink-t {
+    0%   {top: -18px;}
+    48%  {top: -18px;}
+    50%  {top: 0px;}
+    52%  {top: -18px;}
+    100% {top: -18px;}
+}
+
+@keyframes blink-b {
+    0%   {bottom: -18px;}
+    48%   {bottom: -18px;}
+    50%  {bottom: 0px;}
+    52%   {bottom: -18px;}
+    100% {bottom: -18px;}
+}
+
+@keyframes run-hip-r {
+    0%   {-webkit-transform: rotate(-70deg);
+        left: 83px;
+        bottom: 14px;
+        }
+    25%  {bottom: 14px;
+        }
+    50%  {-webkit-transform: rotate(16deg);
+        left: 56px;
+        bottom: 28px;
+        }
+    75%  {bottom: 28px;
+        }
+    100% {-webkit-transform: rotate(-70deg);
+        left: 83px;
+        bottom: 14px;
+        }
+}
+
+@keyframes run-knee-r {
+    0%   {-webkit-transform: rotate(0deg);}
+    25%  {-webkit-transform: rotate(0deg);}
+    50%  {-webkit-transform: rotate(97deg);}
+    75%  {-webkit-transform: rotate(97deg);}
+    100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes run-foot-r {
+    0%   {-webkit-transform: rotate(0deg);}
+    25%   {-webkit-transform: rotate(0deg);}
+    50%   {-webkit-transform: rotate(21deg);}
+    75%  {-webkit-transform: rotate(21deg);}
+    100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes run-hip-l {
+    0%   {-webkit-transform: rotate(16deg);
+          left: 56px;
+          bottom: 32px;
+         }
+    50%  {-webkit-transform: rotate(-80deg);
+          left: 83px;
+          bottom: 14px;
+         }
+    75%  {bottom: 14px;
+         }
+    100% {-webkit-transform: rotate(16deg);
+          left: 56px;
+          bottom: 32px;
+         }
+}
+
+@keyframes run-knee-l {
+    0%   {-webkit-transform: rotate(97deg);}
+    25%   {-webkit-transform: rotate(97deg);}
+    50%   {-webkit-transform: rotate(0deg);}
+    75%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(97deg);}
+}
+
+@keyframes run-foot-l {
+    0%   {-webkit-transform: rotate(21deg);}
+    25%   {-webkit-transform: rotate(21deg);}
+    50%   {-webkit-transform: rotate(0deg);}
+    75%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(21deg);}
+}
+
+@keyframes bob {
+    0%   {top: 150px;
+          -webkit-transform: rotate(30deg);
+          }
+    22%   {top: 220px;
+          -webkit-transform: rotate(25deg);
+          }
+    25%   {top: 220px;
+          -webkit-transform: rotate(25deg);
+          }
+    50%  {top: 150px;
+          -webkit-transform: rotate(30deg);
+          }
+    72%   {top: 220px;
+           -webkit-transform: rotate(25deg);
+          }
+    75%   {top: 220px;
+          -webkit-transform: rotate(25deg);
+          }
+    100% {top: 150px;
+          -webkit-transform: rotate(30deg);
+          }
+}
+
+@keyframes run-shoulder-r {
+    0%   {-webkit-transform: rotate(60deg);}
+    50%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(60deg);}
+}
+
+@keyframes run-elbow-r {
+    0%   {-webkit-transform: rotate(950deg);}
+    50%  {-webkit-transform: rotate(940deg);}
+    100% {-webkit-transform: rotate(950deg);}
+}
+
+@keyframes run-shoulder-l {
+    0%   {-webkit-transform: rotate(-20deg);}
+    50%  {-webkit-transform: rotate(20deg);}
+    100% {-webkit-transform: rotate(-20deg);}
+}
+
+@keyframes run-elbow-l {
+    0%   {-webkit-transform: rotate(950deg);}
+    50%  {-webkit-transform: rotate(940deg);}
+    100% {-webkit-transform: rotate(950deg);}
+}
+
+@keyframes shadowbounce {
+    0%   { width: 190px;
+    height: 60px;
+    left: 109px;
+    top: 350px;}
+    25%  { width: 230px;
+    height: 80px;
+    left: 99px;
+    top: 340px;}
+    50%  { width: 190px;
+    height: 60px;
+    left: 109px;
+    top: 350px;}
+    75%  { width: 230px;
+    height: 80px;
+    left: 99px;
+    top: 340px;}
+    100% { width: 190px;
+    height: 60px;
+    left: 109px;
+    top: 350px;}
+}
+
+@keyframes headbounce {
+    0%   {-webkit-transform: rotate(-18deg);
+        left: 0px;
+        top: -108px;}
+    25%   {-webkit-transform: rotate(-22deg);
+        left: 0px;
+        top: -102px;}
+    50%  {-webkit-transform: rotate(-18deg);
+        left: 0px;
+        top: -108px;}
+    75%   {-webkit-transform: rotate(-22deg);
+        left: 0px;
+        top: -102px;}
+    100% {-webkit-transform: rotate(-18deg);
+        left: 0px;
+        top: -108px;}
+}
+
+@keyframes eyebob {
+    0%   {top: 42px;}
+    25%   {top: 44px;}
+    50%  {top: 42px;}
+    75%   {top: 44px;}
+    100% {top: 42px;}
+}
+
+@keyframes smilebob {
+    0%   {top: 85px;}
+    25%   {top: 87px;}
+    50%  {top: 85px;}
+    75%   {top: 87px;}
+    100% {top: 85px;}
+}
+
+@keyframes bun-r-bob {
+    0%   {top: -34px;}
+    25%   {top: -22px;}
+    50%  {top: -34px;}
+    75%   {top: -22px;}
+    100% {top: -34px;}
+}
+
+@keyframes bun-l-bob {
+    0%   {top: -32px;}
+    25%   {top: -20px;}
+    50%  {top: -32px;}
+    75%   {top: -20px;}
+    100% {top: -32px;}
+}
+
+body {
+    background: #ffe4b7;
+}
+
+.stage {
+    width:480px;
+    height:480px;
+    background: #ffe4b7;
+    position:relative;
+    margin:0 auto 30px;
+}
+
+.core {
+    width: 65px;
+    height: 95px;
+    position: absolute;
+    left: 160px;
+    top: 200px;
+    -webkit-transform: rotate(25deg);
+    animation: bob 1.2s infinite;
+}
+
+.shadow {
+    width: 230px;
+    height: 80px;
+    background: #000;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 99px;
+    top: 390px;
+    opacity: 0.2;
+    z-index: 0;
+    animation: shadowbounce 1.2s infinite;
+}
+
+.dress {
+width: 0;
+    height: 0;
+    border-left: 65px solid transparent;
+    border-right: 65px solid transparent;
+    border-bottom: 95px solid #f25437;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index:2;
+    -webkit-transform: rotate(0deg);
+}
+
+.headcontainer {
+    width: 119px;
+    height: 115px;
+    position: absolute;
+    left: 0px;
+    top: -100px;
+    z-index:3;
+    -webkit-transform: rotate(-18deg);
+    animation: headbounce 1.2s infinite;
+}
+
+.headbg {
+    width: 119px;
+    height: 115px;
+    background: #3d3435;
+    -moz-border-radius: 65px;
+    -webkit-border-radius: 65px;
+    border-radius: 65px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow:hidden;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.face {
+    width: 119px;
+    height: 115px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 65px;
+    position: absolute;
+    left: 14px;
+    top: 14px;
+}
+
+.bun-r {
+    width: 77px;
+    height: 77px;
+    background: #3d3435;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: -32px;
+    left: -38px;
+    z-index: 1;
+    animation: bun-r-bob 1.2s infinite;
+}
+
+.bun-l {
+    width: 77px;
+    height: 77px;
+    background: #3d3435;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: -30px;
+    right: -37px;
+    z-index: 0;
+    animation: bun-l-bob 1.2s infinite;
+}
+
+.hair-r {
+    width: 95px;
+    height: 95px;
+    background: #3d3435;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: -54px;
+    left: -20px;
+    z-index: 1;
+}
+
+.hair-l {
+    width: 95px;
+    height: 95px;
+    background: #3d3435;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: -54px;
+    left: 63px;
+    z-index: 1;
+}
+
+.smile {
+    height: 13px;
+    width: 28px;
+    border-radius: 0 0 90px 90px;
+    -moz-border-radius: 0 0 90px 90px;
+    -webkit-border-radius: 0 0 90px 90px;
+    background: #fff;
+    position: absolute;
+    left: 56px;
+    top: 85px;
+    animation: smilebob 1.2s infinite;
+}
+
+.ear-r {
+    width: 22px;
+    height: 22px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 65px;
+    left: 5px;
+    z-index: 1;
+}
+
+.ear-l {
+    width: 22px;
+    height: 22px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 65px;
+    right: -2px;
+    z-index: 0;
+}
+
+.eye-r {
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+
+.pupil-r {
+    width: 20px;
+    height: 20px;
+    background: #231e1f;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 0;
+}
+
+.eyes {
+    height: 35px;
+    width: 86px;
+    top: 42px;
+    left: 27px;
+    position: absolute;
+    overflow: hidden;
+    animation: eyebob 1.2s infinite;
+}
+
+.eyelid-t {
+    position: absolute;
+    width: 100%;
+    height: 18px;
+    left: 0;
+    top: -18px;
+    z-index: 3;
+    background: #974e3b;
+    animation: blink-t 3s infinite;
+}
+
+.eyelid-b {
+    position: absolute;
+    width: 100%;
+    height: 18px;
+    left: 0;
+    bottom: -18px;
+    z-index: 3;
+    background: #974e3b;
+    animation: blink-b 3s infinite;
+}
+
+.eye-l {
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 0;
+}
+
+.pupil-l {
+    width: 20px;
+    height: 20px;
+    background: #231e1f;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 0;
+}
+
+.shoulder-r {
+    width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    z-index: 3;
+    overflow: visible;
+    -webkit-transform: rotate(60deg);
+    animation: run-shoulder-r 1.2s infinite;
+}
+
+.shoulder-r-arm-upper {
+    width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.elbow-r {
+    width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    z-index: 0;
+    overflow: visible;
+    -webkit-transform: rotate(950deg);
+    animation: run-elbow-r 1.2s infinite;
+}
+
+.elbow-r-arm-lower {
+    width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.hand-r {
+    width: 18px;
+    height: 18px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -9px;
+    left: 0px;
+    z-index: 0;
+}
+
+.hip-r {
+width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 14px;
+    left: 83px;
+    z-index: 1;
+    overflow: visible;
+    -webkit-transform: rotate(-70deg);
+        animation: run-hip-r 1.2s infinite;
+
+}
+
+.hip-r-leg-upper {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+
+
+.knee-r {
+width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    z-index: 0;
+    overflow: visible;
+    -webkit-transform: rotate(0deg);
+    animation: run-knee-r 1.2s infinite;
+
+}
+
+.knee-r-leg-lower {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.sock-r {
+	width:10px;
+	height:20px;
+	background:#fff;
+	position: absolute;
+	left:0;
+	bottom:0;
+}
+
+.foot-r {
+width: 18px;
+    height: 8px;
+    background: #000;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -3px;
+    left: -1px;
+    z-index: 0;
+    -webkit-transform: rotate(3deg);
+       animation: run-foot-r 1.2s infinite;
+
+}
+
+.shoulder-l {
+    width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    z-index: 0;
+    overflow: visible;
+    -webkit-transform: rotate(20deg);
+    animation: run-shoulder-l 1.2s infinite;
+
+}
+
+.shoulder-l-arm-upper {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+
+
+.elbow-l {
+width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    z-index: 0;
+    overflow: visible;
+    -webkit-transform: rotate(950deg);
+    animation: run-elbow-l 1.2s infinite;
+
+}
+
+.elbow-l-arm-lower {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.hand-l {
+    width: 18px;
+    height: 18px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -9px;
+    left: 0px;
+    z-index: 0;
+
+}
+
+.hip-l {
+width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 14px;
+    left: 56px;
+    z-index: 1;
+    overflow: visible;
+    -webkit-transform: rotate(16deg);
+        animation: run-hip-l 1.2s infinite;
+
+}
+
+.hip-l-leg-upper {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+
+
+.knee-l {
+width: 10px;
+    height: 10px;
+    background: #974e3b;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    z-index: 0;
+    overflow: visible;
+    -webkit-transform: rotate(97deg);
+    animation: run-knee-l 1.2s infinite;
+
+}
+
+.knee-l-leg-lower {
+width: 10px;
+    height: 38px;
+    background: #974e3b;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.sock-l {
+	width:10px;
+	height:20px;
+	background:#fff;
+	position: absolute;
+	left:0;
+	bottom:0;
+}
+
+.foot-l {
+width: 18px;
+    height: 8px;
+    background: #000;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -3px;
+    left: -1px;
+    z-index: 0;
+    -webkit-transform: rotate(21deg);
+    animation: run-foot-l 1.2s infinite;
+
+}
+		</style>
+	</head>
+	<body>
+   <div class="stage">
+
+<div class="shadow"></div>
+<div class="core">
+<div class="dress"></div>
+
+<div class="shoulder-r">
+	<div class="shoulder-r-arm-upper">
+		<div class="elbow-r">
+			<div class="elbow-r-arm-lower">
+				<div class="hand-r"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="shoulder-l">
+	<div class="shoulder-l-arm-upper">
+		<div class="elbow-l">
+			<div class="elbow-l-arm-lower">
+				<div class="hand-l"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="hip-r">
+	<div class="hip-r-leg-upper">
+		<div class="knee-r">
+			<div class="knee-r-leg-lower">
+				<div class="sock-r"></div>
+				<div class="foot-r"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="hip-l">
+	<div class="hip-l-leg-upper">
+		<div class="knee-l">
+			<div class="knee-l-leg-lower">
+				<div class="sock-l"></div>
+				<div class="foot-l"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="headcontainer">
+<div class="bun-r"></div>
+<div class="bun-l"></div>
+<div class="ear-r"></div>
+<div class="ear-l"></div>
+<div class="headbg">
+	<div class="hair-r"></div>
+	<div class="hair-l"></div>
+	<div class="face"></div>
+	<div class="smile"></div>
+	<div class="eyes">
+		<div class="eyelid-t"></div>
+		<div class="eyelid-b"></div>
+		<div class="eye-r">
+			<div class="pupil-r"></div>
+		</div>
+		<div class="eye-l">
+			<div class="pupil-l"></div>
+		</div>
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+	</body>
+</html>

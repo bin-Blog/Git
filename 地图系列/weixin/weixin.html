@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>		
+		<title>Java开发LBS移动地图定位微信支付系统【O2O核心技术】 - Arry老师</title>
+		<meta name="keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";color:#666;}
+			
+			/*top start*/
+			.top{width:100%;height:56px;background:#000;position:absolute;z-index:1;}
+			.top .t-header{width:90%;height:56px;margin: 0 auto;}
+			.top .t-header .t-logo{float:left;margin-top:10px;}
+			.top .t-header .t-desc{float:right;line-height:56px;font-size:22px;font-weight:300;color:#fff;}
+			/*end top*/
+			
+			/*content start*/
+			.content{width:100%;height:100%;position:absolute;top:0;left:0;}
+			/*end content*/
+
+			/*shop start*/
+			.shop .s-price{font-size:22px;color:red;}
+			.shop .s-title{font-size:14px;line-height:26px;}
+			.shop .s-pay{width:220px;height:40px;background:#0c0;display:block;text-align:center;line-height:40px;font-size:14px;text-decoration:none;color:#fff;}
+			.shop .s-pay:hover{background:#090;}
+			/*end shop*/
+
+		</style>
+
+	</head>
+<body>
+
+	<!--top start-->
+	<div class="top">
+		<div class="t-header">
+			<div class="t-logo">
+				<a href="#">
+					<img src="images/logo.png" alt="潭州教育" width="146" height="38" />
+				</a>
+			</div>
+			<div class="t-desc">LBS移动电商支付系统</div>
+		</div>
+	</div>
+	<!--end top-->
+	
+	<!--content start-->
+	<div class="content" id="c-map">
+				
+
+	</div>
+	<!--end content-->
+
+
+<!--引入高德地图API-->
+<script src="http://webapi.amap.com/maps?v=1.3&key=c9298d99b39b754dd4b3f8e1c27b25e6"></script>
+<script type="text/javascript">
+    //初始化地图对象，加载地图
+    var map = new AMap.Map("c-map", {resizeEnable: true});
+    var lnglats = [
+        [116.368904, 39.923423],
+        [116.382122, 39.921176],
+        [116.387271, 39.922501],
+        [116.398258, 39.914600]
+    ];
+    var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
+    for (var i = 0, marker; i < lnglats.length; i++) {
+        var marker = new AMap.Marker({
+            position: lnglats[i],
+            map: map
+        });
+        marker.content = "<div class='shop'>"+
+						"		<a href='#'>"+
+						"			<img src='images/"+(i+1)+".jpg' alt='洛诗琳2016冬装新品 优雅 时尚圆领后' width='220' height='220' />"+
+						"		</a>"+
+						"		<p class='s-price'>￥ 1980.</p>"+
+						"		<p class='s-title'>洛诗琳2016冬装新品 优雅 时尚圆</p>"+
+						"		<a href='#' class='s-pay'>微信扫一扫支付</a>"+
+						"	</div>";
+
+
+        marker.on('click', markerClick);
+        marker.emit('click', {target: marker});
+    }
+    function markerClick(e) {
+        infoWindow.setContent(e.target.content);
+        infoWindow.open(map, e.target.getPosition());
+    }
+    map.setFitView();
+</script>
+
+
+</body>
+</html>

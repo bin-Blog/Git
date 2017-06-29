@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider {
+            width: 600px;
+            height: 300px;
+            /*border: 1px solid red;*/
+            margin: 150px auto;
+            position: relative;
+        }
+        .slider-outer {
+            width: 100%;
+            height: 100%;
+            /*transform-style: preserve-3d;*/
+            /*transform: rotateY(30deg) rotateX(30deg);*/
+        }
+        .slider-item {
+            width: 50px;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: 2s;
+            position: absolute;
+        }
+        .img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .img:nth-child(1){ background-image: url("images/1-1.jpg");transform: rotateX(0deg) translateZ(150px);}
+        .img:nth-child(2){ background-image: url("images/1-2.jpg");transform: rotateX(90deg) translateZ(150px);}
+        .img:nth-child(3){ background-image: url("images/1-3.jpg");transform: rotateX(180deg) translateZ(150px);}
+        .img:nth-child(4){ background-image: url("images/1-4.jpg");transform: rotateX(270deg) translateZ(150px);}
+        .btns{
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            top:calc(50% - 25px);
+            color: #ffffff;
+            font-size: 2em;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prev,.next{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,.3);
+
+        }
+        .prev{
+            left: 0;
+        }
+        .next{
+            right: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!--  最外层容器-->
+<div class="slider">
+    <!-- 图片的容器 -->
+    <div class="slider-outer">
+        <!--立体图像容器 -->
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div><!--立体图像容器 -->
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-item">
+            <!-- 增加盒子的四个边显示 -->
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+    </div>
+    <div class="btns">
+        <div class="prev" id="prev">&lt;</div>
+        <div class="next" id="next">&gt;</div>
+    </div>
+</div>
+
+<script>
+        var items=document.getElementsByClassName("slider-item");
+        for(var i=0;i<items.length;i++){
+            var item=items[i];
+            item.style["left"]=item.offsetWidth*i+"px";
+            item.style["transitionDelay"]=.3*i+"s";
+            var sub=item.children;
+            for(var j=0;j<sub.length;j++){
+                var img=sub[j];
+                console.debug(img.style["backgroundPosition"]);
+                img.style["backgroundPosition"]=-item.offsetWidth*i+"px";
+            }
+        }
+        var num=0;
+        document.getElementById("prev").addEventListener("click",function(e){
+            var rotate=++num*90;
+            for(var i=0;i<items.length;i++){
+               items[i].style["transform"]="rotateX("+rotate+"deg)";
+            }
+        });
+        document.getElementById("next").addEventListener("click",function(e){
+            var rotate=--num*90;
+            for(var i=0;i<items.length;i++){
+                items[i].style["transform"]="rotateX("+rotate+"deg)";
+            }
+        })
+
+
+
+
+</script>
+</body>
+</html>

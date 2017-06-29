@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 植物战僵尸</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}  
+#dPlants,#dZombies{position:absolute;left:0;top:0;z-index:2}  
+#dPlants div{position: absolute; top: 294px; z-index: 9999;}
+#dZombies div{position: absolute; top: 226px; z-index:33;}
+#dPlants img{position: absolute;}
+</style> 
+<script type="text/javascript">
+	window.onload = function(){ 
+		 
+		//创建植物类 
+		function Plant(){  
+			var dPlants =  document.getElementById("dPlants");
+			var dZombies =  document.getElementById("dZombies");
+			this.zw = this.init(); 
+			this.blood = 3; // 血量  
+		} 
+		//初始化植物
+		Plant.prototype.init = function(){
+			var zw = document.createElement("div"); 
+			zw.innerHTML = '<img src="images/interface/plantshadow32.png" style="left:-12px;top:49px;"><img src="images/plant/Peashooter.gif">';  
+			return zw; 
+		};
+		//种植植物
+		Plant.prototype.doplant = function(left,top){ 
+			this.zw.style.top = (top || 294) + "px";
+			this.zw.style.left = left + "px"; 
+			dPlants.appendChild(this.zw);
+			return this;
+		};
+		//创建子弹
+		Plant.prototype.createPB  = function(){
+			var pb = document.createElement('img');
+			pb.src = 'images/plant/PB00.gif';
+			pb.style.position = "absolute";
+			pb.style.top = '297px';
+			pb.style.left =   this.zw.offsetLeft+30+"px";
+			pb.style.zIndex = 888;  
+			dZombies.appendChild(pb); 
+			return pb;
+		};
+		//射击
+		Plant.prototype.shoot = function(js){
+			var This = this;
+			var js = js || {}; 
+			This.pbTime = setInterval(function(){  
+				var pb =  This.createPB(); 
+				pb.timer = setInterval(function(){
+					pb.style.left =  pb.offsetLeft +  11   + "px";  
+					if(pb.offsetLeft-65 >= js.zombie.offsetLeft  ){ 
+					 	boom(pb); 
+						js.blood--;  
+					}  
+				},30);  
+				if( This.zw.offsetLeft >= (js.zombie.offsetLeft+40) && js.blood  > 0 && This.blood >1 ){  
+					 js.stopWalk(); 
+					 This.blood--;  
+					 if ( This.blood == 1  ){  
+						This.die();
+						This.stopshoot(); 
+						js.walk();
+					 }  
+					if(js.blood ==4){
+						js.lostHead(); 
+					}else if(js.blood==3){
+						js.eatPlantNohead();  
+					}else if(js.blood==2){
+						js.down();
+					}else if(js.blood==1){
+						js.die();
+						This.stopshoot();
+					}else{
+						js.eatPlant(); 
+					} 
+					  
+				}else{   
+					 
+					if(js.blood == 4){
+						js.lostHead(); 
+					}else if(js.blood==3){
+						js.noHeadwalk();  
+					}else if(js.blood==2){
+						js.down();
+					}else if(js.blood==1){
+						js.die();
+						This.stopshoot();
+					} 
+				} 
+				  
+				console.info(js);
+				console.info(This);  
+				  
+			},2000); 
+			function boom(pb){
+				clearInterval(pb.timer);
+				pb.timer = null; 
+				pb.src = "images/plant/PeaBulletHit.gif"; 
+				setTimeout(function(){
+					dZombies.removeChild(pb);
+				},200);
+			}  
+		};
+		//植物死亡
+		Plant.prototype.die = function(){
+			dPlants.removeChild(this.zw); 
+		};
+		//停止射击
+		Plant.prototype.stopshoot = function(){
+			clearInterval(this.pbTime);
+			this.pbTime = null;
+		}; 
+		
+		
+		/* 创建僵尸类 */ 
+		function JS (){ 
+			var dZombies =  document.getElementById("dZombies");	
+			this.zombie = this.init();
+			this.blood = 10;
+		}
+		//初始化
+		JS.prototype.init = function(){
+			var js = document.createElement("div");
+			js.style.left = "850px"; 
+			js.innerHTML = '<img src="images/interface/plantshadow32.png" style="position:absolute;left:72px;top:122px;"><img src="images/Zombie/Zombie.gif">';  
+			dZombies.appendChild(js);
+			return js;	
+		};
+		//正常走路
+		JS.prototype.walk = function(){
+			var This = this;
+			var jxImg = This.zombie.getElementsByTagName('img')[1]; 
+			jxImg.setAttribute('src','images/Zombie/Zombie.gif');
+			This.walkTimer = setInterval(function(){
+				This.zombie.style.left = This.zombie.offsetLeft - 1 + "px";  
+			},80);
+			return this;
+		};
+		//停止走路
+		JS.prototype.stopWalk = function(fn){  
+			if(this.walkTimer){ 
+				clearInterval(this.walkTimer);
+				this.walkTimer = null;
+				if(fn)fn();
+			}
+			return this;
+		};
+		//掉头颅
+		JS.prototype.lostHead = function(){
+		 	 var This = this; 
+			 var head = document.createElement("img");
+			 head.src = 'images/Zombie/ZombieHead.gif#'+Math.random();//去缓存
+			 head.style.position = "absolute";
+			 head.style.top = This.zombie.offsetTop + "px";
+			 head.style.left = This.zombie.offsetLeft + "px";
+			 head.style.position = 999; 
+			 dZombies.appendChild(head)
+			 setTimeout(function(){
+				dZombies.removeChild(head);
+			 },1500);   
+			return this;
+		};
+		//无头走路
+		JS.prototype.noHeadwalk = function(){
+			var jxImg = this.zombie.getElementsByTagName('img')[1]; 
+			jxImg.setAttribute('src','images/Zombie/ZombieLostHead.gif');
+			return this;
+		};
+		//咀嚼植物
+		JS.prototype.eatPlant = function(){
+			if(this.walkTime)clearInterval(this.walkTime);
+			var jxImg = this.zombie.getElementsByTagName('img')[1]; 
+			jxImg.setAttribute('src','images/Zombie/ZombieAttack.gif');
+			return this; 
+		 };
+		//无头咀嚼植物
+		JS.prototype.eatPlantNohead = function(){
+			if(this.walkTime)clearInterval(this.walkTime);
+			var jxImg = this.zombie.getElementsByTagName('img')[1]; 
+			jxImg.setAttribute('src','images/Zombie/ZombieLostHeadAttack.gif');
+			return this; 
+		};
+		//倒地
+		JS.prototype.down = function(){
+			if(this.walkTime)clearInterval(this.walkTime);
+			var jxImg = this.zombie.getElementsByTagName('img')[1]; 
+			jxImg.setAttribute('src','images/Zombie/ZombieDie.gif');
+		};
+		//死亡
+		JS.prototype.die = function(){
+			if(this.walkTime)clearInterval(this.walkTime);
+			this.walkTime = null;
+			dZombies.removeChild(this.zombie);
+		};
+		 
+	
+	 
+		 //僵尸与植物的位置来控制他们的战斗
+		var plant = new Plant();  
+		plant.doplant(800);
+		var js = new JS();  
+		js.walk();  
+		var sod = document.getElementById("sod");
+		var startWar = false;
+		//僵尸进入草地则开始打击子弹 
+		plant.shoot(js) 
+		  
+		
+		
+		 
+	};
+
+	  
+ 	
+	
+ 
+</script> 
+</head>  
+<body id="dBody"   bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll"> 
+	<div id="tGround"><!--背景图片--></div>   
+    <div id="sod"><!--草地背景--></div>  
+    <div id="dPlants"></div> <!--植物容器-->
+    <div id="dZombies"></div> <!--僵尸容器-->
+</div>  
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 种植物</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}
+#dTop{position: absolute; left: 105px; top: 0px; height: 35px; width: 123px; visibility: visible; z-index: 1;}
+ 
+#dCardList{visibility: visible; position: absolute; left: 3px; width: 100px; overflow: visible; z-index: 254;}
+#dCardList div {position: relative;cursor: pointer;padding: 0;height: 60px;}
+#dCardList img {position: absolute;width: 100px;height: 60px;}
+#dCardoPeashooter{}
+#dCardList span {cursor: pointer;position: absolute;left: 66px;top: 40px;width: 34px;height: 20px;font-size: 11pt;}
+</style> 
+<script type="text/javascript">
+	window.onload = function (){ 
+		//点击道具，选项卡变灰色，动态生成一个豌豆射手（道具） 
+		var car = document.getElementById("dCardoPeashooter");
+		var idall = document.getElementById("dAll");
+		var sod	= document.getElementById("sod");
+		car.onclick = function( ){  
+			var card = this.getElementsByTagName('img');
+			card[1].style.visibility = 'hidden';
+			//动态生成一个豌豆射手
+			var shooter = document.createElement('img');
+			shooter.src = 'images/Peashooter.gif';
+			shooter.style.position = 'absolute';
+			shooter.style.zIndex = 999;
+			idall.appendChild(shooter);  
+			
+			//透明的道具
+			var shooter_opa = document.createElement('img');
+			shooter_opa.src = 'images/Peashooter.gif'; 
+			shooter_opa.style.position = 'absolute';
+			shooter_opa.style.zIndex = 998; 
+			shooter_opa.style.display = 'none'; 
+			shooter_opa.style.opacity = 0.8; 
+			shooter_opa.style.filter = "alpha(opacity=80)"; 
+			idall.appendChild(shooter_opa); 
+			
+			//拖拽
+			document.onmousemove = function (ev) {
+				var e = ev || window.event; // ie:window.event  ff:参数传递 event对象
+				shooter.style.left = e.clientX - shooter.offsetWidth/2 +  'px';
+				shooter.style.top  = e.clientY - shooter.offsetHeight/2 +  'px'; 
+				//草地检测
+				if(  e.clientY < sod.offsetTop  ||   e.clientY > ( sod.offsetTop +  sod.offsetHeight)  ){
+					shooter_opa.style.display = "none"; 
+					shooter.onclick = function(){
+						idall.removeChild(shooter);
+						card[1].style.visibility = 'visible';
+						idall.removeChild(shooter_opa);   
+					}; 
+					shooter.oncontextmenu = function(){
+						idall.removeChild(shooter); 
+						card[1].style.visibility = 'visible'; 
+						idall.removeChild(shooter_opa); 
+					}; 
+				}else{ 
+					shooter_opa.style.display = "block"; 
+					shooter_opa.style.top = 	 sod.offsetTop  +  sod.offsetHeight/2 - shooter_opa.offsetHeight/2 -10 + "px";
+					
+					var onewidth = (sod.offsetWidth -20)/9;
+					if( e.clientX < (sod.offsetLeft + onewidth)){
+						shooter_opa.style.left = sod.offsetLeft + onewidth/2- shooter_opa.offsetHeight/2 + "px";
+					}else if(e.clientX > (sod.offsetLeft + sod.offsetWidth - onewidth) ){
+						shooter_opa.style.left = sod.offsetLeft + onewidth*8+ onewidth/2 - shooter_opa.offsetWidth/2 + "px";
+					}else{
+						var x = e.clientX; 
+						for(var i = 1;i<8;i++){ 
+							if( sod.offsetLeft + onewidth*i < x &&  x < sod.offsetLeft + onewidth*(i+1)   ){ 
+								shooter_opa.style.left = sod.offsetLeft + onewidth*(i+1) - onewidth/2 - shooter_opa.offsetWidth/2   + 'px'; 
+							}
+						} 
+					} 
+					shooter.onclick = function(){
+						 shooter.style.left = shooter_opa.offsetLeft + "px";
+						 shooter.style.top = shooter_opa.offsetTop   + "px"; 
+					     idall.removeChild(shooter_opa); 
+						 card[1].style.visibility = 'visible';
+						 document.onmousemove = null;
+						 shooter.oncontextmenu = null; 
+						 shooter.onclick =null;
+					};	
+				} 
+				
+			};
+			
+		};
+		 
+		 
+	}
+</script>
+
+
+</head>  
+<body id="dBody"   oncontextmenu="return  false"  bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll">
+	<!--背景图片-->
+	<div id="tGround"></div> 
+    <div id="dCardList">
+    	<div id="dCardoPeashooter"  >
+        	<img src="images/PeashooterG.png" >
+            <img src="images/Peashooter.png">
+        	<span id="sSunNum0">100</span> 
+        </div>
+    </div>
+    <!--草地背景-->
+    <div id="sod"></div>  
+</div>  
+</body>
+</html>

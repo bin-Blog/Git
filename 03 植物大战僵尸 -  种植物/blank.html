@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 种植物</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}
+#dTop{position: absolute; left: 105px; top: 0px; height: 35px; width: 123px; visibility: visible; z-index: 1;}
+ 
+#dCardList{visibility: visible; position: absolute; left: 3px; width: 100px; overflow: visible; z-index: 254;}
+#dCardList div {position: relative;cursor: pointer;padding: 0;height: 60px;}
+#dCardList img {position: absolute;width: 100px;height: 60px;}
+#dCardoPeashooter{}
+#dCardList span {cursor: pointer;position: absolute;left: 66px;top: 40px;width: 34px;height: 20px;font-size: 11pt;}
+</style> 
+<script type="text/javascript">
+ 
+</script> 
+</head>  
+<body id="dBody"   bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll">
+	<!--背景图片-->
+	<div id="tGround"></div> 
+    <!--道具选项卡-->
+    <div id="dCardList">
+    	<div id="dCardoPeashooter"  >
+        	<img src="images/PeashooterG.png" >
+            <img src="images/Peashooter.png" style="visibility:visible;">
+        	<span id="sSunNum0">100</span> 
+        </div>
+    </div>
+    <!--草地背景-->
+    <div id="sod"></div>  
+</div>  
+</body>
+</html>

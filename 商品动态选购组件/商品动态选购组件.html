@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <meta name="Author" content="潭州学院-海牙">
+    <style type='text/css'>
+        * { margin: 0; padding: 0; }
+
+        body {
+            background-color: #222222;
+        }
+
+        .wrap {
+            width: 600px;
+            height: 360px;
+            margin: 100px auto 0;
+            padding: 20px;
+            background-color: #eeeeee;
+            border-radius: 10px;
+            box-shadow:0 0 10px #ddd;
+        }
+
+        .wrap .choose {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            border-bottom: 1px solid #bbbbbb;
+
+        }
+
+        .choose p span {
+            font-size: 14px;
+            color: #666666;
+            border: 1px solid #999999;
+            display: inline-block;
+            padding: 8px;
+            cursor: pointer;
+            margin: 0px 1px 15px 0px;
+            line-height: 20px;
+        }
+
+        .choose p span.on {
+            background: url(images/on.png) no-repeat right bottom;
+            border: 2px solid #ff6600;
+            padding: 7px;
+        }
+
+        .choose p i {
+            margin-right: 15px;
+            border: none;
+            text-align: left;
+            font-style: normal;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .choose #pic{
+            position: absolute;
+            right: 38px;
+            top: 0px;
+            width: 180px;
+            height: 200px;
+            border-radius:10px;
+            border:2px solid #ddd;
+        }
+
+        .showPrice {
+            width: 100%;
+            height: 100px;
+            padding-top: 20px;
+        }
+
+        .showPrice p {
+            font-size: 18px;
+        }
+
+        .showPrice p span {
+            font-size: 20px;
+            color: #ff6600;
+            margin: 0 80px 0 15px;
+        }
+
+        .showPrice p a {
+            font-size: 14px;
+            text-decoration: none;
+            color: #ff935e;
+        }
+
+        .showPrice button {
+            width: 330px;
+            height: 50px;
+            margin-top: 30px;
+            background-color: #ff6600;
+            border: 0;
+            color: #ffffff;
+            font-size: 20px;
+            line-height: 50px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+<div class="wrap">
+    <div class="choose">
+        <p class="model">
+            <i>型号</i>
+            <span class="on">4.7英寸</span>
+            <span>5.5英寸</span>
+        </p>
+        <p class="color">
+            <i>颜色</i>
+            <span class="on">银色</span>
+            <span>金色</span>
+            <span>深空灰色</span>
+        </p>
+        <p class="rom">
+            <i>内存</i>
+            <span class="on">16GB</span>
+            <span>64GB</span>
+            <span>128GB</span>
+        </p>
+        <p class="verson">
+            <i>版本</i>
+            <span class="on">公开版</span>
+            <span>移动赠费版</span>
+            <span>联通合约版</span>
+        </p>
+        <img id="pic" src="images/silver.jpg" width="546" height="546" alt="">
+    </div>
+    
+    <div class="showPrice">
+        <p>价格: &nbsp<span>¥&nbsp5288&nbsp</span> <a href="#">更多机型请点击这里了解详情</a></p>
+        <button>立刻购买</button>
+    </div>
+</div>
+<script src="js/jquery-1.12.1.min.js"></script>
+<script>
+    var money = 5288;
+    var spr = 800;
+    var money1 = 0;
+    var money2 = 0;
+    var $choos = $('.choose span');
+    var $price = $('.showPrice p span');
+    var $pic=$('#pic');
+    var color=['silver','golden','gray'];
+    $choos.click(function () {
+        money = 5288;
+        var index = $(this).index() - 1;
+        var parent = $(this).parent().prop('className');
+        $(this).addClass('on').siblings('span').removeClass('on');
+        if (parent == 'rom' || parent == 'model') {
+            if (parent == 'rom') {
+                money1 = (index * spr);
+            } else {
+                money2 = (index * spr);
+            }
+            money += money1 + money2;
+            $price.html('¥&nbsp' + money)
+        }else if(parent=='color'){
+            $pic.attr('src','images/'+color[index]+'.jpg');
+        }
+    });
+</script>
+</body>
+</html>

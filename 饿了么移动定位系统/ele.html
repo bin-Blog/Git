@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>H5+JS开发饿了么LBS移动地图点餐系统</title>
+		<meta name="keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{background:url("images/bg.png");font-size:12px;font-family:"微软雅黑";color:#666;}
+			
+			/*top start*/
+			.top{width:100%;height:40px;margin:30px 0;}
+			.top .t-header{width:1000px;height:40px;margin: 0 auto;}
+			.top .t-header .t-logo{float:left;margin-top:10px;}
+			.top .t-header .t-desc{float:right;line-height:40px;font-size:16px;color:#fff;}
+			/*end top*/
+
+			/*content start*/
+			.content{width:1000px;height:600px;margin:0 auto;position:relative;}
+			.content .c-title{height:60px;background:#f90;text-align:center;line-height:60px;font-size:22px;font-weight:300;color:#fff;}
+			.content .c-con{width:1000px;height:540px;}
+			/*end content*/
+
+			/*search start*/
+			.search{width:610px;height:56px;background:#6cf;box-shadow: 1px 2px 10px -2px #000;position:absolute;top:100px;left:200px;}
+			.search .s-text{width:490px;height:56px;border:none;outline:none;padding-left:10px;}
+			.search .s-btn{width:110px;height:56px;background:#f30;border:none;color:#fff;cursor: pointer;outline:none;}
+			.search .s-btn:hover{background:#cc2800;}
+			/*end search*/
+
+		</style>
+
+	</head>
+
+<body>
+	
+	<!--top start-->
+	<div class="top">
+		<div class="t-header">
+			<div class="t-logo">
+				<a href="#">
+					<img src="images/logo.png" alt="饿了么点餐网" width="220" height="23" />
+				</a>
+			</div>
+			<div class="t-desc">LBS移动点餐系统</div>
+		</div>
+	</div>
+	<!--end top-->
+
+	<!--content start-->
+	<div class="content">
+		<div class="c-title">点外卖，上饿了么 ！</div>
+		<div class="c-con" id="c-map"></div>
+		<!--search start-->
+		<div class="search">
+			<input type="text" class="s-text" placeholder="请输入地址 ..." id="s-search"/><input type="button" class="s-btn" value="搜 索" />
+		</div>
+		<!--end search-->
+	</div>
+	<!--end content-->
+
+
+
+<!--引入高德地图API-->
+<script src="http://webapi.amap.com/maps?v=1.3&key=a82669655cc541a1793e86f273fac31e&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+<script type="text/javascript">
+
+  //地图加载
+    var map = new AMap.Map("c-map", {
+        resizeEnable: true
+    });
+    //输入提示
+    var autoOptions = {
+        input: "s-search"
+    };
+    var auto = new AMap.Autocomplete(autoOptions);
+    var placeSearch = new AMap.PlaceSearch({
+        map: map
+    });  //构造地点查询类
+    AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+    function select(e) {
+        placeSearch.setCity(e.poi.adcode);
+        placeSearch.search(e.poi.name);  //关键字查询查询
+    }
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>隐藏的下拉菜单</title>
+<style type="text/css">
+nav {
+	width: 300px;
+	height: 40px;
+	overflow-y: hidden;
+	font:14px  "Lucida Grande";
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 1px 1px 5px 0px #999;
+	position:absolute;
+	top:10px;
+	right:30px;
+}
+
+nav:hover{
+	height:204px;
+	/*请将高度的变化填在这里*/
+	}
+
+nav h1 {
+	margin: 0px;
+	background-color: #FF9900;
+	color: #FFFFFF;
+	font: medium/20px "Lucida Grande";
+	padding: 10px;
+	height:20px;
+}
+nav:hover h1{
+	background:#333
+}
+nav ul {
+	margin: 0px;
+	padding: 0px;
+	
+}
+nav li {
+}
+nav  a {
+	display: block;	
+	height:20px;
+	padding: 10px;
+	background-color: #FFCC00;
+	border-top: 1px solid #eee;
+	color: #000000;
+	text-decoration: none;
+
+	
+}
+nav a:hover{
+	/*请将条目颜色的变化填在这里，参考代码如下*/
+	/*background-color:#FF9900;*/
+	/*color:#fff;*/
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <h1>Menu</h1>
+  <ul>
+    <li><a href="#">about</a></li>
+    <li><a href="#">product</a></li>
+    <li><a href="#">news</a></li>
+    <li><a href="#">contacts</a></li>
+  </ul>
+</nav>
+<article><h1>Other contents</h1>
+  
+  <p>...</p>
+</article>
+</body>
+</html>

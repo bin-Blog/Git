@@ -1,0 +1,87 @@
+<!DOCTYPE HTML> <!--声明文档类型 为 HTML 告诉别人我是网页-->
+<html>
+	<head><!--告诉浏览器 本网页的基本信息-->
+		<title>响应式图片列表页</title> <!--网页标题-->
+		<meta charset='utf-8'> <!--指定编码格式,统一通信语言-->
+		<meta name='Keywords' content='web前端,图片列表,响应式'>
+		<!--设置关键字 方便搜索引擎搜索 网站seo-->
+		<meta name='Description' content='海牙老师讲解响应式图片列表页'>
+		<!--设置网页描述 方便搜索引擎搜索 网站seo-->
+		<!--样式标签 用于为元素设置样式 -->
+		<style type='text/css'> 
+			*{margin:0;padding:0;}  /* *通配符选择器 为所有的标签 清除默认外边距*/
+			body{
+				background:#434343;
+			}
+			#wrap{
+				width:1000px;  /*宽度*/
+				height:auto; /*高度*/
+				background:#434343; /*背景颜色*/
+				margin:0 auto;  /*利用margin居中*/
+				overflow:hidden; /*超出部分隐藏掉*/
+			}
+			#wrap ul li{
+				list-style:none; /*清除li小圆点*/	
+				float:left;	   /*元素向左浮动*/
+				margin:10px;   /*设置元素距离上下左右间距为10*/
+				width:237px;
+				height:190px;
+				box-shadow:0 0 4px #fff; /*盒子阴影 横向位移 纵向位移 影子大小 影子颜色 */
+				border-radius:5px;
+			}
+			#wrap ul li img{
+				display:block; /*使img标签成块级元素展示*/
+				border-radius:5px;
+			}
+			#wrap ul{width:100%;padding:10px}
+		</style>
+	</head>
+	<body> <!--存放网页主体内容 展示给用户的内容-->
+		<div id='wrap'>
+			<ul>   <!-- ul li 无序列表-->
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/2.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/3.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/4.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/5.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/6.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/7.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/8.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/9.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/10.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/11.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/12.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/13.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+				<li><img src='images/1.jpg' width='237' height='190' alt='松鼠'></li>
+			</ul>
+		</div>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script>
+			/*jquery  $ 是他的标识符 */
+			$(document).ready(function(){ /*当页面文档加载完成之后*/
+				var $wrap=$('#wrap');     /*获取页面元素 wrap 存储到变量之中*/
+				var width=$wrap.find('li').outerWidth(true);
+				auto();  /*函数名称+()*/
+					/*获取li的实际宽度外边距+边框+宽度+内边距*/
+				$(window).resize(function(){ /*当改变浏览器窗口大小时触发*/
+					auto();
+				});
+				function auto(){
+					var wW=$(window).width(); /*获取浏览器窗口的宽度*/
+					/*总宽度 / 个体宽度 =个体数量 */
+					var num=Math.floor(wW/width); 
+					/*Math.floor  向下取整 每一行的数量*/
+					$wrap.width(num*width);/*让wrap的宽度=数量* 个体宽度*/
+				}
+			});
+		</script>
+	</body>
+</html>
+	
+

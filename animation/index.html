@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS3 动画 </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .elf{
+            width: 200px;
+            height: 300px;
+            background-image: url("images/2.png");
+            position: absolute;
+            left:calc(50% - 100px);
+            bottom: 150px;
+            animation: elf 1s steps(1) infinite;
+            transform: translateX(150px) scaleX(-1);
+        }
+        @keyframes elf {
+             0%{background-position: calc( -200px  * 0 );}
+             12.5%{background-position: calc( -200px  * 1 );}
+             25%{background-position: calc( -200px  * 2 );}
+             37.5%{background-position: calc( -200px  * 3 );}
+             50%{background-position: calc( -200px  * 4 );}
+             62.5%{background-position: calc( -200px  * 5 );}
+             75%{background-position: calc( -200px  * 6 );}
+             87.5%{background-position: calc( -200px  * 7 );}
+             100%{background-position: calc( -200px  * 8 );}
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            position: relative;
+            background-image: url("images/back.png");
+            background-size: auto 100%;
+            animation: back 30s steps(2500) infinite;
+        }
+        @keyframes back {
+            0%{background-position: 0;}
+            100%{background-position: -100%;}
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="elf"></div>
+<audio src="1.mp3" autoplay loop="true"></audio>
+<script>
+
+//    for(var i =0; i<100 ;i++){
+//        console.debug(i+"{background-position: calc(200px * "+i+");}")
+//    }
+
+</script>
+</body>
+</html>

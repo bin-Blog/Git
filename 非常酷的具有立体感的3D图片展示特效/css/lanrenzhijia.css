@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* 代码整理：懒人之家 */
+
+html {
+	overflow: hidden;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background: #111;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	cursor: crosshair;
+}
+#canvas {
+	position:absolute;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	overflow: hidden;
+}
+#canvas img {
+	position: absolute;
+	background: #666;
+	overflow: hidden;
+	cursor: pointer;
+	left: 100%;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	-ms-interpolation-mode:nearest-neighbor;
+}
+#canvas span {
+	position: absolute;
+	color: #9C9;
+	font-family: 'courier new', typewriter, matrix, monospace;
+	font-size: 0px;
+	white-space: nowrap;
+	left: -1000px;
+	background: #010;
+	filter: alpha(opacity=90);
+	opacity: 0.9;
+}

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <!--网站编码格式，UTF-8 国际编码，GBK或 gb2312 中文编码-->
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="关键词一，关键词二">
+  <meta name="Description" content="网站描述内容">
+  <title>Document</title>
+  <!--css js 文件的引入-->
+  <style type="text/css">
+  *{margin:0px; padding:0px;}
+  body{background:url("images/bg.jpg");}
+  .Menu{width:200px;height:252px; background:#fff; position:absolute;  left:500px; top:100px; z-index:33;
+			display:none;}
+  .Menu ul li{list-style-type:none;height:35px; font-size:14px; color:#000; line-height:35px;
+				text-indent:25px; font-family:"微软雅黑"; border-bottom:1px solid #ddd;}
+  .Menu ul li.hover{background:#009999; color:#fff;}
+
+  #desk_list{width:100%;height:200px;position:relative;}
+  #desk_list .desk{width:294px; height:250px;  position:absolute; padding-top:60px;}
+  #desk_list .desk .desk_con{width:250px;height:200px; background:#fff;margin:0px auto; cursor:move;}
+  #desk_list .desk  p{height:40px; line-height:40px; text-align:center; font-size:12px;}
+  #desk_list .desk  p span{color:red; padding:0px 5px; font-size:14px; font-family:"Arial";}
+  </style>
+ </head>
+ <body>
+
+ <!--菜单开始-->
+ <div class="Menu">
+	<ul>
+		<li>新建文件夹</li>
+		<li class="hover">添加便签</li>
+		<li>清除便签</li>
+		<li>刷新</li>
+		<li>上传资料</li>
+		<li>更换背景</li>
+		<li>注销</li>
+	</ul>
+ </div>
+ <!--菜单结束-->
+
+<!--留言本的列表开始-->
+ <div id="desk_list">
+
+	<!--
+	<div class="desk" style="background:url(images/1.png); top:20px; left:50px;">
+		<div class="desk_con" contenteditable='true'></div>
+		<p><span>3</span>秒后自动保存</p>
+	</div>
+	-->
+
+ </div>
+ <!--留言本的列表结束-->
+
+
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+// 1、禁止浏览器窗口，自带的右键功能
+	document.oncontextmenu=function(){ return false; }
+
+// 2、当按下鼠标右键时，把菜单显示出来
+	$(document).mousedown(function(e){
+		var key=e.which; //当 1 左键，2 中间滚轮 3 右键
+		var x=e.clientX; //鼠标按下去，与浏览器窗口左边距离
+		var y=e.clientY; //鼠标按下去，与浏览器窗口上边距离
+		if(key==3){
+			$(".Menu").css({left:x,top:y}).show();
+		}
+	});
+
+// 3、当鼠标在浏览器窗口任意位置，点击时，菜单要隐藏
+	$(document).click(function(){
+		$(".Menu").hide();
+	});
+
+// 4、当鼠标滑动到对应的菜单栏上时，要改变对应的背景颜色和字体颜色
+	$(".Menu ul li").mouseover(function(){
+		$(this).addClass("hover").siblings("li").removeClass("hover");
+	});
+
+// 5、当我点击添加便签时，就可以在页面当，添加一便签
+	var desk_index=-1;
+	$(".Menu ul li").click(function(){
+		var _index=$(this).index();
+		if(_index==1){//当前点击添加便签
+			
+			if(localStorage.getItem("deskindex")){
+				desk_index=Math.floor(localStorage.getItem("deskindex")); //取出我们保存的序列号
+			}
+		
+			var l=$(".Menu").offset().left;
+			var t=$(".Menu").offset().top;
+			$("#desk_list").append("<div class='desk' style='background:url(images/"+sjNum()+".png); top:"+t+"px; left:"+l+"px;'><div class='desk_con' onmousedown=init(this) contenteditable='true'></div><p><span>3</span>秒后自动保存</p></div>");	
+			desk_index++;
+			//init($(".desk").eq(desk_index).find(".desk_con"));//鼠标拖动
+			localStorage.setItem("deskindex",desk_index);
+			autoSave(desk_index);//调用自动保存
+
+		}else if(_index==2){
+			//清空便签
+			if(localStorage.getItem("deskArry")){
+				//localStorage.clear(); 
+				localStorage.clear("deskArry");//清空对应的便签
+				localStorage.clear("deskindex");//清空便签对应的序列号
+				$("#desk_list").find(".desk").remove();
+			}
+		}
+
+	});
+
+//6、创建一个随机函，产生 1-3之间的整数，用来更换便签的背景
+	function sjNum(){
+		return Math.floor(Math.random()*3+1);  //Math.random()  0-1  不会大于 1  Math.random()*3  0-3 不会大于3
+	}
+
+//7 、利用 html5本数据的存储，来做我们自动保存效果
+	function autoSave(desk_index){
+		var count=3;
+		var clearTime=null;
+		clearTime=setInterval(function(){
+			count--;
+			if(count<=0){
+				localStorage.setItem("deskArry",$("#desk_list").html()); //把数据保存到我们本地存储器里面
+				clearInterval(clearTime); //清除定时器
+			}
+			$(".desk").eq(desk_index).find("p span").text(count); //找到自动保存的时间，把他的值给换掉
+		},1000)
+	}
+
+// 8、如何把存储的数据给读取出来 
+	$(function(){
+		//alert("加载");
+		var _deskArry=localStorage.getItem("deskArry");
+		if(_deskArry){	
+			$("#desk_list").append(_deskArry);
+		}
+		
+	});
+</script>
+
+<script type="text/javascript">
+		//init(document.getElementById("title"));//记得初始化
+		
+		var l = 0,t=0,x=0,y=0;
+		var isOver = false;
+		var zindex = 3;
+		function init(titleDom){
+			//tm_center(divObj);//居中事件
+			/*第一种*/
+			
+			var thisDom = titleDom;//获取当前title对象
+			var parentDom = thisDom.parentNode;//获取当前title对应的div
+			titleDom.onmousedown = function(event){//1111开始
+				var e = event || window.event;//为了兼容ie和火狐
+				x = e.clientX;//鼠标所在的x坐标
+				y = e.clientY;//鼠标所在的y坐标
+				
+				l = parseInt(parentDom.offsetLeft);//距离浏览器左边的位置left
+				t = parseInt(parentDom.offsetTop);//距离浏览器顶部的位置top
+				isOver = true;//定义拖动标识,防止卡顿
+				zindex++;
+				parentDom.style.zIndex = zindex;
+				document.onmousemove = function(event){
+					if(isOver){
+						var e = event || window.event;//为了兼容ie和火狐
+						var newLeft = l + e.clientX - x;//新的左边距
+						var newTop = t + e.clientY - y;//新的顶部边距
+						parentDom.style.left = newLeft+"px";
+						parentDom.style.top = newTop+"px";
+					}
+				
+				}; //鼠标移动的事件
+				document.onmouseup = function(event){
+					if(isOver){
+						isOver = false;//还原标识
+					}
+				};//鼠标松开的事件
+
+			};///111结束
+		};
+
+
+</script>
+
+
+<!--
+
+	1、禁止浏览器窗口，自带的右键功能
+	2、当按下鼠标右键时，把菜单显示出来
+	3、当鼠标在浏览器窗口任意位置，点击时，菜单要隐藏
+	4、当鼠标滑动到对应的菜单栏上时，要改变对应的背景颜色和字体颜色
+	5、当我点击添加便签时，就可以在页面当，添加一便签
+	6、创建一个随机函，产生 1-3之间的整数，用来更换便签的背景
+	7、利用 html5本数据的存储，来做我们自动保存效果
+	8、如何把存储的数据给读取出来 
+	9、如何单独的对某个标签进行操作，让他单独自动保存
+-->
+ </body>
+</html>

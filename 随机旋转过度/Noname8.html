@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			width: 872px;
+			height: 394px;
+			margin: 0px auto;
+			border: 2px red solid;
+		}
+		.list{
+			display: none;
+		}
+		.box{
+			margin: 10px auto;
+		}
+		.box div {
+			position: relative;
+			float: left;
+			width: 180px;
+			height: 140px;
+			margin: 16px;
+			box-shadow: 0px 0px 14px rgba(0,0,0,.3);
+		}
+		.box div span{
+			position: absolute;
+			left: -10px;
+			bottom: 10px;
+			width: 90px;
+			color: #fff;
+			padding: 5px 15px 7px;
+			background: rgba(0,0,0,0.6);
+			box-shadow: 0px 0px 14px rgba(0,0,0,.3);
+		}
+		.btn{
+			text-align: center;
+		}
+		.btn span{
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			background: red;
+			color: #fff;
+			border-radius: 40px;
+			line-height: 38px;
+			margin-right: 15px;
+			font-weight: bold;
+		}
+		.btn span.on{
+			background: rgba(0,0,0,.3);
+		}
+
+		.right {
+			transform: rotateY(360deg);
+			transition: .9s ease-out;
+		}
+		  
+		.left {
+			transform: rotateY(-360deg);
+			transition: .9s ease-out;
+		}
+		  
+		.top {
+			transform: rotateX(360deg);
+			transition: .9s ease-out;
+		}
+		  
+		.bottom {
+			transform: rotateX(-360deg);
+			transition: .9s ease-out;
+		}
+ </style>
+ <body>
+		<div id="wrap">
+			<div class="box">
+				<!--<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>
+				<div style="background: url(images/bat_bedtime_teaser.jpeg);">
+					<span>Dump Truck</span>
+				</div>-->
+			</div>
+			<ul class="list">
+			  <li><img src="images/dumptruck_teaser.jpeg" alt="Dump Truck" /></li>
+			  <li><img src="images/rrwooo_rrwooo_teaser.jpeg" alt="Rrwooo" /></li>
+			  <li><img src="images/dozer_teaser.jpeg" alt="Dozer" /></li>
+			  <li><img src="images/ltah_teaser.jpeg" alt="Ltah" /></li>
+			  <li><img src="images/pirates_teaser.jpeg" alt="Pirates" /></li>
+			  <li><img src="images/rustler_teaser.jpeg" alt="Rustler" /></li>
+			  <li><img src="images/satellite_teaser.jpeg" alt="Satellite" /></li>
+			  <li><img src="images/werewolf_teaser.jpeg" alt="Werewolf" /></li>
+			  <li><img src="images/box_socks_teaser.jpeg" alt="Box Socks" /></li>
+			  <li><img src="images/capt_kidd_teaser.jpeg" alt="Capt Kidd" /></li>
+			  <li><img src="images/bat_bedtime_teaser.jpeg" alt="Bat Bedtime" /></li>
+			  <li><img src="images/grrr_teaser.jpeg" alt="Grrr" /></li>
+			  <li><img src="images/eensy_teaser.jpeg" alt="Eensy" /></li>
+			  <li><img src="images/derby_lady_teaser.jpeg" alt="Derby Lady" /></li>
+			  <li><img src="images/carrot_teaser.jpeg" alt="Carrot" /></li>
+			  <li><img src="images/brush_teaser.jpeg" alt="Brush" /></li>
+			  <li><img src="images/nunatakdribbble_teaser.jpeg" alt="Nunatak" /></li>
+			  <li><img src="images/reefdribbble_teaser.jpeg" alt="Reef" /></li>
+			  <li><img src="images/glacier_teaser.jpeg" alt="Glacier" /></li>
+			  <li><img src="images/carddribbble_teaser.jpeg" alt="Card" /></li>
+			  <li><img src="images/cove_teaser.jpeg" alt="Cove" /></li>
+			  <li><img src="images/canal_teaser.jpeg" alt="Canal" /></li>
+			  <li><img src="images/shot_1300121080_teaser.jpeg" alt="Biome" /></li>
+			  <li><img src="images/shot_1300969987_teaser.jpeg" alt="Globe" /></li>
+			  <li><img src="images/bestican_teaser.jpeg" alt="Bestican" /></li>
+			  <li><img src="images/bifocal_teaser.jpeg" alt="Bifocal" /></li>
+			  <li><img src="images/soupsearch_teaser.jpeg" alt="Soup Search" /></li>
+			  <li><img src="images/sub_teaser.jpeg" alt="Submarine" /></li>
+			  <li><img src="images/tomatosoup_teaser.jpeg" alt="Tomato Soup" /></li>
+			  <li><img src="images/harry_teaser.jpeg" alt="Hipster Harry" /></li>
+			  <li><img src="images/for_the_man_teaser.jpeg" alt="For The Man" /></li>
+			  <li><img src="images/extra_teaser.jpeg" alt="Indulgence" /></li>
+			</ul>
+			<div class="btn">
+			  <span class="nav on" data-page="1">1</span>
+			  <span class="nav" data-page="2">2</span>
+			  <span class="nav" data-page="3">3</span>
+			  <span class="nav" data-page="4">4</span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			/*
+				1.在页面中先显示8张图片
+				2.点击按钮执行的事件：
+				   a.点击控制每个按钮的颜色值变化
+				   b.从列表里面获取8张图片，并为这些图片添加旋转的类名
+				   c.点击通过获取添加自定义类名，确立自定义类名属性的值与图片之间的关系
+			*/
+			var box = document.getElementsByClassName('box')[0];
+			var list = document.getElementsByClassName('list')[0];
+			var btn = document.getElementsByClassName('btn')[0];
+			var nav = btn.getElementsByClassName('nav');
+			var itemShow = 8;
+			var rotation = ['bottom', 'top', 'left', 'right'];
+			for (var i=0;i<itemShow ;i++ )
+			{
+				aImg = list.children[i].children[0];
+				aImgSrc   = aImg.getAttribute('src');
+				aImgAlt   = aImg.getAttribute('alt');
+				item      = '<div style="background:url(' + aImgSrc + ')"> <span>' + aImgAlt + '</span></div>';
+				box.innerHTML += item;
+				//console.log(box)
+			}
+			for(var i=0;i<nav.length;i++){
+				nav[i].onclick = function(){//按钮点击事件
+					//alert(1);
+					for(var j=0;j<nav.length;j++){
+						nav[j].className = 'nav';
+					}
+					this.className = 'nav on';
+					page = this.getAttribute('data-page');//获取自定义属性值
+
+					for(var k=0;k<itemShow;k++){
+						random = Math.floor( Math.random() * ( 3 - 0 + 1 ) );//随机获取数组的随机数
+						animation  = rotation[random];//变量存储数组里面具体的值
+						item   = box.children[k];//获取8张图片
+						
+						item.className = animation;//为图片添加旋转类名
+						//console.log(item);
+						
+						window.setTimeout(function (index) {
+							return function () {
+								
+								//indexReal    = (page == 1) ? index : (index + (page - 1));console.log(indexReal)
+								//itemHost     = indexReal + (count * (page - 1));//console.log(itemHost)
+								
+
+								//console.log(index);
+								indexReal = index + 8*(page - 1);//获取与当前点击的自定义属性值范围的索引值
+								
+								
+								aImg    = list.children[indexReal].children[0];//获取当前点击的自定义属性值范围的索引值的图片
+								aImgSrc      = aImg.getAttribute('src');//获取当前点击的自定义属性值范围的索引值的src
+								aImgAlt      = aImg.getAttribute('alt');//获取当前点击的自定义属性值范围的索引值的alt
+								aImgCurrent  = box.children[index];//获取box下面的8张图
+								aImgCurrent.style.background = 'url(' + aImgSrc + ')';//改变box下面的8张图的背景图片路径
+								aImgCurrent.children[0].innerHTML = aImgAlt;//通过alt改变box下面的8张图的背景图片的标题
+							};
+						} (k), 500);
+
+						item.addEventListener('transitionend',function(){//动画过度完成之后执行,清除旋转类名
+							this.className = '';
+						});
+					}
+					
+					
+					
+				}
+				
+			}
+		</script>
+	</body>
+</html>

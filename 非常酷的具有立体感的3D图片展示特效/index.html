@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.aaa-cg.com.cn?lcc">
+<html xmlns="http://www.aaa-cg.com.cn?lcc">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>非常酷的具有立体感的3D图片展示特效</title>
+<meta name="Author" content="Gerard Ferrandez at http://www.aaa-cg.com.cn?lcc">
+<link href="css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/lanrenzhijia.js"></script>
+</head>
+
+<body>
+<div id="canvas"> 
+<img src="images/slide109.jpg"><span>Little girls may have taken<br> ballet lessons here.</span> 
+<img src="images/slide112.jpg"><span>Stealing fire from Gods</span> 
+<img src="images/slide94.jpg"><span>Mussgorsky's Gopak played in my head</span> 
+<img src="images/slide108.jpg"><span>The coffee tasted nice.<br>I nearly fainted, though.</span> 
+<img src="images/slide113.jpg"><span>The plant was closed for good.</span> 
+<img src="images/slide126.jpg"><span>They planned to direct all ressources<br> to public health.</span>
+<img src="images/slide99.jpg"><span>I can almost hear them speak.</span>
+<img src="images/slide121.jpg"><span>Will this be their Rosetta stone?</span>
+<img src="images/slide111.jpg"><span>Absenteeism was dramatically lowered.</span>
+<img src="images/slide120.jpg"><span>Carefully calibrated for radiation levels.</span> 
+<img src="images/slide123.jpg"><span>The underground is open forever.</span> 
+<img src="images/slide119.jpg"><span>The true cost of the disaster<br> will not be known for decades to come.</span>
+<img src="images/slide132.jpg"><span>My journey had lasted seven hours.</span> </div>
+<span id="LB0" style="position:absolute;left:50%;top:50%;"><span style="position:absolute;font-family:arial;font-size:10px;color:#ccc;background:#000;left:-50px;top:-18px">Loading...</span><span style="position:absolute;left:-50px;top:-5px;font-size:1px;width:100px;height:10px;background:#333"><span id="LB1" style="position:absolute;font-size:1px;width:0px;height:10px;background:#ccc"></span></span></span>
+<script type="text/javascript">m00=document.getElementById("canvas").getElementsByTagName("img");m01=m00.length;function images_loading_bar(){m02=0;for(i=0;i<m01;i++)m02+=(m00[i].complete)?1:0;document.getElementById("LB1").style.width=Math.round(m02/m01*100)+'px';if(m02==m01)setTimeout("document.getElementById('LB0').style.display='none'",128); else setTimeout("images_loading_bar()", 64);};images_loading_bar();</script>
+</body>
+</html>

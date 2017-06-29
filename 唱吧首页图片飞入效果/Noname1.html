@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			background: #ff5046;
+			font-family: Microsoft yahei;
+			overflow: hidden;
+		}
+		.header{
+			width: 960px;
+			height: 80px;
+			margin: 0 auto;
+			color: #fff;
+			line-height: 80px;
+		}
+		.header-l{
+			float: left;
+		}
+		.header-l a{
+			display: block;
+		}
+		.header-l a img{
+			vertical-align: middle;
+		}
+		.header-r{
+			float: right;
+		}
+		.header-r ul:after{
+			content: '';
+			display: block;
+			height: 0;
+			clear: both;
+		}
+		.header-r ul li{
+			list-style: none;
+			float: left;
+			margin-left: 33px;
+		}
+		.header-r ul li a{
+			line-height: 85px;
+		}
+		.title{
+			width: 960px;
+			margin: 0 auto;
+		}
+		.title img{
+			display: block;
+			margin: 20px auto;
+		}
+		.title a{
+			display: block;
+			margin: 0 auto;
+			width: 103px;
+			height: 48px;
+			color: #fff;
+			padding-left: 60px;
+			line-height: 48px;
+			text-decoration: none;
+			background: url('img/download.png') no-repeat;
+		}
+		.content{
+			position: relative;
+			width: 960px;
+			height: 413px;
+			margin: 0 auto;
+			padding-bottom: 60px;
+		}
+		.content img{
+			position: absolute;
+		}
+		.content img:nth-child(1){
+			top: 111px;
+			left: -1000px;
+		}
+		.content img:nth-child(1).on{
+			left: -28px;
+			transition: .5s 1s;
+		}
+		.content img:nth-child(2){
+			top: 81px;
+			left: -1000px;
+		}
+		.content img:nth-child(2).on{
+			left: 151px;
+			transition: .5s .5s;
+		}
+		.content img:nth-child(3){
+			top: 15px;
+			left: 313px;
+			animation: move .8s linear;
+		}
+		@keyframes move{
+			0% {
+				opacity: 0;
+				-webkit-transform: scale(0);
+				transform: scale(0);
+			}
+			30% {
+				opacity: 1;
+				-webkit-transform: scale(1.2);
+				transform: scale(1.2);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: scale(0.85);
+				transform: scale(0.85);
+			}
+			50% {
+				opacity: 1;
+				-webkit-transform: scale(1.15);
+				transform: scale(1.15);
+			}
+			60% {
+				opacity: 1;
+				-webkit-transform: scale(0.9);
+				transform: scale(0.9);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: scale(1.1);
+				transform: scale(1.1);
+			}
+			80% {
+				opacity: 1;
+				-webkit-transform: scale(0.95);
+				transform: scale(0.95);
+			}
+			90% {
+				opacity: 1;
+				-webkit-transform: scale(1.05);
+				transform: scale(1.05);
+			}
+			100% {
+				opacity: 1;
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+		}
+		.content img:nth-child(4){
+			top: 22px;
+			left: 1530px;
+		}
+		.content img:nth-child(4).on{
+			left: 514px;
+			transition: .5s .5s;
+		}
+		.content img:nth-child(5){
+			top: 0px;
+			left: 1530px;
+		}
+		.content img:nth-child(5).on{
+			left: 668px;
+			transition: .5s 1s;
+		}
+  </style>
+ </head>
+ <body>
+	<div id='wrap'>
+		<div class='header'>
+			<div class='header-l'><a href=""><img src="img/logo.png" alt="" /></a></div>
+			<div class='header-r'>
+				<ul>
+					<li><a>首页</a></li>
+					<li><a>精彩</a></li>
+					<li><a>会员中心</a></li>
+					<li><a>金币充值</a></li>
+					<li><a>分享伴奏</a></li>
+					<li><a>唱吧直播间</a></li>
+					<li><a>火星直播</a></li>
+					<li><a>游戏中心</a></li>
+					<li><a>加入唱吧</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class='title'>
+			<img src="img/ktv.png" alt="" />
+			<a href="">免费下载</a>
+		</div>
+		<div class='content'>
+			<img src="img/top1.png" alt="" />
+			<img src="img/top2.png" alt="" />
+			<img src="img/top3.png" alt="" />
+			<img src="img/top4.png" alt="" />
+			<img src="img/top5.png" alt="" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		var con=document.getElementsByClassName('content')[0];
+		var aImg=con.getElementsByTagName('img');
+		window.onload=function(){
+			for (var i=0;i<aImg.length;i++)
+			{
+				aImg[i].className='on';
+			}
+		}
+	</script>
+ </body>
+</html>

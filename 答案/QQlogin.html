@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>用户登录</title>
+ <style>
+     *{
+         margin:0;
+         padding:0;
+     }
+     .login-box{
+         width:430px;
+         height:330px;
+         margin:100px auto;
+         background:url(img/tb.png) no-repeat;
+         box-shadow:0 0 2px rgba(0,0,0,.5);
+     }
+     #input-box{
+         padding:188px 50px 0;
+     }
+     img{
+         float:left;
+         margin-top:18px;
+     }
+    #right{
+        width:250px;
+        margin-left:20px;
+        float:left;
+    }
+     p{margin-top:15px;}
+     input{padding:5px 0;border:1px #d7d7d7 solid;width:150px;}
+     .login{
+         border:0 none;
+         background:#0a88e1;
+         color:#fff;
+         font-size:12px;
+         text-align:center;
+         line-height:20px;
+         width:220px;
+     }
+ </style>
+ </head>
+ <body>
+	<form action="" method="post"  class="login-box">
+		<div id="input-box">
+			<img src="img/tx.jpg" width="60" height="60"/>
+			<div id="right">
+				<p>用户名：<input type="text" id="name"/></p>
+				<p>密&emsp;码：<input type="password" id="psw"/></p>
+				<p><input type="button" value="登录" class="login" onclick="check();"/></p>
+			</div>
+		</div>
+	</form>
+ </body>
+ <script>
+     var rightName = "hello";//事先设定好正确的用户名
+     var rightPsw = "123456";//事先设定好正确的密码
+
+     /**设置函数：用于验证用户名、密码**/
+     function check(){
+         var name = document.getElementById("name");//获取用户名id
+         var psw = document.getElementById("psw");//获取密码id
+
+         var nValue = name.value;//获取用户名文本框的值
+         var pValue = psw.value;//获取密码框的值
+         /**判断输入的是否正确**/
+         if(nValue.length==0){
+             alert("用户名不能为空");
+             return;
+         }
+         else if(nValue!=rightName){
+             alert("用户名输入错误");
+             return;
+         }
+         else if(pValue.length==0){
+             alert("密码不能为空");
+             return;
+         }
+         else if(pValue!=rightPsw){
+             alert("密码输入错误");
+             return;
+         }
+         else{
+             alert("登录成功");
+             return;
+         }
+     }
+
+ </script>
+</html>

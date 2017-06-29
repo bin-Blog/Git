@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>高效开发</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="imageDesc" id="imageDesc"></div>
+<div class="imageDesc" id="imageDesc1"></div>
+<div class="imageDesc" id="imageDesc2"></div>
+
+<script>
+
+    var data = [
+        {
+            imgUrl: "images/2.jpg",
+            title: "Duende",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae libero orci." +
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed vestibulum.",
+            linksData: [
+                {url: "https://www.baidu.com", des: "QQ"},//,ico:"fa-qq"
+                {url: "https://www.baidu.com", des: "微博"},//,ico:"fa-weibo"
+                {url: "https://www.baidu.com", des: "微信"}//,ico:"fa-weixin"
+            ]
+        }, {
+            imgUrl: "images/3.jpg",
+            title: "Duende",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae libero orci." +
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed vestibulum.",
+            linksData: [
+                {url: "https://www.baidu.com", des: "QQ"},//,ico:"fa-qq"
+                {url: "https://www.baidu.com", des: "微博"},//,ico:"fa-weibo"
+                {url: "https://www.baidu.com", des: "微信"}//,ico:"fa-weixin"
+            ]
+        },{
+            imgUrl: "images/1.jpg",
+            title: "Duende",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae libero orci." +
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed vestibulum.",
+            linksData: [
+                {url: "https://www.baidu.com", des: "QQ"},//,ico:"fa-qq"
+                {url: "https://www.baidu.com", des: "微博"},//,ico:"fa-weibo"
+                {url: "https://www.baidu.com", des: "微信"}//,ico:"fa-weixin"
+            ]
+        }, {
+            imgUrl: "images/2.jpg",
+            title: "Duende",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae libero orci." +
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed vestibulum.",
+            linksData: [
+                {url: "https://www.baidu.com", des: "QQ"},//,ico:"fa-qq"
+                {url: "https://www.baidu.com", des: "微博"},//,ico:"fa-weibo"
+                {url: "https://www.baidu.com", des: "微信"}//,ico:"fa-weixin"
+            ]
+        }];
+    var imgDesc=function(domId){
+        var dom=document.getElementById(domId);
+        var sef= this;
+        function drawImge(param){
+            console.debug("+++++++++++");
+            var contentLinks=function(data){
+                if(data){
+                    var ul='<ul class="social-links">';
+                    for(var i=0;i<data.length;i++){
+                        var item=data[i];
+                        ul+=' <li><a  target="_blank" href="'+item.url+'">'+item.des+'</a></li>'
+                    }
+                    ul+="</ul>";
+                    return ul;
+                }
+                return ;
+            }(param.linksData);
+            var contentDesc='<p class="description">'+param.desc+'</p>';
+            var contenttitle=' <h4 class="title">'+param.title+'</h4>';
+            var boxContent='<div class="box-content">'+contenttitle+contentDesc+contentLinks+'</div>';
+            var boxImg='<div class="box-img"><img src="'+param.imgUrl+'"></div>';
+            var box='<div class="box">' + boxImg+boxContent+'</div>';
+            dom.innerHTML+=box;
+        }
+        sef.init=function(data){
+            if(!data){return;}
+            console.debug("***************");
+          for(var i=0;i<data.length;i++){
+              sef.addImgDes(data[i]);
+          }
+        };
+        sef.addImgDes=function(data){
+            if(!data){return;}
+            drawImge(data);
+        }
+    };
+     var img=new imgDesc("imageDesc");
+    img.init(data);
+    new imgDesc("imageDesc1").init(data);
+    new imgDesc("imageDesc2").init(data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 收集阳光</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}
+#dTop{position: absolute; left: 105px; top: 0px; height: 35px; width: 123px; visibility: visible; z-index: 1;}
+#dSunNum{background:url('images/interface/SunBack.png') no-repeat;position:absolute;width:123px;height:35px}
+#sSunNum{text-align:center;position:absolute;top:4px;left:43px;width:68px;font-family:Verdana;font-weight:bold;font-size:22px;}
+</style> 
+<script type="text/javascript">
+	window.onload = function (){ 
+		var autoGet = true; 
+		setInterval(fn,5000);  
+		function fn(){  
+			var odall = document.getElementById("dAll");
+			//创建一个阳光
+			var sun = document.createElement("img");
+			sun.src = "images/interface/sun.gif";
+			sun.style.position = "absolute";
+			sun.style.width = "78px"; 
+			sun.style.height = "78px";
+			sun.style.opacity = 0.8;
+			sun.style.filter = "alpha(opacity=80)";
+			sun.style.zIndex = 2; 
+			odall.appendChild(sun);
+			//设置阳光的出现的水平随机位置
+			sun.style.left  = Math.random() * (odall.offsetWidth - sun.offsetWidth) +　"px";
+			
+			//随机产生一个阳光的竖直方向的高度 
+			var H = parseInt(  Math.random() * (odall.offsetHeight - sun.offsetHeight) ); 
+			
+			//让阳光缓缓落下，并在一个高度后停止
+			var h = 0;
+			var timer = setInterval(function(){
+				h += 3; 
+				sun.style.top =    h +　"px"; 
+				if( sun.offsetTop >=   H){
+					clearInterval(timer);
+					timer = null; 
+					//是否自动收取阳光
+					setTimeout(function(){
+						 if(autoGet){//自动收阳光
+							sun.onclick();
+						 }else{  
+						    odall.removeChild(sun);// 阳光消失 
+						 }
+					},3000); 
+				}
+			},30);
+			  
+			//点击阳光，阳光飞向分数牌，并阳光总数累加
+			
+			sun.onclick = function(){
+				  //点击停止掉落
+				  if( timer!=null )clearInterval(timer);
+				 //计算x和y轴方向的速度 ,100 ,27 是记分牌处小太阳的left和top
+				 var a = sun.offsetLeft  + sun.offsetWidth/2 - 110;
+				 var b = sun.offsetTop   + sun.offsetHeight/2- 17;
+				 var c = Math.sqrt( a*a + b*b ); 
+				 var speedX = a/c;
+				 var speedY = b/c; 
+				 var speed = 20 ; 
+				 
+				 var fTimer = setInterval(function(){  
+					sun.style.left =  sun.offsetLeft - speedX * speed  + "px";
+					sun.style.top  =  sun.offsetTop  - speedY * speed  + "px";
+					if(  sun.offsetTop  <= -20  || sun.offsetLeft <=  80  ){
+						sun.style.left = "80px";
+						sun.style.top =  "-20px";
+						clearInterval(fTimer); 
+						//0.5秒后 阳光消失，分数牌累加分数
+						setTimeout(function(){
+						     odall.removeChild(sun);// 阳光消失 
+							//分数牌累加分数
+							var sSunNum =  document.getElementById("sSunNum"); 
+							if(sSunNum > 9999)return false; 
+							sSunNum.innerHTML =  parseInt(sSunNum.innerHTML) + 25; 
+							
+						},500);
+					} 
+				 },30); 
+			}
+		} 
+	}
+</script>
+
+
+</head>  
+<body id="dBody"   bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll" style="position:absolute;top:0;width:900px;background:#000">
+	<!--背景图片-->
+	<div id="tGround"></div> 
+    <!--草地背景-->
+    <div id="sod"></div>
+    <!--分数牌-->
+    <div id="dTop">
+        <div id="dSunNum"> 
+            <span id="sSunNum">175</span>
+        </div> 
+    </div>  
+</div>  
+</body>
+</html>

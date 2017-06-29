@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <!--声明当前页面的编码格式 国际编码 UTF-8 中文编码 GBK-->
+  <meta charset="UTF-8">
+  <!--声明当前页面的三要素-->
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>头条号学习web前端制作</title>
+  <!--样式css 修饰 衣服 化妆品-->
+  <style type="text/css">
+	*{margin:0;padding:0;}
+	.f1{min-width:1000px;height:671px;background:url("images/f1_1.jpg") no-repeat top center;}
+	.f1-font{width:647px;height:287px;position:absolute;top:165px;margin-left:154px;z-index:20;
+		animation:font1 5s ease infinite both;}/*none backwards（开始） forwards（结束） both（开始或者结束）*/
+	@keyframes font1{
+		0%{opacity:0;transform:scale(0.5);}
+		50%{opacity:1; transform:scale(1.05);}
+		70%{transform:scale(0.8);}
+		100%{transform:scale(1);}
+	}
+	.f1-yun1{position:absolute;top:62px;left:235px;
+		animation:yun1 5s linear infinite backwards;}
+	@keyframes yun1{
+		0%{left:235px;}
+		50%{left:285px;}
+		100%{left:235px;}
+	}
+	.f1-yun2{position:absolute;top:134px;right:0;
+		animation:yun2 5s linear infinite backwards;}
+	@keyframes yun2{
+		0%{right:0;}
+		50%{right:35px;}
+		100%{right:0;}
+	}
+	.f1-yun3{position:absolute;top:175px;left:-75px;
+		animation:yun3 5s linear infinite backwards;}
+	@keyframes yun3{
+		0%{left:-70px;}
+		50%{left:-40px;}
+		100%{left:-70px;}
+	}
+	.f1-lu{position:absolute;top:100px;right:125px;z-index:10;
+		animation:lu 2s linear infinite;transform-origin:0 204px;}
+	@keyframes lu{
+		20%{transform:rotate(5deg);}
+		50%{transform:rotate(0);}
+		100%{transform:rotate(1deg);}
+	}
+	.f1-san{position:absolute;top:120px;left:155px;
+		animation:san 3s linear infinite;}
+	@keyframes san{
+		0%{top:120px;}
+		50%{top:100px;}
+		100%{top:120px;}
+	}
+	.f1-show{position:absolute;top:290px;z-index:999;}
+	
+	.f1-tejia{position:absolute;top:163px;left:80px;
+		animation:show1 1s linear infinite backwards;}
+	.f1-two{position:absolute;top:163px;left:300px;
+		animation:show1 0.5s linear infinite backwards;}
+	.f1-baokuan{position:absolute;top:163px;left:523px;
+		animation:show1 1.5s linear infinite backwards;}
+	.f1-fangjia{position:absolute;top:163px;left:744px;
+		animation:show1 0.8s linear infinite backwards;}
+	@keyframes show1{
+		0%{margin-top:0px;}
+		50%{margin-top:-10px;}
+		100%{margin-top:0px;}
+	}
+
+	.block{width:990px;margin:0 auto;height:600px;padding:20px 0 20px 20px;position:relative;}
+
+  </style>
+ </head>
+ <body>
+	<div class="f1">
+		<div class="block">
+			<img src="images/font1.png" class="f1-font" />
+			<img src="images/yun1.png" class="f1-yun1" />
+			<img src="images/yun2.png" class="f1-yun2" />
+			<img src="images/yun3.png" class="f1-yun3" />
+			<img src="images/lu.png" class="f1-lu" />
+			<img src="images/san.png" class="f1-san"/>
+			<div class="f1-show">
+				<img src="images/1.png" class="f1-tejia" />
+				<img src="images/2.png" class="f1-two" />
+				<img src="images/3.png" class="f1-baokuan" />
+				<img src="images/4.png" class="f1-fangjia" />
+			</div>
+		</div>
+	</div>
+ </body>
+</html>

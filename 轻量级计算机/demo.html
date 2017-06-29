@@ -1,0 +1,149 @@
+<!doctype html><!--声明html版本编写指令  H5-->
+<html>
+	<head>
+		<!--声明页面编码  uft-8 国际编码-->
+		<meta charset="UTF-8">
+		<!--网站三要素 关键字  页面描述  标题-->
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>Document</title>
+	<style type="text/css">
+		*{padding:0;margin:0;}
+		li{list-style:none;}
+		body{background:#00779e;}
+
+		#counter {width:500px;height:420px;margin:50px auto 0;position:relative;}
+		#counter h2{line-height:42px;padding-left:15px;font-size:14px;font-family:arial;color:#FFF;}
+		#counter a {font-weight:normal;text-decoration:none;color:#FFF;}
+		#counter a:hover {text-decoration:underline;}
+		#bg{width:280px;height:200px;border:3px solid #004f69;background:#009acd;filter:alpha(opacity=80);opacity:0.8;position:absolute;left:50%;top:115px;margin-left:-141px;}
+		#counter_content{width:250px;position:absolute;top:130px;left:130px;z-index:1;}
+		#counter_content h3{margin-bottom:10px;}
+		#counter_content h3 input{border:none;width:223px;height:30px;line-height:30px;padding:0 10px;background:url(images/ico.png) no-repeat;text-align:right;color:#333;font-size:14px;font-weight:bold;}
+		#counter_content ul{width:250px;}
+		#counter_content li{width:60px;height:30px;line-height:30px;float:left;background:url(images/ico.png) no-repeat -303px 0;text-align:center;color:#fff;cursor:pointer;margin:0 1px 4px 0;}
+		#counter_content .active{background:url(images/ico.png) no-repeat -244px 0;}
+
+	</style>
+	</head>
+	<body>
+		<div id="counter">
+			<div id="counter_content">
+				<h3><input type="text" id="input1" value="0"/></h3>
+				<ul>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>+</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>-</li>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>×</li>
+					<li>0</li>
+					<li>C</li>
+					<li>=</li>
+					<li>÷</li>
+				</ul>
+			</div>
+			<div id="bg"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	/*
+		1.鼠标移到的li都给添加一个class=“active”  实际上是改变背景图片的位置
+		2.在写特效之前 ， 要找到触发这个特效的对象以及方法
+		document文档对象
+		重复执行某一段相似的代码就可以考虑用for循环了
+		初学阶段 this你就看做谁触发这个特效 this就代表谁
+		3.定义每一个按钮的功能  按下去才会触发这个功能
+		4.功能有很多  数字  等于  运算符  清0
+		5.每一个功能都是根据按钮当中的字符决定的，那么我就要知道你点击按钮li中的字符是谁
+		
+		sNum1+oinput.value  如果sNum1存在  就证明前面有一个算术  如果有算术 那么我点击下一个运算符的时候 就要出来第一个算术的结果
+
+		6.什么时候拼接数字 789  什么时候替换里面数字
+
+		parseInt强制取整
+	*/
+	var bNeedclear = false;//定义一个布尔值 
+	var sNum1 = "";//代表数字
+	var sOpr = "";//代表运算符
+	var oLi = document.getElementsByTagName("li");//在页面当中通过标签名获取元素（节点 = 对象）
+	for (var i = 0;i < oLi.length;i++)//for循环括号里面是干嘛的是为了限制执行次数所存在的,一般会在第一个部分var变量主要目的有其二：1.利用变量增长然后设置条件进行限制，2.这个变量我可以在接下来的执行语句当中有用处 
+	{
+		//执行语句
+		oLi[i].onmousedown = doInput;
+		oLi[i].onmouseover = function(){//鼠标划过后执行这个函数
+			this.className = "active";
+		}
+		oLi[i].onmouseout = function(){
+			this.className = "";
+		}
+	}
+
+	function doInput(){
+		var onInput = document.getElementById("input1");//通过ID获取元素
+		var sHtml = this.innerHTML;
+		switch(sHtml){
+			case "=":
+				onInput.value = calc(parseInt(sNum1) ,parseInt(onInput.value) , sOpr );
+				bNeedclear = true;//替换文本框内容
+				sOpr = "";
+				sNum1 = ""
+				break;//跳出switch
+			case "+":
+			case "-":
+			case "×":
+			case "÷":
+				bNeedclear = true;
+				if (sNum1.length != 0)
+				{
+					onInput.value = calc(parseInt(sNum1) ,parseInt(onInput.value) , sOpr );
+				}
+				sOpr = sHtml;
+				sNum1 = onInput.value;
+				break;
+			case  "C":
+				sOpr = "";
+				sNum1 = "";
+				onInput.value = "0";
+				break;
+			default://默认情况  剩下的都是数字
+				if (bNeedclear)//如果变量为false 就执行else下面的语句 为true 那就是上面的语句咯
+				{
+					onInput.value = sHtml;//替换情况 替换一次以后接着继续拼接
+					bNeedclear = false;
+				}else{
+					onInput.value = parseInt(onInput.value + sHtml);//拼接
+				}
+				break;
+		}	
+	}
+	function calc(iNum1 ,iNum2 , sOpr ){//第一个数字 第二个数字 运算符
+		var iResult = 0;
+		switch (sOpr)
+		{
+		case "+":
+			iResult = iNum1 + iNum2;
+			break;
+		case "-":
+			iResult = iNum1 - iNum2;
+			break;
+		case "×":
+			iResult = iNum1 * iNum2;
+			break;
+		case "÷":
+			iResult = iNum1 / iNum2;
+			break;
+		default:
+			iResult = iNum2;
+			break;
+		}
+		return iResult;//执行函数后返回结果
+	}
+	</script>
+</html>

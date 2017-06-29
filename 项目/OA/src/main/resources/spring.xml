@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        <!-- 1.扫描带有注解的包 -->
+        <context:component-scan base-package="com.oa"></context:component-scan>
+        <!-- 加载配置文件 -->
+      	<context:property-placeholder location="classpath:dbinfo.properties"/>
+        <!-- 2.数据源 -->
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+             <property name="driverClass" value="${jdbc.driverClass}"></property>
+             <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+        	 <property name="user" value="${jdbc.user}"></property>
+             <property name="password" value="${jdbc.password}"></property>
+             
+        </bean>
+        <!--3.sqlSessionfactory  -->
+        <bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+           <property name="dataSource" ref="dataSource"></property>
+      		<property name="configlocation" value="classpath:SqlMapConfig.xml"></property>
+        </bean>
+        <!-- 4. mapper层的代理类 -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+           <property name="basePackage" value="com.oa.mappper"></property>
+           <property name="sqlSessionFactoryBeanName" value="sqlsessionFactory"></property>
+        </bean>
+     
+</beans>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>Document</title>
+		<style>/*css 样式 */
+			*{/* 通用选择器:选择到所有的标签元素*/
+				margin:0;/*外边距*/
+				padding:0;/*内边距*/
+			}
+			#box{/* # id选择器*/
+				width:1000px;
+				height:500px;
+				/*优秀的开发工程师一定是一个为服务器/cpu考虑的
+				background:#963;*/
+				margin:auto;
+			}
+			#box ul li{
+				list-style:none;/*去除前面的小黑圆点*/
+				width:225px;
+				/*height:200px;*/
+				background:#fff;
+				float:left;/*左浮动:与父元素的左端对齐依次往右端显示，显示不下就换行接着显示*/
+				padding:5px;
+				margin:5px;
+				box-shadow:0 0 5px #333;/*边框阴影:x方向的偏移 y方向偏移 模糊度 颜色*/
+			}
+			#box ul li img{
+				 width:225px;
+				 transition:1s;
+			}
+		</style>
+	</head>
+	<body><!--身体-->
+		<!--盒子模型标签 宽度 高度 躯干-->
+		<div id="box"><!--id="自定义的名称" 命名规范(见名知义:用有语义的英文单词)-->
+			<ul><!--无序列表标签-->
+				<!--img图片四要素：src width height alt(解释说明)-->
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script src="js/jquery.js"></script><!--引入jq文件-->
+		<script>
+			//创建一个数组来保存图片
+			var arr = [//数组名字
+				{src : "images/1.png"},
+				{src : "images/2.jpg"},
+				{src : "images/3.jpg"},
+				{src : "images/4.jpg"},
+				{src : "images/5.jpg"},
+				{src : "images/6.jpg"},
+				{src : "images/7.jpg"},
+				{src : "images/8.jpg"},
+				{src : "images/9.jpg"},
+				{src : "images/10.jpg"},
+				{src : "images/11.jpg"},
+				{src : "images/12.jpg"}
+			];
+			//console.log(arr[0].src);
+			var i = 0;//定义一个变量
+			//动态生成图片标签，添加到Li里面
+			function create(){//封装一个函数来创建
+				//创建一个div标签
+				var oDiv = document.createElement("div");
+				var oImg = new Image();//新建一个图片对象
+				//0%12 0/12=0 余0 1/12=0余1 2/12=0余2 12/12=1余0 13/12=1余1
+				oImg.src = arr[i%arr.length].src;//把数组里面图片的路径赋值给img
+				oImg.style.cssText = "opacity:0;transform:scale(0)";
+				oDiv.appendChild(oImg);//把图片标签放到div里面
+				//把div放到高度最小的li里面
+				getList($("#box ul li")).append(oDiv);
+				(function(oImg){
+					setTimeout(function(){
+						oImg.style.cssText = "opacity:1;transform:scale(1)";
+					},100);
+				})(oImg)//立马执行
+			}
+			//create();//调用函数
+			//alert(arr.length);
+			//封装一个函数来获取高度最小的li
+			function getList(obj){
+				var length = obj.length;//定义一个变量保存li的列数
+				var h = Infinity;//每一列的高度都可以无限高
+				var oLi;//定义一个变量来保存符合条件的li列返回出去
+				for (var i=0;i<length ;i++ )
+				{
+					//循环获取每一列的高度来和无限高h作对比 若果小于h加给这个元素添加eq(i)  jq插件里面具体获取某一个元素
+					if (obj.eq(i).height() < h)
+					{
+						h = obj.eq(i).height();
+						oLi = obj.eq(i);
+					}
+				}
+				return oLi;
+			}
+			//封装一个函数来循环动态添加多个图片
+			var sum;
+			function upload(){//自定的
+				i++;
+				if(i<12){
+					for(;i<12;i++){
+						create();
+					}
+				}else{
+					sum = i;
+					for (;i<sum+3 ;i++ )
+					{
+						create();
+					}
+				}
+			}
+			upload();
+
+			//判断滚动条的高度，然后动态添加
+			var scrollH = '';//文档高度
+			var srollT = '';//滚动条高度
+			$(function(){
+				var _height = $(window).height();//获取可视区域的高度
+				$(window).scroll(function(){//jq滚动条事件
+					scrollH = document.body.scrollHeight;//文档高度
+					srollT = document.body.scrollTop;//滚动条高度
+					//看得见的可视区域高度加上看不见的滚动条高度之和如果大于文档的高度的话就再添加图片
+					if(_height + srollT + 50 > scrollH){
+						upload();
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

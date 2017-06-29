@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+   <style>
+        html{ 
+            background:#c2002a url("images/index.jpg") top center no-repeat;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .section{
+            width: 934px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .jieguo h1{
+            text-align: center;
+            line-height: 60px;
+            padding-top: 10px;
+        }
+        .jieguo{
+            margin-top: 174px;
+            color: #fff;
+            line-height: 80px;
+            margin-left: 20px;
+            margin-right: 20px;
+            height: 370px;
+            font-family: Arial,"黑体";
+        }
+        .jieguo div.numberD{
+            float: left;
+            font-size: 50px;
+            font-weight: bolder;
+            text-align: center;
+            width: 160px;
+            margin-left: 10px;
+        }
+        .btn_cj{
+            position: absolute;
+            width: 323px;
+            height: 81px;
+            border: none;
+            left:50%;
+            margin-left: -161px;
+            bottom:-40px;
+            cursor: pointer;
+            background:url("images/btn.png") top center no-repeat;
+        }
+        .btn_cj:hover{
+            background-position: 0 -81px;
+        }
+    </style>
+ </head>
+ <body>
+		<!-- 抽奖结果所在地方 -->
+		<div class="section">
+			<div id="jieguo" class="jieguo">
+			   <h1> 要开始抽奖啦，各位同学准备好了吗？</h1>
+			</div>
+			<input type="button" value=" " class="btn_cj"  id="btn_cj"/><!--点击按钮-->
+		</div>
+		<!-- 抽奖结果所在地方 end -->
+
+		<script type="text/javascript">
+			var result = document.getElementById("jieguo");
+			var btn = document.getElementById("btn_cj");
+			var  maxNumber = 4350; //最大人数
+			var cN = 15; //每次产生的中奖号码个数
+			var arrayNumber = [0];
+			var steps = 1; //当前产生的数字个数
+
+			for(var i = 1 ; i<=maxNumber ; i++){//数组里面存放值
+				var  res;
+				if (i < 10)
+				{
+				  res = "000" + i;
+				}
+				else if (i < 100)
+				{
+					 res = "00" + i;
+				}
+				else if(i<1000){
+					res = "0"+i;
+				}else{
+					 res =i;
+				}
+			   arrayNumber.push(res);
+			   
+			}
+
+			function getNumber(){//获取数字
+				if( cN>=arrayNumber.length ){
+					 alert("剩余号码已不够抽了");
+					 return 0;
+				}
+				var num = Math.floor(Math.random() * (arrayNumber.length-1))+1;
+				var  n =  arrayNumber[num];  //获取随机的元素
+				arrayNumber.splice(num,1);   //删除该元素
+				return n;  // 返回删除的元素
+			}
+
+			function createNumber(){//创建数字
+				if(steps>cN){
+					result.disabled=false;
+					return null;//不再创建数字
+				}
+				steps++;
+				var div = document.createElement("div");
+				div.innerHTML = "0000";
+				div.className = "numberD";
+				result.appendChild(div);
+				var  dis = 1;
+				var  maxdis = 30;
+				var myset = setInterval(function(){
+					dis++;
+					if(dis>maxdis){
+						div.innerHTML = getNumber();
+						clearInterval(myset);
+						createNumber();
+						return null; //终止函数运行
+					}
+					div.innerHTML = arrayNumber[Math.floor(Math.random()*(arrayNumber.length-1))+1];
+				},50);
+			}
+
+			btn.onclick = function(){
+				this.disabled = true;
+				steps = 1;
+				result.innerHTML = "<h1>要开始抽奖啦，各位同学准备好了吗？</h1>";
+				createNumber();
+			}
+		</script>
+ </body>
+</html>

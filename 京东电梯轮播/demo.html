@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <!--网站编码格式，UTF-8 国际编码，GBK或 gb2312 中文编码-->
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="关键词一，关键词二">
+  <meta name="Description" content="网站描述内容">
+  <title>Document</title>
+  <!--引用css js 文件的引入-->
+<style type="text/css">
+*{margin:0px;}
+/* 属性:值;  身高:1.7m; 颜色:红色; px像素*/
+#flash{width:670px;/*宽*/ height:240px;/*高*/ background:#cc99cc;/*背景颜色*/
+		margin:200px auto 0px; 
+		position:relative;/*相对定位*/ overflow:hidden;/*超出部分隐藏*/}
+#flash .scroll{width:670px; height:2400px;
+				position:absolute;/*绝对定位*/ left:0px; top:0px;}
+#flash .scroll img{display:block;/*块级*/}
+
+#flash ul.button{height:20px;width:144px; position:absolute;
+				bottom:20px; right:10px;}
+#flash ul.button li{list-style-type:none;/*去掉圆点*/ width:20px; height:20px; background:#666;float:left;/*左浮动*/ margin:0px 2px;
+		color:#fff; text-align:center;/*水平距中*/ font-size:12px; 
+		line-height:20px;/*行高 文字竖直距中*/border-radius:10px;/*圆半径*/
+		box-shadow:2px 2px 5px #000; }
+#flash ul.button li.hover{background:#cc3300;}
+</style>
+
+
+ </head>
+
+ <body>
+<!--div 盒子模型，高度，宽度，放内容的长方形容器 姓名=“张三”-->  
+<div id="flash">
+	<!--图片滚动开始-->
+	<div class="scroll">
+		<img src="images/1.jpg" />
+		<img src="images/2.jpg" />
+		<img src="images/3.jpg" />
+		<img src="images/4.jpg" />
+		<img src="images/5.jpg" />
+		<img src="images/6.jpg" />
+	</div>
+	<!--图片滚动结束-->
+
+	<!--按扭开始-->
+	<ul class="button">
+		<li class="hover">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ul>
+	<!--按扭结束-->
+
+</div>
+<!--引用 jqeury　文件-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	var _index=0;
+	var setTime=null;
+	$("ul.button li").hover(function(){
+		clearInterval(setTime); //清处定时播放器
+		_index=$(this).index();
+		//alert(_index);
+		// 给添加　class="hover" 
+		$(this).addClass("hover").siblings("li").removeClass("hover");
+		$(".scroll").animate({top:-(_index*240)},1000);
+	},function(){
+		autoPlay();//鼠标移开，调用自动播放
+	});
+
+
+	//自动轮播
+	function autoPlay(){
+		setTime=setInterval(function(){
+			_index++; //序列号加  1
+			if(_index>5){_index=0;} //当播到最后一张时，回到第一张
+			$("ul.button li").eq(_index).addClass("hover").siblings("li").removeClass("hover");
+			$(".scroll").animate({top:-(_index*240)},1000);
+		},2000);
+
+		
+	}
+	autoPlay();
+</script>
+
+<!--
+	1、如何在页面当中构建一个有宽度，高度的长方形 （div盒子模型）
+	2、讲到了外边距的概念 margin, 解决了外边距的兼容型问题 *{margin:0px;}
+	3、利用外边距来控制长方形的位置  margin:上(200px) 左右(auto) 下(0px);
+	4、分析了动画实现原理（在 #flash)长方形里，构建了一个宽度一样大小，高度无限高的长方		形) 然后利用相对和绝对定位来实现他的动画原理
+	5、如何在页面当中插入一张图 <img src="地址"/>
+	6、处理了图片之间产生间隙的问题（display:block;） 超出部分内容隐藏 overflow:hidden;
+	7、讲ul无序列表标签 （去掉li的圆点，给li添加宽度和高度 利用把小长方形从竖直变成水平		控制文字大小，颜色　水平距中，竖直距中，利最新技术css3 把正方形变成圆形				border-radius:10px; 利用外边距产生兼距）
+-->
+
+ </body>
+</html>

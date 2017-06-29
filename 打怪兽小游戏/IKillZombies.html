@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <meta name="Author" content="潭州学院-海牙">
+    <style type='text/css'>
+        * { margin: 0; padding: 0; }
+
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+<body>
+
+<script>
+    // Create the canvas
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+
+    // Background image
+    var bgReady = false;
+    var bgImage = new Image();
+    bgImage.onload = function () {
+        bgReady = true;
+    };
+    bgImage.src = "images/map/mapOne.png";
+
+    // Hero image
+    var heroReady = false;
+    var heroImage = new Image();
+    heroImage.onload = function () {
+        heroReady = true;
+    };
+    heroImage.src = "images/monster/ghost.png";
+
+    // Monster image
+    var monsterReady = false;
+    var monsterImage = new Image();
+    monsterImage.onload = function () {
+        monsterReady = true;
+    };
+    monsterImage.src = "images/monster/zombieG.png";
+
+    // Game objects
+    var hero = {
+        speed: 256, // 初始速度
+        sW: 0,
+        sH: 0,
+        x: canvas.width / 2,
+        y: canvas.height / 2
+    };
+    var monster = {
+        speed: 190,
+        direction: 'up',
+        run: [0, 65, 130, 195],
+        index: 0,
+        sW: 0,
+        sH: 0,
+    };
+
+    // Handle keyboard controls
+    var keysDown = {};
+
+    addEventListener("keydown", function (e) {
+        keysDown[e.keyCode] = true;
+    }, false);
+
+    addEventListener("keyup", function (e) {
+        delete keysDown[e.keyCode];
+    }, false);
+
+    // Reset the game when the player catches a monster
+    var reset = function () {
+        // 重置游戏
+        monster.x = 32 + (Math.random() * (canvas.width - 64));
+        monster.y = 32 + (Math.random() * (canvas.height - 64));
+        monster.direction = ['up', 'left','right','down'][Math.floor(Math.random() * 4)];
+        monsterImage.src = "images/monster/" + ['masterB', 'zombie', 'zombieB', 'zombieG'][Math.floor(Math.random() * 4)] + ".png";
+    };
+
+    // Update game objects
+    var update = function (modifier) {
+        if (38 in keysDown) { // 上
+            hero.y -= hero.speed * modifier;
+            hero.sW = 60;
+            hero.sH = 0;
+        }
+        if (40 in keysDown) { // 下
+            hero.y += hero.speed * modifier;
+            hero.sW = 0;
+            hero.sH = 60;
+        }
+        if (37 in keysDown) { // 左
+            hero.x -= hero.speed * modifier;
+            hero.sW = 195;
+            hero.sH = 195;
+        }
+        if (39 in keysDown) { // 右
+            hero.x += hero.speed * modifier;
+            hero.sW = 135;
+            hero.sH = 135;
+        }
+
+        // Are they touching?
+        if (
+            Math.abs(hero.x - monster.x) <= 32
+            && Math.abs(hero.y - monster.y) <= 32
+        ) {
+            hero.sW = 195;
+            hero.sH = 0;
+            reset();
+
+        }
+    };
+    function zombieMove(modifier) {
+        monster.index++;
+        monster.index %= 4;
+        switch (monster.direction) {
+            case 'up':
+                monster.y -= monster.speed * modifier
+                monster.sH = 195;
+                break;
+            case 'down':
+                monster.y += monster.speed * modifier;
+                monster.sH = 0;
+                break;
+            case 'left':
+                monster.x -= monster.speed * modifier;
+                monster.sH = 65;
+                break;
+            case 'right':
+                monster.x += monster.speed * modifier;
+                monster.sH = 130;
+                break;
+        }
+        monster.sW = monster.run[monster.index];
+        if (monster.x > (canvas.width - 65) || monster.y > (canvas.height - 65)) {
+            monster.speed *= -1;
+            monster.direction = ['up', 'left'][Math.floor(Math.random() * 2)];
+
+        }
+        if (monster.x < 0 || monster.y < 0) {
+            monster.speed = Math.abs(monster.speed);
+            monster.direction = ['down', 'right'][Math.floor(Math.random() * 2)];
+        }
+
+    }
+    // Draw everything
+    var render = function () {
+        if (bgReady) {
+            ctx.drawImage(bgImage, 0, 0);
+        }
+        if (heroReady) {
+            ctx.drawImage(heroImage, hero.sW, hero.sH, 65, 65, hero.x, hero.y, 65, 65);  //图片对象 , 图片剪裁起始x坐标, 图片剪裁起始y坐标, x方向剪裁多少, y方向剪裁多少, 初始绘制位置x,初始绘制位置y,图片缩放大小x,图片缩放大小y
+        }
+
+        if (monsterReady) {
+            ctx.drawImage(monsterImage, monster.sW, monster.sH, 65, 65, monster.x, monster.y, 65, 65);
+        }
+
+        // Score
+
+    };
+
+    // The main game loop
+    var main = function () {
+        var now = Date.now();
+        var delta = now - then;
+
+        update(delta / 1000);
+        zombieMove(delta / 1000);
+        render();
+        then = now;
+        // Request to do this again ASAP
+        requestAnimationFrame(main);
+    };
+
+    var w = window;
+    requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+
+    // Let's play this game!
+    var then = Date.now();
+    reset();
+    main();
+</script>
+</body>
+</html>

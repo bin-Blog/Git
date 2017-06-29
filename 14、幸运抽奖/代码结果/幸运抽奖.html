@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>幸运抽奖活动页</title>
+  <style>
+	*{padding:0;margin:0;}
+	.login-box{
+		width:500px;
+		height:430px;
+		margin:100px auto;
+		background:url(img/tx1.png) no-repeat;
+		box-shadow:0 0 2px rgba(0,0,0,.5);
+	}
+	.login{
+		padding:5px;
+		border:0 none;
+		background:#0a88e1;
+		color:#fff;
+		font-size:12px;
+		text-align:center;
+		line-height:20px;
+		width:220px;
+		margin-top:200px;
+		margin-left:120px;
+	}
+  </style>
+ </head>
+ <body>
+	<div class="login-box">
+			<input type="button" value="点击开始抽奖" onclick="luck()" class="login" id="luckbtn"/>
+	</div>
+ </body>
+ <script>
+ var no = prompt("请输入您的四位会员卡号：");
+ document.getElementById("luckbtn").value=no+"-欢迎你，"+document.getElementById("luckbtn").value;
+
+ function luck(){
+	 var　num;
+	 num=parseInt(10*Math.random());//产生0~10之间的一个随机数
+	 alert(num);
+
+	 var gewei = parseInt(no%10);
+	 alert(gewei);
+	 var shiwei = parseInt(no/10%10);
+	 alert(shiwei);
+	 var baiwei = parseInt(no/100%10);
+	 alert(baiwei);
+	 var qianwei =parseInt(no/1000);
+	 alert(qianwei);
+
+	 if(baiwei==num){
+		 alert("恭喜"+no+"；您获奖了，奖品为Iphone7一台！")
+	 }else{
+		 alert("对不起"+no+"；您没获奖，谢谢参与，再接再厉！")
+	 }
+ }
+ </script>
+</html>

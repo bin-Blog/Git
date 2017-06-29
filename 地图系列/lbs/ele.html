@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>饿了么LBS移动地图定位系统 - Arry老师</title>
+		<meta name="keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{background:url("images/bg.png");font-size:12px;font-family:"微软雅黑";color:#666;}
+			
+			/*content start*/
+			.content{width:1000px;margin:100px auto;position:relative;}
+			.content .c-title{height:60px;background:#f90;text-align:center;line-height:60px;font-size:22px;color:#fff;font-weight:300;}
+			.content .c-con{height:500px;}
+			/*end content*/
+
+			/*search start*/
+			.search{width:500px;height:50px;box-shadow: 0px 1px 10px -3px #000;position:absolute;top:100px;left:230px;}
+			.search .s-text{width:390px;height:50px;border:none;outline:none;padding-left:10px;}
+			.search .s-btn{width:100px;height:50px;background:#f60;border:none;color:#fff;cursor: pointer;outline:none;}
+			.search .s-btn:hover{background:#f30;}
+			/*end search*/
+
+			/*menu start*/
+			.menu{width:120px;background:#fff;box-shadow: 0px 0px 10px -3px #000;}
+			.menu ul li{line-height:40px;font-size:14px;text-align:center;cursor: pointer;list-style:none;}
+			.menu ul li:hover{background:#f3f3f3;}
+			/*end menu*/
+
+		</style>
+
+	</head>
+<body>
+
+	<!--content start-->
+	<div class="content">
+		<div class="c-title">点外卖，上饿了么 ！</div>
+		<div class="c-con" id="c-map"></div>
+		<!--search start-->
+		<div class="search">
+			<input type="text" class="s-text" placeholder="请输入您要搜索的关键词 ..." id="s-search"/><input type="button" value="搜 索" class="s-btn" />
+		</div>
+		<!--end search-->
+	</div>
+	<!--end content-->
+
+
+<!--引入高德地图API-->
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=4c38eff3f231fc981721d23995d992ff&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.MouseTool"></script>
+
+<script type="text/javascript">
+	var geolocation;
+    //地图加载
+    var map = new AMap.Map("c-map", {
+        resizeEnable: true
+    });
+    //输入提示
+    var autoOptions = {
+        input: "s-search"
+    };
+    var auto = new AMap.Autocomplete(autoOptions);
+    var placeSearch = new AMap.PlaceSearch({
+        map: map
+    });  //构造地点查询类
+    AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+    function select(e) {
+        placeSearch.setCity(e.poi.adcode);
+        placeSearch.search(e.poi.name);  //关键字查询查询
+    }
+
+	// 初始化右键
+	var menu=new ContextMenu(map);
+    function ContextMenu(map) {
+        var me = this;
+        this.mouseTool = new AMap.MouseTool(map); //地图中添加鼠标工具MouseTool插件
+        this.contextMenuPositon = null;
+        var content = [];
+
+		content.push('<div class="menu">'+
+					  '<ul>'+
+						'<li onclick="menu.zoomMenu(1)">放大</li>'+
+						'<li onclick="menu.zoomMenu(0)">缩小</li>'+
+						'<li onclick="menu.distanceMeasureMenu()">测量距离</li>'+
+						'<li onclick="menu.addMarkerMenu()">添加标记</li>'+
+					  '</ul>'+
+					  '</div>');
+
+        this.contextMenu = new AMap.ContextMenu({isCustom: true, content: content.join('')});//通过content自定义右键菜单内容
+        //地图绑定鼠标右击事件——弹出右键菜单
+        map.on('rightclick', function(e) {
+            me.contextMenu.open(map, e.lnglat);
+            me.contextMenuPositon = e.lnglat; //右键菜单位置
+        });
+    }
+
+    ContextMenu.prototype.zoomMenu = function zoomMenu(tag) {//右键菜单缩放地图
+        if (tag === 0) {
+            map.zoomOut();
+        }
+        if (tag === 1) {
+            map.zoomIn();
+        }
+        this.contextMenu.close();
+    }
+    ContextMenu.prototype.distanceMeasureMenu=function () {  //右键菜单距离量测
+        this.mouseTool.rule();
+        this.contextMenu.close();
+    }
+    ContextMenu.prototype.addMarkerMenu=function () {  //右键菜单添加Marker标记
+        this.mouseTool.close();
+        var marker = new AMap.Marker({
+            map: map,
+            position: this.contextMenuPositon //基点位置
+        });
+        this.contextMenu.close();
+    }
+
+	// 根据浏览器定位
+	 map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'RB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+    //解析定位结果
+    function onComplete(data) {
+        var str=['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        str.push('精度：' + data.accuracy + ' 米');
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        document.getElementById('tip').innerHTML = str.join('<br>');
+    }
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
+
+</script>
+
+</body>
+</html>

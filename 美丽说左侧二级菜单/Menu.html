@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>美丽说左侧二级菜单</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		<!--css/js-->
+<style type="text/css">
+*{margin:0px; padding:0px; list-style-type:none; }
+#Menu{width:285px;height:500px; border:1px solid #ff3366; margin:50px 0px 0px 100px; }
+#Menu h3{height:45px; background:#ff3366; color:#fff; text-align:center; line-height:45px;
+		font-size:14px; font-weight:100;}
+#Menu ul{width:285px;  margin:0px auto; }
+#Menu ul li{height:40px; line-height:40px; font-size:12px;
+border-bottom:1px dashed #ddd; background:url("images/ts.png") no-repeat 270px 15px; position:relative;}
+#Menu ul li a{color:#666; text-decoration:none; margin:0px 8px; font-family:"微软雅黑"; }
+#Menu ul li a:nth-of-type(1){font-size:14px;}
+#Menu ul li a.c{color:#ff3366;}
+
+#Menu ul li .t{width:285px; height:1px; background:#ff3366; position:absolute; left:0px; top:-1px; display:none;}
+#Menu ul li .b{width:285px; height:1px; background:#ff3366; position:absolute; left:0px; bottom:-1px;display:none;}
+#Menu ul li .r{width:1px;height:40px; background:#fff; position:absolute; right:-1px; top:0px;display:none;}
+#Menu ul li .nav{position:absolute; left:285px; /*height:300px; width:200px;*/
+	top:-1px; border:1px solid #ff3366;display:none;}
+
+</style>
+	</head>
+
+<body>
+
+<div id="Menu">
+	<h3>全部商品</h3>
+	<ul>
+		<li>
+			<a href="#">上衣</a><a href="#" class="c">呢大衣</a><a href="#">卫衣</a>
+			<a href="#">针织衫</a><a href="#">套装</a>
+			
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="r"></div>
+			
+		</li>
+
+		<li><a href="#">裙子</a> <a href="#" >连衣裙</a><a href="#" class="c">秋冬新品</a><a href="#">衣裙</a><a href="#">套装</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">裤子</a> <a href="#">阔腿裤</a> <a href="#">九分裤</a> <a href="#" class="c">牛仔裤</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">鞋子</a> <a href="#">秋季新品</a> <a href="#" class="c">短靴</a> <a href="#">单鞋</a> <a href="#">小白鞋</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">上衣</a> <a href="#" class="c">呢大衣</a><a href="#">卫衣</a><a href="#">针织衫</a><a href="#">套装</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">裙子</a> <a href="#" >连衣裙</a><a href="#" class="c">秋冬新品</a><a href="#">衣裙</a><a href="#">套装</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">裤子</a> <a href="#">阔腿裤</a> <a href="#">九分裤</a> <a href="#" class="c">牛仔裤</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+
+		<li><a href="#">鞋子</a> <a href="#">秋季新品</a> <a href="#" class="c">短靴</a> <a href="#">单鞋</a> <a href="#">小白鞋</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+		<li><a href="#">上衣</a> <a href="#" class="c">呢大衣</a><a href="#">卫衣</a><a href="#">针织衫</a><a href="#">套装</a>
+			<div class="t"></div>
+			<div class="b"></div>
+			<div class="nav"><img src="images/xq.png" /></div>
+			<div class="r"></div>
+		</li>
+		<li><a href="#">裙子</a> <a href="#" >连衣裙</a><a href="#" class="c">秋冬新品</a><a href="#">衣裙</a><a href="#">套装</a></li>
+		<li><a href="#">裤子</a> <a href="#">阔腿裤</a> <a href="#">九分裤</a> <a href="#" class="c">牛仔裤</a></li>
+		
+	</ul>
+</div>
+
+
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+var timer=null;
+$("#Menu ul li").mouseover(function(){
+	$(this).find("div").show();
+});
+
+$("#Menu ul li").mouseout(function(){
+		$("#Menu ul li").find("div").hide();
+
+	
+	
+	
+});
+
+
+</script>
+</body>
+</html>

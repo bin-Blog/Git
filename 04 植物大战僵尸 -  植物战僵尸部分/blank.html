@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>植物大战僵尸Javascript版 -- 植物战僵尸</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+#tGround {position:absolute;width:1400px;height:600px;visibility:visible;z-index:0;background:url('images/interface/background1unsodded.jpg') -115px 0px no-repeat;}
+#sod{position: absolute; height: 117px; width: 770px; top: 280px; left: 132px; z-index: 1; background-image: url( ./images/interface/sod1row.png); background-position: 0px 0px; background-repeat: no-repeat;}  
+#dPlants,#dZombies{position:absolute;left:0;top:0;z-index:2}  
+#dPlants div{position: absolute; top: 294px; z-index: 9999;}
+#dPlants img{position: absolute;}
+</style> 
+<script type="text/javascript">
+	window.onload = function(){  
+	
+	}
+</script> 
+</head>  
+<body id="dBody"   bgcolor="#008080">   
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll"> 
+	<div id="tGround"><!--背景图片--></div>   
+    <div id="sod"><!--草地背景--></div>  
+    <div id="dPlants"></div> <!--植物容器-->
+    <div id="dZombies"></div> <!--僵尸容器-->
+</div>  
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <!--网站编码格式，UTF-8 国际编码，GBK或 gb2312 中文编码-->
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="关键词一，关键词二">
+  <meta name="Description" content="网站描述内容">
+  <title>Document</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+.container {
+  background-color: #f39c12;
+  height: 100%;
+  position: relative;
+}
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.loader .spinnerBlock {
+  -webkit-animation: rotate 600ms linear 600ms infinite;
+          animation: rotate 600ms linear 600ms infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  display: block;
+  height: 50px;
+  width: 50px;
+}
+.loader span {
+  display: block;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.loader span:nth-child(1) {
+  border-color: #eee;
+}
+.loader span:nth-child(2) {
+  left: -18px;
+  top: 10px;
+}
+.loader span:nth-child(3) {
+  left: -18px;
+  top: -10px;
+}
+.loader span:nth-child(4) {
+  left: 0;
+  top: -18px;
+}
+.loader span:nth-child(5) {
+  left: 18px;
+  top: -10px;
+}
+.loader span:nth-child(6) {
+  left: 18px;
+  top: 10px;
+}
+.loader span:nth-child(7) {
+  left: 0;
+  top: 18px;
+}
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+  </style>
+ </head>
+ <body>
+<div class="container">
+	<div class="loader">
+		<div class="spinnerBlock">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+</div>
+ </body>
+</html>

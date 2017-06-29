@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .elf {
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            bottom:calc(50px + 150px);
+            left:calc(50% - 100px);
+            background: url("images/2.png");
+            animation: elf 1s steps(1) infinite;
+        }
+        @keyframes elf {
+            0%    {background-position: 0 0;}
+            12.5% {background-position: -200px 0;}
+            25%   {background-position:  -400px 0;}
+            37.5% {background-position:  -600px 0;}
+            50%   {background-position:  -800px 0;}
+            65.7% {background-position:  -1000px 0;}
+            75%   {background-position:  -1200px 0;}
+            87.5% {background-position:  -1400px 0;}
+            100%  {background-position:  -1600px 0;}
+        }
+        body{
+            background-image: url("images/back.png");
+            background-size: auto 100%;
+            animation: back 30s steps(20) infinite;
+        }
+        @keyframes back {
+            0% {background-position:0 0}
+            1% {background-position:-65.69px 0}
+            2% {background-position:-131.38px 0}
+            3% {background-position:-197.07px 0}
+            4% {background-position:-262.76px 0}
+            5% {background-position:-328.45px 0}
+            6% {background-position:-394.14px 0}
+            7% {background-position:-459.83px 0}
+            8% {background-position:-525.52px 0}
+            9% {background-position:-591.21px 0}
+            10% {background-position:-656.90px 0}
+            11% {background-position:-722.59px 0}
+            12% {background-position:-788.28px 0}
+            13% {background-position:-853.97px 0}
+            14% {background-position:-919.66px 0}
+            15% {background-position:-985.35px 0}
+            16% {background-position:-1051.04px 0}
+            17% {background-position:-1116.73px 0}
+            18% {background-position:-1182.42px 0}
+            19% {background-position:-1248.11px 0}
+            20% {background-position:-1313.80px 0}
+            21% {background-position:-1379.49px 0}
+            22% {background-position:-1445.18px 0}
+            23% {background-position:-1510.87px 0}
+            24% {background-position:-1576.56px 0}
+            25% {background-position:-1642.25px 0}
+            26% {background-position:-1707.94px 0}
+            27% {background-position:-1773.63px 0}
+            28% {background-position:-1839.32px 0}
+            29% {background-position:-1905.01px 0}
+            30% {background-position:-1970.70px 0}
+            31% {background-position:-2036.39px 0}
+            32% {background-position:-2102.08px 0}
+            33% {background-position:-2167.77px 0}
+            34% {background-position:-2233.46px 0}
+            35% {background-position:-2299.15px 0}
+            36% {background-position:-2364.84px 0}
+            37% {background-position:-2430.53px 0}
+            38% {background-position:-2496.22px 0}
+            39% {background-position:-2561.91px 0}
+            40% {background-position:-2627.60px 0}
+            41% {background-position:-2693.29px 0}
+            42% {background-position:-2758.98px 0}
+            43% {background-position:-2824.67px 0}
+            44% {background-position:-2890.36px 0}
+            45% {background-position:-2956.05px 0}
+            46% {background-position:-3021.74px 0}
+            47% {background-position:-3087.43px 0}
+            48% {background-position:-3153.12px 0}
+            49% {background-position:-3218.81px 0}
+            50% {background-position:-3284.50px 0}
+            51% {background-position:-3350.19px 0}
+            52% {background-position:-3415.88px 0}
+            53% {background-position:-3481.57px 0}
+            54% {background-position:-3547.26px 0}
+            55% {background-position:-3612.95px 0}
+            56% {background-position:-3678.64px 0}
+            57% {background-position:-3744.33px 0}
+            58% {background-position:-3810.02px 0}
+            59% {background-position:-3875.71px 0}
+            60% {background-position:-3941.40px 0}
+            61% {background-position:-4007.09px 0}
+            62% {background-position:-4072.78px 0}
+            63% {background-position:-4138.47px 0}
+            64% {background-position:-4204.16px 0}
+            65% {background-position:-4269.85px 0}
+            66% {background-position:-4335.54px 0}
+            67% {background-position:-4401.23px 0}
+            68% {background-position:-4466.92px 0}
+            69% {background-position:-4532.61px 0}
+            70% {background-position:-4598.30px 0}
+            71% {background-position:-4663.99px 0}
+            72% {background-position:-4729.68px 0}
+            73% {background-position:-4795.37px 0}
+            74% {background-position:-4861.06px 0}
+            75% {background-position:-4926.75px 0}
+            76% {background-position:-4992.44px 0}
+            77% {background-position:-5058.13px 0}
+            78% {background-position:-5123.82px 0}
+            79% {background-position:-5189.51px 0}
+            80% {background-position:-5255.20px 0}
+            81% {background-position:-5320.89px 0}
+            82% {background-position:-5386.58px 0}
+            83% {background-position:-5452.27px 0}
+            84% {background-position:-5517.96px 0}
+            85% {background-position:-5583.65px 0}
+            86% {background-position:-5649.34px 0}
+            87% {background-position:-5715.03px 0}
+            88% {background-position:-5780.72px 0}
+            89% {background-position:-5846.41px 0}
+            90% {background-position:-5912.10px 0}
+            91% {background-position:-5977.79px 0}
+            92% {background-position:-6043.48px 0}
+            93% {background-position:-6109.17px 0}
+            94% {background-position:-6174.86px 0}
+            95% {background-position:-6240.55px 0}
+            96% {background-position:-6306.24px 0}
+            97% {background-position:-6371.93px 0}
+            98% {background-position:-6437.62px 0}
+            99% {background-position:-6503.31px 0}
+            100% {  background-position: -6569px 0}
+
+        }
+    </style>
+</head>
+<body>
+<div class="elf"></div>
+<audio src="1.mp3" autoplay loop></audio>
+</body>
+</html>

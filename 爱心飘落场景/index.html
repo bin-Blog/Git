@@ -1,0 +1,68 @@
+<!doctype html> <!-- 声明网页文档类型 为html-->
+<html>  <!--网页从这里开始-->
+	<head><!--与浏览器进行通信 告诉浏览器本网页的基本信息-->
+		<title>爱心飘落场景</title> <!-- 网页标题的声明-->
+		<!--声明网页编码格式 统一语言 utf-8 gb2312 GBK-->
+		<meta charset='utf-8'> 
+		<!--声明网页关键字,便于搜索引擎搜索,seo优化-->
+		<meta name='Keywords' content='女朋友,表白,程序猿,情人节'>
+		<!--网页描述,用一句话描述本网页,有利于seo优化-->
+		<meta name='description' content='海牙老师在这里教大家如何表白'>
+		<!-- css样式 修饰我们的标签 比如高度 宽度 背景图片 -->
+		<style> /*衣柜 用来存放css样式 */
+
+			/**/
+			*{  /*通配符=>所有的元素 清除默认外边距*/
+				margin:0; 
+			}
+			html,body{
+				width:100%;
+				height:100%;
+			}
+			body{ /*标签选择器  属性名称 : 属性值 ;*/
+				/*背景属性 路径 平铺 图片定位/ 图片尺寸*/
+				background:url('images/bg.jpg') no-repeat top/cover;
+				overflow:hidden; /*隐藏超出的元素*/
+			}
+			.snowfall-flakes{ /* id选择器 #id名称*/
+				position:relative; /*相对定位 定位父级*/
+				width:20px; /*宽度:100px*/
+				height:18px; /*高度:80px*/
+			}
+			.snowfall-flakes:after,.snowfall-flakes:before {
+				position:absolute;/*绝对定位 */
+				left:14px;
+				top:10px;
+				display:block;
+				content:''; /*启动盒子*/
+				width:10px;
+				height:16px;
+				background:#ff0000;
+				/* 圆角:左上角 右上角 右下角 左下角 */
+				border-radius:50px 50px 0 0;
+				transform:rotate(45deg);/*css3 变形 :旋转 */
+			}
+			.snowfall-flakes:before{
+				left:10px;
+				transform:rotate(-45deg);
+			}
+
+
+		</style>
+	</head>
+	<body> <!--网页内容展示主体部分-->
+	<!-- div标签 盒子模型 区域划分 id标签的唯一标识符-->
+	<!-- audio 标签 音频播放标签 autoplay-->
+
+		<audio src='mp3/1.mp3' autoplay ></audio>
+		<script src='js/jquery-1.11.1.min.js'></script>
+		<script src='js/snowfall.jquery.js'></script>
+		<script> /*javascript 基于原型的动态解释性脚本语言*/
+			/* 谁 在什么时候 做什么事情 */
+			/* 网页文档 马上 下爱心 */
+			$(document).snowfall({
+				flakeCount:104
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="KeyWords" content="lonelystar,植物大战僵尸,网页版,JS植物大战僵尸,JS版,Javascript">
+<meta name="Description" content="JavaScript版的植物大战僵尸 ">
+<title>植物大战僵尸Javascript版</title>
+ <style type="text/css">
+*{margin:0px;padding:0px;font-family: 宋体; font-size: 12px} 
+.WindowFrame{position:absolute;width:900px;height:600px;overflow: hidden;border:3px outset/*边框突出*/ ;}
+.Menu{float:left;text-align:center;line-height:41px;font-weight:bold;font-family:黑体;color:#00CB08;height:41px;width:113px;background:url(images/interface/Button.png) no-repeat;font-size:14px;}
+</style>
+<script type="text/javascript">
+ 	window.onload = function(){
+		//加载背景
+		var otg = document.getElementById("tGround");
+		otg.style.backgroundImage = "url(images/interface/background1unsodded.jpg)";
+		otg.style.visibility = "visible";
+		//背景移动
+		var i = 0;
+ 		var timer =  setInterval(function(){
+			i = i-20;
+			otg.style.backgroundPosition = i+"px 0px"
+			if(i<-490){
+				clearInterval(timer); 
+			
+				//出场僵尸显示
+				var dZombie = document.getElementById("dZombie");
+				dZombie.style.left = "565px";  
+				  
+				for( var n=0;n<5;n++ ){ 
+					//创建一个静止不动的僵尸
+					var jxBox = document.createElement("div"); 
+					jxBox.innerHTML = ' <img src="images/interface/plantshadow32.png" style="position:absolute;left:72px;top:122px"><img style="position:absolute;left:10px;top:0px" src="images/Zombies/Zombie/1.gif">'; 
+					jxBox.style.position = "absolute";
+					jxBox.style.left = parseInt( (dZombie.offsetWidth - 166 ) * Math.random() ) +"px";
+					jxBox.style.top  = parseInt( (dZombie.offsetHeight- 144 ) * Math.random()) +"px";
+					jxBox.style.zIndex = 1; 
+					dZombie.appendChild(jxBox);  
+				}   
+				
+				//回到起始位置
+				setTimeout(function(){
+					otg.style.backgroundPosition = "-115px 0px";//背景移动
+					dZombie.style.left = "1065px";//显示僵尸的元素左移动
+					
+					//滚草坪
+					var odal = document.getElementById("dAll");
+					
+					var sod = document.createElement("div");//草坪
+					sod.style.position = "absolute";
+					sod.style.height = "117px";
+					sod.style.width  ="70px";
+					sod.style.top	 = "280px";
+					sod.style.left   = "132px";
+					sod.style.zIndex = 1;
+					sod.style.background = "url(./images/interface/sod1row.png) no-repeat 0px 0px"; 
+					odal.appendChild(sod);
+					
+					//卷轴
+					var sodRoll = document.createElement("img"); 
+					sodRoll.src = "images/interface/sodRoll.png";
+					sodRoll.style.position = "absolute";
+					sodRoll.style.height = "141px";
+					sodRoll.style.width  = "68px";
+					sodRoll.style.top	 = "250px";
+					sodRoll.style.left   = "132px"; 
+					sodRoll.style.zIndex = 1;
+					odal.appendChild(sodRoll);
+					
+					//卷轴盖
+					var sodCap = document.createElement("img"); 
+					sodCap.src = "images/interface/SodRollCap.png";
+					sodCap.style.position = "absolute";
+					sodCap.style.height = "71px";
+					sodCap.style.width  = "73px";
+					sodCap.style.top	= "345px";
+					sodCap.style.left   = "132px"; 
+					sodCap.style.zIndex = 1;
+					odal.appendChild(sodCap); 
+								 
+					//向右滚动
+					var w = 19,L = 1;
+					
+					var rollTimer = setInterval(function(){
+						  
+						sod.style.width      = sod.offsetWidth     + w  - 1	+ "px";  
+						
+						sodRoll.style.left   = sodRoll.offsetLeft  + w + L  + "px"; 
+					 	sodRoll.style.width  = sodRoll.offsetWidth - L + "px"; 
+						 
+						sodCap.style.left    = sodCap.offsetLeft   + w + L  + "px"; 
+						sodCap.style.width   = sodCap.offsetWidth  - L + "px";
+						sodCap.style.height  = sodCap.offsetHeight - L + "px";
+						sodCap.style.top  	 = sodCap.offsetTop    + L + "px"; 
+						
+						 
+						if( sod.offsetWidth > 755 ){ //755背景图片的宽度
+							clearInterval(rollTimer); 
+							odal.removeChild(sodRoll); 
+							odal.removeChild(sodCap); 	
+						}
+						
+						
+					},30);
+					
+				},2000); 
+			} 	
+		},30);  
+	} 
+ 
+</script>
+</head>  
+<body id="dBody" bgcolor="#008080">  
+<!--主界面EDAll-->
+<div class="WindowFrame" id="dAll" style="position:absolute;top:0;width:900px;background:#000">
+	<!--背景图片-->
+	<div style="position:absolute;width:1400px;height:600px;visibility:hidden;z-index:0" id="tGround"></div> 
+	<!--出场僵尸显示-->
+	<div id="dZombie" style="position:absolute;width:335px;height:600px;left:1065px;top:0;z-index:1"></div>
+</div>
+<!-- 菜单 -->
+ <div id="dMenu" style="position: absolute; cursor: pointer; width: 226px; height: 41px; left: 677px; z-index: 254; visibility: visible; ">
+	<div id="dMenu0" class="Menu" onclick=" ">回到游戏</div>
+	<div id="dMenu1" class="Menu" onclick=" ">菜 单</div>
+</div>
+      
+
+</body>
+</html>
+ 

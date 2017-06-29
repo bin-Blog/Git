@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords"  />
+		<title>放大镜</title>
+		<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#box{
+			width: 420px;/*宽度*/
+			height: 420px;/*高度*/
+			margin: 100px 100px;/*上外边距为100px左右居中*/
+			position: relative;/*相对定位:参照物*/
+		}
+		
+		.move{
+			width: 220px;
+			height: 220px;
+			background: url("img/move.png");/*设置背景图片*/
+			position: absolute;/*绝对定位:相对于参照物定位*/
+			left: 0px;/*左边距*/
+			top: 0px;/*上边距*/
+			display: none;
+		}
+		
+		.bimg{
+			width: 420px;
+			height: 420px;
+			border: 1px solid #ccc;/*边框线:粗细 类型为实线 颜色是灰色*/
+			overflow: hidden;/*超出部分隐藏*/
+			position: absolute;
+			left: 440px;
+			top: 0;
+			display: none;/*隐藏*/
+		}
+		
+		.bimg img{
+			position: absolute;
+			left: 0px;
+			
+		}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/simg.jpg" width="420" height="420" alt="小图" />
+			<div class="move"></div>
+			<div class="bimg">
+				<img src="img/bimg.jpg" width="800" height="800" alt="大图" />
+			</div>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+//		引入插件
+//		alert($);
+//		js弹出jQuery的代理函数
+//		$("box");jq找到box
+		//鼠标一进去显示
+		$("#box").mouseover(function(){
+			$(".move").show();//显示
+			$(".bimg").show();
+		});
+		//鼠标移走隐藏
+		$("#box").mouseout(function(){
+			$(".move").hide();//隐藏
+			$(".bimg").hide();	
+		});
+		//获取鼠标的位置
+		$("#box .move").mousemove(function(e){
+			var x = e.clientX;//获取鼠标距离浏览器x轴的位置
+			var y = e.clientY;
+			//console.log(x+":"+y);
+			var l = $("#box").offset().left;//获取距离浏览器缩短的偏移量
+			var t =$("#box").offset().top;
+			//鼠标在小图的中间计算
+			var _left = x - l -$(this).width()/2; 
+			var _top = y - t -$(this).height()/2;
+			
+			//不让他出去超出父元素的上下
+			if(_top < 0){
+				_top = 0;
+			}else if(_top >= $("#box").height() - $(this).height() ){
+				_top = $("#box").height() - $(this).height();
+			};
+			
+			if (_left < 0) {
+				_left = 0;
+			}else if(_left > $("#box").width() - $(this).width() ){
+				_left = $("#box").width() - $(this).width();
+			}
+			
+			$(this).css({
+				"left": _left + "px",
+				"top" : _top + "px"
+			});
+			
+			
+			//计算一个移动的比例
+			var w = _left / ($("#box").width() - $(this).width());
+			var h = _top / ($("#box").height() - $(this).height());
+			
+			//大图移动对应距离
+			var b_left = ($(".bimg img").width() - $(".bimg").width()) * w ;
+			var b_top = ($(".bimg img").height() - $(".bimg").height()) * h ;
+			
+			$(".bimg img").css({
+				"left" : -b_left + "px",
+				"top" : -b_top + "px"
+			});
+			
+		});	
+		</script>
+	
+	</body>
+</html>
