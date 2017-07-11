@@ -7,3 +7,13 @@ some of my demo
 JavaScript、HTML5和CSS3
 - 目录
 -- C3-demo、JavaScript-demo
+--$ git status
+
+--$ git add .
+
+--$ git commit -m "The understanding of the prototype chain in JavaScript"
+
+--$ git remote add origin https://github.com/bin-Blog/Git.git
+
+--$ git push -u origin master
+
