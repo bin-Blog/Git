@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Object.getOwnPropertyNames方法返回一个数组，成员是对象本身的所有属性的键名，不包含继承的属性键名
+    console.log(Object.getOwnPropertyNames(Date));
+    //Array(8)
+    // 0: "length"
+    // 1: "name"  ,
+    // 2: "arguments" ,
+    // 3: "caller",
+    // 4: "prototype",
+    // 5: "now",
+    // 6: "parse",
+    // 7: "UTC"
+    // length: 8
+    // __proto__: Array(0)
+
+    //只获取那些可以枚举的属性，使用Object.keys方法
+    console.log(Object.keys(Date));
+    //[]
+    // length: 0
+    // __proto__: Array(0)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS中的原型链</title>
+</head>
+<body>
+	<script>
+	function superType(){
+		this.prototype = true;
+	};
+	superType.prototype.getSuperVal = function(){
+		return this.prototype;
+	};
+	function subType(){
+		this.subprototype = false;
+	};
+	subType.prototype = new superType();
+	subType.prototype.getSubVal = function(){
+		return this.subprototype;
+	};
+	var instance = new subType();
+	console.log(instance.getSuperVal());
+
+
+
+	var a = {};
+	// prototype是函数才有的属性，
+console.log(a.prototype);  //undefined
+// __proto__是每个对象都有的属性，可以将它理解为构造器原型，
+// __proto__ === constructor.prototype
+console.log(a.__proto__);  //Object {}
+
+var b = function(){}
+console.log(b.prototype);  //b {}
+console.log(b.__proto__);  //function() {}
+
+
+// __proto__的指向；取决于对象创建时的实现方式，
+/*1、字面量方式*/
+var a = {};
+console.log(a.__proto__);  //Object {}
+
+console.log(a.__proto__ === a.constructor.prototype); //true
+
+/*2、构造器方式*/
+var A = function(){};
+var a = new A();
+console.log(a.__proto__); //A {}
+
+console.log(a.__proto__ === a.constructor.prototype); //true
+
+/*3、Object.create()方式*/
+var a1 = {a:1}
+var a2 = Object.create(a1);
+console.log(a2.__proto__); //Object {a: 1}
+
+console.log(a.__proto__ === a.constructor.prototype); //false
+
+
+// __proto__是任何对象都有的属性，而在js中，万物皆对象，所以会形成一条__proto__连起来的链条，递归访问__proto__必须到头，并且值是null
+var A = function(){};
+var a = new A();
+console.log(a.__proto__); //A {}（即构造器function A 的原型对象）
+console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
+console.log(a.__proto__.__proto__.__proto__); //null
+	</script>
+</body>
+</html>
